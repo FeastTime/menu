@@ -1,4 +1,4 @@
-package com.feasttime.munu;
+package com.feasttime.menu;
 
 import org.junit.Test;
 

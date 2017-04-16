@@ -1,6 +1,5 @@
-package com.feasttime.munu;
+package com.feasttime.menu;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class MainActivity extends BaseActivity {
@@ -13,6 +12,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onResume() {
+
         //请求订单
         super.onResume();
     }

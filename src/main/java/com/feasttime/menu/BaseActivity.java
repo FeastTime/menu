@@ -1,4 +1,4 @@
-package com.feasttime.munu;
+package com.feasttime.menu;
 
 import android.app.Activity;
 import android.os.Bundle;
