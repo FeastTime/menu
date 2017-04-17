@@ -7,10 +7,10 @@ package com.feasttime.presenter.mainmenu;
  */
 public class MainMenuPresenter implements MainMenuContract.IWeatherPresenter {
 
-    private MainMenuContract.IWeatherView mIWeatherView;
+    private MainMenuContract.MenuView mIWeatherView;
 
     @Override
-    public void init(MainMenuContract.IWeatherView view) {
+    public void init(MainMenuContract.MenuView view) {
         this.mIWeatherView = view;
         mIWeatherView.initView();
     }

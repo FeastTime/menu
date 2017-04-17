@@ -4,8 +4,9 @@ import android.os.Bundle;
 
 import com.feasttime.menu.R;
 import com.feasttime.presenter.IPresenter;
+import com.feasttime.presenter.mainmenu.MainMenuContract;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements MainMenuContract.MenuView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onInitPresenters() {
+
+    }
+
+    @Override
+    public void initView() {
 
     }
 }

@@ -7,13 +7,13 @@ import com.feasttime.presenter.IView;
 
 
 public interface MainMenuContract {
-    interface IWeatherView extends IView {
-        void showNowWeather(MainMenu result);
-
-        void error(String error);
+    interface MenuView extends IView {
+//        void showNowWeather(MainMenu result);
+//
+//        void error(String error);
     }
 
-    interface IWeatherPresenter extends IPresenter<IWeatherView> {
-        void getWeather(String city);
+    interface IWeatherPresenter extends IPresenter<MenuView> {
+//        void getWeather(String city);
     }
 }
