@@ -1,20 +1,14 @@
 package com.feasttime.model;
 
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 
 import com.feasttime.tools.LogUtil;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Cache;
-import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -24,9 +18,6 @@ import okio.Buffer;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by long on 2016/8/22.
@@ -46,10 +37,9 @@ public class RetrofitService {
     // 避免出现 HTTP 403 Forbidden，参考：http://stackoverflow.com/questions/13670692/403-forbidden-with-java-but-not-web-browser
     static final String AVOID_HTTP403_FORBIDDEN = "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11";
 
-    private static final String NEWS_HOST = "http://c.3g.163.com/";
-    private static final String WELFARE_HOST = "http://gank.io/";
+    private static final String BASE_URL = "http://localhost:8080/";
 
-    private static MenusApi sNewsService;
+    private static MenusApi sMenuService;
 
     // 递增页码
     private static final int INCREASE_PAGE = 20;
@@ -74,10 +64,10 @@ public class RetrofitService {
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(NEWS_HOST)
+                .baseUrl(BASE_URL)
                 .build();
 
-        sNewsService = retrofit.create(MenusApi.class);
+        sMenuService = retrofit.create(MenusApi.class);
     }
 
 
