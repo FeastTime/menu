@@ -3,7 +3,7 @@ package com.feasttime.view;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.feasttime.presenter.IPresenter;
+import com.feasttime.presenter.IBasePresenter;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,11 +13,11 @@ import java.util.Set;
  */
 
 public abstract class BaseActivity extends Activity{
-    private Set<IPresenter> mAllPresenters = new HashSet<>(1);
+    private Set<IBasePresenter> mAllPresenters = new HashSet<>(1);
     /**
      * 需要子类来实现，获取子类的IPresenter，一个activity有可能有多个IPresenter
      */
-    protected abstract IPresenter[] getPresenters();
+    protected abstract IBasePresenter[] getPresenters();
 
     /**
      * 初始化presenters
@@ -32,7 +32,7 @@ public abstract class BaseActivity extends Activity{
     }
 
     private void addPresenters() {
-        IPresenter[] presenters = getPresenters();
+        IBasePresenter[] presenters = getPresenters();
         if (presenters != null) {
             for (int i = 0; i < presenters.length; i++) {
                 mAllPresenters.add(presenters[i]);
@@ -45,7 +45,7 @@ public abstract class BaseActivity extends Activity{
     protected void onResume() {
         super.onResume();
         //依次调用IPresenter的onResume方法
-        for (IPresenter presenter : mAllPresenters) {
+        for (IBasePresenter presenter : mAllPresenters) {
             if (presenter != null) {
                 presenter.onResume();
             }
@@ -56,7 +56,7 @@ public abstract class BaseActivity extends Activity{
     protected void onStop() {
         super.onStop();
         //依次调用IPresenter的onStop方法
-        for (IPresenter presenter : mAllPresenters) {
+        for (IBasePresenter presenter : mAllPresenters) {
             if (presenter != null) {
                 presenter.onStop();
             }
@@ -67,7 +67,7 @@ public abstract class BaseActivity extends Activity{
     protected void onPause() {
         super.onPause();
         //依次调用IPresenter的onPause方法
-        for (IPresenter presenter : mAllPresenters) {
+        for (IBasePresenter presenter : mAllPresenters) {
             if (presenter != null) {
                 presenter.onPause();
             }
@@ -78,7 +78,7 @@ public abstract class BaseActivity extends Activity{
     protected void onStart() {
         super.onStart();
         //依次调用IPresenter的onStart方法
-        for (IPresenter presenter : mAllPresenters) {
+        for (IBasePresenter presenter : mAllPresenters) {
             if (presenter != null) {
                 presenter.onStart();
             }
@@ -89,7 +89,7 @@ public abstract class BaseActivity extends Activity{
     protected void onDestroy() {
         super.onDestroy();
         //依次调用IPresenter的onDestroy方法
-        for (IPresenter presenter : mAllPresenters) {
+        for (IBasePresenter presenter : mAllPresenters) {
             if (presenter != null) {
                 presenter.onDestroy();
             }

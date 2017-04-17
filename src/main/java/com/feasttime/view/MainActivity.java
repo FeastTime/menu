@@ -3,7 +3,8 @@ package com.feasttime.view;
 import android.os.Bundle;
 
 import com.feasttime.menu.R;
-import com.feasttime.presenter.IPresenter;
+import com.feasttime.model.bean.MainMenu;
+import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.mainmenu.MainMenuContract;
 
 public class MainActivity extends BaseActivity implements MainMenuContract.MenuView {
@@ -21,8 +22,8 @@ public class MainActivity extends BaseActivity implements MainMenuContract.MenuV
     }
 
     @Override
-    protected IPresenter[] getPresenters() {
-        return new IPresenter[0];
+    protected IBasePresenter[] getPresenters() {
+        return new IBasePresenter[0];
     }
 
     @Override
@@ -32,6 +33,11 @@ public class MainActivity extends BaseActivity implements MainMenuContract.MenuV
 
     @Override
     public void initView() {
+
+    }
+
+    @Override
+    public void showMenu(MainMenu result) {
 
     }
 }

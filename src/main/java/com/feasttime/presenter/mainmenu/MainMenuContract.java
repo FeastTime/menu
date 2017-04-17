@@ -2,18 +2,16 @@ package com.feasttime.presenter.mainmenu;
 
 
 import com.feasttime.model.bean.MainMenu;
-import com.feasttime.presenter.IPresenter;
-import com.feasttime.presenter.IView;
+import com.feasttime.presenter.IBasePresenter;
+import com.feasttime.presenter.IBaseView;
 
 
 public interface MainMenuContract {
-    interface MenuView extends IView {
-//        void showNowWeather(MainMenu result);
-//
-//        void error(String error);
+    interface MenuView extends IBaseView {
+        void showMenu(MainMenu result);
     }
 
-    interface IWeatherPresenter extends IPresenter<MenuView> {
-//        void getWeather(String city);
+    interface MenuPresenter extends IBasePresenter<MenuView> {
+        void getMenu(String data);
     }
 }

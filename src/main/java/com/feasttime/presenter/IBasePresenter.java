@@ -4,7 +4,7 @@ package com.feasttime.presenter;
  *
  * Created by glh on 2016-06-23.
  */
-public interface IPresenter<V extends IView> {
+public interface IBasePresenter<V extends IBaseView> {
     void onStop();
 
     void onResume();
