@@ -1,6 +1,9 @@
-package com.feasttime.menu;
+package com.feasttime.view;
 
 import android.os.Bundle;
+
+import com.feasttime.menu.R;
+import com.feasttime.presenter.IPresenter;
 
 public class MainActivity extends BaseActivity {
 
@@ -12,8 +15,17 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onResume() {
-
         //请求订单
         super.onResume();
+    }
+
+    @Override
+    protected IPresenter[] getPresenters() {
+        return new IPresenter[0];
+    }
+
+    @Override
+    protected void onInitPresenters() {
+
     }
 }

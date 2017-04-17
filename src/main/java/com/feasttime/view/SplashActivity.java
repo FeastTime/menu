@@ -1,13 +1,12 @@
-package com.feasttime.menu;
+package com.feasttime.view;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 /**
  * Created by chen on 2017/4/16.
  */
 
-public class BaseActivity extends Activity{
+public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
