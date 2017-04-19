@@ -1,7 +1,9 @@
 package com.feasttime.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.feasttime.menu.R;
 import com.feasttime.presenter.IBasePresenter;
 
 /**
@@ -12,6 +14,8 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.splash_activity);
+        startActivity(new Intent(this,MainActivity.class));
     }
 
     @Override

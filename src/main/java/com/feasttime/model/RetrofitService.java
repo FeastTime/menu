@@ -2,13 +2,18 @@ package com.feasttime.model;
 
 import android.support.annotation.NonNull;
 
+import com.feasttime.model.bean.MyLocation;
 import com.feasttime.tools.LogUtil;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -16,16 +21,15 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okio.Buffer;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by long on 2016/8/22.
+ *
  * 整个网络通信服务的启动控制，必须先调用初始化函数才能正常使用网络通信接口
  */
 public class RetrofitService {
-
-    private static final String HEAD_LINE_NEWS = "T1348647909107";
 
     //设缓存有效期为1天
     static final long CACHE_STALE_SEC = 60 * 60 * 24 * 1;
@@ -37,7 +41,7 @@ public class RetrofitService {
     // 避免出现 HTTP 403 Forbidden，参考：http://stackoverflow.com/questions/13670692/403-forbidden-with-java-but-not-web-browser
     static final String AVOID_HTTP403_FORBIDDEN = "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11";
 
-    private static final String BASE_URL = "http://localhost:8080/";
+    private static final String BASE_URL = "http://amidgame.cn/api/";
 
     private static MenusApi sMenuService;
 
@@ -63,7 +67,7 @@ public class RetrofitService {
         Retrofit retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(BASE_URL)
                 .build();
 
@@ -102,4 +106,11 @@ public class RetrofitService {
     }
 
 
+    public static Observable<MyLocation> getLocationList(){
+        return sMenuService.getLocationList()
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }

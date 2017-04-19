@@ -3,7 +3,6 @@ package com.feasttime.presenter.shoppingcart;
 import com.feasttime.model.bean.MainMenu;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.IBaseView;
-import com.feasttime.presenter.mainmenu.MenuContract;
 
 /**
  * Created by chen on 2017/4/19.

@@ -1,4 +1,4 @@
-package com.feasttime.presenter.mainmenu;
+package com.feasttime.presenter.menu;
 
 
 import com.feasttime.model.bean.MainMenu;
