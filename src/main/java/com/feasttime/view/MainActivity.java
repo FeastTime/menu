@@ -22,7 +22,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        RetrofitService.getLocationList().subscribe(new Consumer<MyLocation>(){
+        RetrofitService.getLocationList("10","1").subscribe(new Consumer<MyLocation>(){
             @Override
             public void accept(MyLocation myLocation) throws Exception {
                 LogUtil.d(TAG,"success");

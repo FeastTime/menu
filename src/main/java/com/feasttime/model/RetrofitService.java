@@ -41,7 +41,7 @@ public class RetrofitService {
     // 避免出现 HTTP 403 Forbidden，参考：http://stackoverflow.com/questions/13670692/403-forbidden-with-java-but-not-web-browser
     static final String AVOID_HTTP403_FORBIDDEN = "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11";
 
-    private static final String BASE_URL = "http://amidgame.cn/api/";
+    private static final String BASE_URL = "http://123.206.43.102:8080/support/";
 
     private static MenusApi sMenuService;
 
@@ -106,8 +106,8 @@ public class RetrofitService {
     }
 
 
-    public static Observable<MyLocation> getLocationList(){
-        return sMenuService.getLocationList()
+    public static Observable<MyLocation> getLocationList(String rows,String page){
+        return sMenuService.getLocationList(rows,page)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
