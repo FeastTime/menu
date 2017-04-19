@@ -6,12 +6,12 @@ import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.IBaseView;
 
 
-public interface MainMenuContract {
-    interface MenuView extends IBaseView {
+public interface MenuContract {
+    interface IMenuView extends IBaseView {
         void showMenu(MainMenu result);
     }
 
-    interface MenuPresenter extends IBasePresenter<MenuView> {
+    interface IMenuPresenter extends IBasePresenter<IMenuView> {
         void getMenu(String data);
     }
 }

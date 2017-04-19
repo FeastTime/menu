@@ -5,9 +5,9 @@ import android.os.Bundle;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.MainMenu;
 import com.feasttime.presenter.IBasePresenter;
-import com.feasttime.presenter.mainmenu.MainMenuContract;
+import com.feasttime.presenter.mainmenu.MenuContract;
 
-public class MainActivity extends BaseActivity implements MainMenuContract.MenuView {
+public class MainActivity extends BaseActivity implements MenuContract.MenuView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

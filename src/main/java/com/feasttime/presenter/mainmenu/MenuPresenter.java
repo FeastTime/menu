@@ -5,12 +5,12 @@ package com.feasttime.presenter.mainmenu;
  * 获取天气的Presenter
  * Created by glh on 2016-06-23.
  */
-public class MainMenuPresenter implements MainMenuContract.MenuPresenter {
+public class MenuPresenter implements MenuContract.IMenuPresenter {
 
-    private MainMenuContract.MenuView mIWeatherView;
+    private MenuContract.IMenuView mIWeatherView;
 
     @Override
-    public void init(MainMenuContract.MenuView view) {
+    public void init(MenuContract.IMenuView view) {
         this.mIWeatherView = view;
         mIWeatherView.initView();
     }
