@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+
+import com.feasttime.menu.R;
 import com.nineoldandroids.view.ViewHelper;
 
 import java.util.HashMap;

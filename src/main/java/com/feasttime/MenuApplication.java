@@ -13,7 +13,7 @@ public class MenuApplication extends Application {
         super.onCreate();
         Log.d("test","MenuApplication");
         CrashReport.initCrashReport(getApplicationContext(), "3b4f343c2c", false);
-        RetrofitService.init();
+        RetrofitService.init(this);
 
     }
 }
