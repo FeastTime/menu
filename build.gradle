@@ -38,7 +38,6 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.0.0-RC1'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.0-RC1'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
-
     compile 'com.alibaba:fastjson:1.1.56.android'
     // retrofit
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
@@ -49,6 +48,7 @@ dependencies {
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile 'com.tencent.bugly:nativecrashreport:latest.release'
     testCompile 'junit:junit:4.12'
+    compile 'com.r0adkll:slidableactivity:2.0.5'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.android:support-v4:r7'
 }
