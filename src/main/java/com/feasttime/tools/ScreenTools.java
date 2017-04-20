@@ -1,6 +1,8 @@
 package com.feasttime.tools;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.TypedValue;
 
 
 public class ScreenTools {
@@ -16,4 +18,7 @@ public class ScreenTools {
         return (int) (pxValue / scale + 0.5f);
     }
 
+    public static int dpToPx(Resources res, int dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, res.getDisplayMetrics());
+    }
 }
