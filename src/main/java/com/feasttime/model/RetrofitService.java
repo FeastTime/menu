@@ -2,7 +2,9 @@ package com.feasttime.model;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
+import com.feasttime.menu.BuildConfig;
 import com.feasttime.model.bean.CreateOrderInfo;
 import com.feasttime.tools.DeviceTool;
 import com.feasttime.tools.LogUtil;
@@ -20,6 +22,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import okio.Buffer;
 import retrofit2.Retrofit;
 
@@ -31,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * 整个网络通信服务的启动控制，必须先调用初始化函数才能正常使用网络通信接口
  */
 public class RetrofitService {
-
+    private static final String TAG = "RetrofitService";
     //设缓存有效期为1天
     static final long CACHE_STALE_SEC = 60 * 60 * 24 * 1;
     //查询缓存的Cache-Control设置，为if-only-cache时只查询缓存而不会请求服务器，max-stale可以配合设置缓存失效时间
@@ -72,14 +75,13 @@ public class RetrofitService {
 
         //BasicParamsInterceptor aa;
 
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
                 .addInterceptor(sLoggingInterceptor)
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .build();
+                .connectTimeout(10, TimeUnit.SECONDS);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .client(okHttpClient)
+                .client(okHttpClient.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(BASE_URL)
@@ -108,12 +110,13 @@ public class RetrofitService {
             if (request.body() != null) {
                 request.body().writeTo(requestBuffer);
             } else {
-                LogUtil.d("LogTAG", "request.body() == null");
+                LogUtil.d(TAG, "request.body() == null");
             }
             //打印url信息
-            LogUtil.d("LogTAG",request.url() + (request.body() != null ? "?" + _parseParams(request.body(), requestBuffer) : ""));
+            LogUtil.d(TAG,"net info request---> " + request.url() + (request.body() != null ? "?" + _parseParams(request.body(), requestBuffer) : ""));
             final Response response = chain.proceed(request);
-
+            ResponseBody responseBody = response.peekBody(1024 * 1024);
+            LogUtil.d(TAG,"net info response---> " + responseBody.string());
             return response;
         }
     };

@@ -9,7 +9,7 @@ import java.io.RandomAccessFile;
 
 
 public class LogUtil {
-    public static final boolean DEBUG = true;
+    public static boolean DEBUG = true;
 
     public static void d(String TAG, String msg) {
         if (DEBUG) {

@@ -19,16 +19,19 @@ public class ShoppingCartPresenter implements ShoppingCartContract.IShoppingCart
         RetrofitService.createOrder(token).subscribe(new Consumer<CreateOrderInfo>(){
             @Override
             public void accept(CreateOrderInfo createOrderInfo) throws Exception {
+                LogUtil.d("result","aa");
             }
         }, new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 //这里接收onError
+                LogUtil.d("result","error");
             }
         }, new Action() {
             @Override
             public void run() throws Exception {
                 //这里接收onComplete。
+                LogUtil.d("result","complete");
             }
         });
     }
