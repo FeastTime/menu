@@ -13,6 +13,7 @@ import io.reactivex.functions.Consumer;
  */
 
 public class ShoppingCartPresenter implements ShoppingCartContract.IShoppingCartPresenter{
+    private ShoppingCartContract.IShoppingCartView mIShoppingCartView;
 
     @Override
     public void createOrder(String token) {
@@ -20,6 +21,7 @@ public class ShoppingCartPresenter implements ShoppingCartContract.IShoppingCart
             @Override
             public void accept(CreateOrderInfo createOrderInfo) throws Exception {
                 LogUtil.d("result","aa");
+                mIShoppingCartView.createOrderComplete();
             }
         }, new Consumer<Throwable>() {
             @Override
@@ -38,7 +40,7 @@ public class ShoppingCartPresenter implements ShoppingCartContract.IShoppingCart
 
     @Override
     public void init(ShoppingCartContract.IShoppingCartView view) {
-
+        this.mIShoppingCartView = view;
     }
 
 

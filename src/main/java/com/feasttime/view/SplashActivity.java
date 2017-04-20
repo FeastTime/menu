@@ -14,8 +14,12 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_activity);
         startActivity(new Intent(this,MainActivity.class));
+    }
+
+    @Override
+    protected void initViews() {
+
     }
 
     @Override
@@ -25,6 +29,10 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onInitPresenters() {
+    }
 
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.splash_activity;
     }
 }

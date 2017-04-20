@@ -1,38 +1,48 @@
 package com.feasttime.presenter.menu;
 
 
+import com.feasttime.model.RetrofitService;
+import com.feasttime.model.bean.MenuIfno;
+import com.feasttime.tools.LogUtil;
+
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+
 /**
  * 获取天气的Presenter
  * Created by glh on 2016-06-23.
  */
 public class MenuPresenter implements MenuContract.IMenuPresenter {
 
-    private MenuContract.IMenuView mIWeatherView;
+    private MenuContract.IMenuView mIMenuView;
 
     @Override
     public void init(MenuContract.IMenuView view) {
-        this.mIWeatherView = view;
-        mIWeatherView.initView();
+        this.mIMenuView = view;
     }
 
     @Override
-    public void getMenu(final String city) {
-//        mExecutorService.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                mWeatherManager.getNowWeather(city, new WeatherManager.WeatherListener() {
-//                    @Override
-//                    public void onSuccess(TPWeatherNow response) {
-//                        mIWeatherView.showNowWeather(BeanUtil.createNowWeather(response));
-//                    }
-//
-//                    @Override
-//                    public void onFailed(String errString) {
-//                        mIWeatherView.error(errString);
-//                    }
-//                });
-//            }
-//        });
+    public void getMenu(String mobileNO, String token, String orderID, String classType, String page) {
+        RetrofitService.getMenu(mobileNO,token,orderID,classType,page).subscribe(new Consumer<MenuIfno>(){
+            @Override
+            public void accept(MenuIfno menuIfno) throws Exception {
+                LogUtil.d("result","aa");
+                mIMenuView.showMenu(menuIfno);
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                //这里接收onError
+                LogUtil.d("result","error:");
+
+            }
+        }, new Action() {
+            @Override
+            public void run() throws Exception {
+                //这里接收onComplete。
+                LogUtil.d("result","complete");
+            }
+        });
     }
 
 

@@ -8,6 +8,8 @@ import com.feasttime.presenter.IBasePresenter;
 import java.util.HashSet;
 import java.util.Set;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by chen on 2017/4/16.
  */
@@ -24,9 +26,22 @@ public abstract class BaseActivity extends Activity{
      */
     protected abstract void onInitPresenters();
 
+    /**
+     * 获取layout的id，具体由子类实现
+     *
+     * @return
+     */
+    protected abstract int getLayoutResId();
+
+
+    protected abstract void initViews();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutResId());
+        ButterKnife.bind(this);
+        initViews();
         addPresenters();
         onInitPresenters();
     }

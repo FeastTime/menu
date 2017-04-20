@@ -28,12 +28,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.0'
     //    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'io.reactivex.rxjava2:rxjava:2.0.0-RC1'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.0-RC1'
@@ -43,14 +43,13 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
-
-
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile 'com.tencent.bugly:nativecrashreport:latest.release'
     testCompile 'junit:junit:4.12'
     compile 'com.r0adkll:slidableactivity:2.0.5'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.android:support-v4:r7'
+
 }
 
 
