@@ -7,6 +7,7 @@ import com.feasttime.model.RetrofitService;
 import com.feasttime.model.bean.MainMenu;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.menu.MenuContract;
+import com.feasttime.presenter.shoppingcart.ShoppingCartPresenter;
 import com.feasttime.tools.LogUtil;
 
 import io.reactivex.functions.Action;
@@ -14,6 +15,8 @@ import io.reactivex.functions.Consumer;
 
 public class MainActivity extends BaseActivity implements MenuContract.IMenuView {
     private static final String TAG = "MainActivity";
+    private ShoppingCartPresenter mShoppingCartPresenter = new ShoppingCartPresenter();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,13 +27,13 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
     @Override
     protected void onResume() {
-        //请求订单
         super.onResume();
+        mShoppingCartPresenter.createOrder("");
     }
 
     @Override
     protected IBasePresenter[] getPresenters() {
-        return new IBasePresenter[0];
+        return new IBasePresenter[]{mShoppingCartPresenter};
     }
 
     @Override
