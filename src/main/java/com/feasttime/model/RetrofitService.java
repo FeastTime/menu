@@ -1,14 +1,15 @@
 package com.feasttime.model;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.feasttime.model.bean.MyLocation;
+import com.feasttime.model.bean.CreateOrderInfo;
+import com.feasttime.tools.DeviceTool;
 import com.feasttime.tools.LogUtil;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -41,7 +42,7 @@ public class RetrofitService {
     // 避免出现 HTTP 403 Forbidden，参考：http://stackoverflow.com/questions/13670692/403-forbidden-with-java-but-not-web-browser
     static final String AVOID_HTTP403_FORBIDDEN = "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11";
 
-    private static final String BASE_URL = "http://123.206.43.102:8080/support/";
+    private static final String BASE_URL = "http://shengyan.com/";
 
     private static MenusApi sMenuService;
 
@@ -53,10 +54,23 @@ public class RetrofitService {
         throw new AssertionError();
     }
 
+    private static String imei = "";
+    private static String androidID = "";
+    private static String ipv4 = "";
+    private static String mac = "";
+    private static String mobileNO = "";
+
     /**
      * 初始化网络通信服务
      */
-    public static void init() {
+    public static void init(Context context) {
+        imei = DeviceTool.getIMEI(context);
+        androidID = DeviceTool.getAndroidId(context);
+        ipv4 = DeviceTool.getIP(context);
+        mobileNO = DeviceTool.getPhoneNumber(context);
+        mac = DeviceTool.getLocalMacAddress(context);
+
+        //BasicParamsInterceptor aa;
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
@@ -82,7 +96,14 @@ public class RetrofitService {
 
         @Override
         public Response intercept(Chain chain) throws IOException {
-            final Request request = chain.request();
+
+            final Request request = chain.request().newBuilder()
+                    .addHeader("imei",imei)
+                    .addHeader("androidID",androidID)
+                    .addHeader("mac",mac)
+                    .addHeader("ipv4",ipv4)
+                    .build();
+
             Buffer requestBuffer = new Buffer();
             if (request.body() != null) {
                 request.body().writeTo(requestBuffer);
@@ -106,8 +127,8 @@ public class RetrofitService {
     }
 
 
-    public static Observable<MyLocation> getLocationList(String rows,String page){
-        return sMenuService.getLocationList(rows,page)
+    public static Observable<CreateOrderInfo> createOrder(String token){
+        return sMenuService.createOrder(token)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())

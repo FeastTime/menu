@@ -1,4 +1,4 @@
-package com.feasttime.com.feasttime.bean;
+package com.feasttime.model.bean;
 
 
 public class ScreenInfo {

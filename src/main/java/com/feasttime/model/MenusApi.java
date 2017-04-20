@@ -1,19 +1,11 @@
 package com.feasttime.model;
 
-import com.feasttime.model.bean.MyLocation;
-
-import java.util.List;
-import java.util.Map;
+import com.feasttime.model.bean.CreateOrderInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
-
-import static com.feasttime.model.RetrofitService.CACHE_CONTROL_NETWORK;
 
 /**
  * Created by chen on 2017/4/17.
@@ -21,8 +13,11 @@ import static com.feasttime.model.RetrofitService.CACHE_CONTROL_NETWORK;
 
 public interface MenusApi {
 
-      //test
+
+      //创建购物车
       @FormUrlEncoded
-      @POST("announcement/announcementList")
-      Observable<MyLocation> getLocationList(@Field("rows") String rows,@Field("page") String page);
+      @POST("createOrder")
+      Observable<CreateOrderInfo> createOrder(@Field("token") String token);
+
+
 }

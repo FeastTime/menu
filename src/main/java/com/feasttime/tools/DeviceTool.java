@@ -18,7 +18,7 @@ import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
-import com.feasttime.com.feasttime.bean.ScreenInfo;
+import com.feasttime.model.bean.ScreenInfo;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -29,6 +29,26 @@ import static android.content.Context.LOCATION_SERVICE;
 
 public class DeviceTool {
 
+    //获取mac地址
+    public static String getLocalMacAddress(Context context) {
+        WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo info = wifi.getConnectionInfo();
+        return info.getMacAddress();
+    }
+
+    //获取手机号
+    public static String getPhoneNumber(Context context) {
+        try {
+
+            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            String NativePhoneNumber="";
+            NativePhoneNumber=tm.getLine1Number();
+            return NativePhoneNumber;
+        } catch (Exception ignored) {
+        }
+
+       return "";
+    }
 
     //	获取android ID
     public static String getAndroidId(Context context) {
@@ -373,5 +393,8 @@ public class DeviceTool {
             locationManager = null;
         }
     }
+
+
+
 
 }
