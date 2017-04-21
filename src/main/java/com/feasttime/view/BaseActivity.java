@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.feasttime.presenter.IBasePresenter;
-
+import com.feasttime.presenter.IBaseView;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
  * Created by chen on 2017/4/16.
  */
 
-public abstract class BaseActivity extends Activity{
+public abstract class BaseActivity extends Activity implements IBaseView {
     private Set<IBasePresenter> mAllPresenters = new HashSet<>(1);
     /**
      * 需要子类来实现，获取子类的IPresenter，一个activity有可能有多个IPresenter
@@ -35,6 +35,8 @@ public abstract class BaseActivity extends Activity{
 
 
     protected abstract void initViews();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,5 +111,25 @@ public abstract class BaseActivity extends Activity{
                 presenter.onDestroy();
             }
         }
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showNetError() {
+
+    }
+
+    @Override
+    public void finishRefresh() {
+
     }
 }

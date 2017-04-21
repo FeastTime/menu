@@ -1,8 +1,9 @@
 package com.feasttime.presenter;
 
+
 /**
  * View的基础接口
- * Created by glh on 2016-06-23.
+ *
  */
 public interface IBaseView {
     /**
@@ -25,4 +26,5 @@ public interface IBaseView {
      * 完成刷新, 新增控制刷新
      */
     void finishRefresh();
+
 }

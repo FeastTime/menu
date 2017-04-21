@@ -67,23 +67,5 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         mMenuPresenter.getMenu("158000000","0","0","0","0");
     }
 
-    @Override
-    public void showLoading() {
 
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void showNetError() {
-
-    }
-
-    @Override
-    public void finishRefresh() {
-
-    }
 }
