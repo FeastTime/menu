@@ -1,5 +1,6 @@
 package com.feasttime.view;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 import com.feasttime.adapter.MainMenuPagerAdapter;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.MenuInfo;
+import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.menu.MenuContract;
 import com.feasttime.presenter.menu.MenuPresenter;
@@ -30,6 +32,8 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
     @Override
@@ -54,6 +58,9 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         jazzyViewPager.setTransitionEffect(JazzyViewPager.TransitionEffect.Tablet);
         jazzyViewPager.setPageMargin(30);
 
+        MainMenuPagerAdapter mainMenuPagerAdapter = new MainMenuPagerAdapter(this,jazzyViewPager);
+        jazzyViewPager.setAdapter(mainMenuPagerAdapter);
+
 
     }
 
@@ -64,13 +71,12 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
 
     @Override
-    public void showMenu(MenuInfo result) {
-        MainMenuPagerAdapter mainMenuPagerAdapter = new MainMenuPagerAdapter(this,jazzyViewPager);
-        jazzyViewPager.setAdapter(mainMenuPagerAdapter);
-
-        TextView menuItemTv = new TextView(this);
-
-
+    public void showMenu(final MenuItemInfo menuItemInfo) {
+        TextView menuItemTv = new TextView(MainActivity.this);
+        menuItemTv.setTextColor(Color.parseColor("#987889"));
+        menuItemTv.setBackgroundColor(Color.parseColor("#111236"));
+        menuItemTv.setText(menuItemInfo.getDishNO());
+        mTtitleBarMenuLl.addView(menuItemTv);
     }
 
     @Override

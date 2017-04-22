@@ -42,7 +42,7 @@ public class MenuPresenter implements MenuContract.IMenuPresenter {
         }).subscribe(new Consumer<MenuItemInfo>() {
             @Override
             public void accept(MenuItemInfo menuItemInfo) throws Exception {
-
+                mIMenuView.showMenu(menuItemInfo);
             }
         }, new Consumer<Throwable>() {
             @Override
