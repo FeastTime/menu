@@ -2,6 +2,8 @@ package com.feasttime.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,8 +19,9 @@ import com.feasttime.presenter.shoppingcart.ShoppingCartPresenter;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements MenuContract.IMenuView,ShoppingCartContract.IShoppingCartView {
+public class MainActivity extends BaseActivity implements MenuContract.IMenuView,ShoppingCartContract.IShoppingCartView, View.OnClickListener {
     private static final String TAG = "MainActivity";
     private ShoppingCartPresenter mShoppingCartPresenter = new ShoppingCartPresenter();
     private MenuPresenter mMenuPresenter = new MenuPresenter();
@@ -28,6 +31,12 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
     @Bind(R.id.title_bar_content_ll)
     LinearLayout mTtitleBarMenuLl;
+
+    @Bind(R.id.main_activity_left_btn)
+    Button leftBtn;
+
+    @Bind(R.id.main_activity_right_btn)
+    Button rightBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +84,8 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         TextView menuItemTv = new TextView(MainActivity.this);
         menuItemTv.setTextColor(Color.parseColor("#987889"));
         menuItemTv.setBackgroundColor(Color.parseColor("#111236"));
-        menuItemTv.setText(menuItemInfo.getDishNO());
+        menuItemTv.setText(menuItemInfo.getDishName());
+        menuItemTv.setPadding(10,10,10,10);
         mTtitleBarMenuLl.addView(menuItemTv);
     }
 
@@ -84,5 +94,13 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         mMenuPresenter.getMenu("158000000","0","0","0","0");
     }
 
-
+    @OnClick({R.id.main_activity_left_btn,R.id.main_activity_right_btn})
+    @Override
+    public void onClick(View v) {
+        if (v == leftBtn) {
+            jazzyViewPager.setCurrentItem(jazzyViewPager.getCurrentItem() - 1);
+        } else if (v == rightBtn) {
+            jazzyViewPager.setCurrentItem(jazzyViewPager.getCurrentItem() + 1);
+        }
+    }
 }
