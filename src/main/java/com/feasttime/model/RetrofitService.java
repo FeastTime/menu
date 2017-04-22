@@ -2,11 +2,9 @@ package com.feasttime.model;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 
-import com.feasttime.menu.BuildConfig;
 import com.feasttime.model.bean.CreateOrderInfo;
-import com.feasttime.model.bean.MenuIfno;
+import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.tools.DeviceTool;
 import com.feasttime.tools.LogUtil;
 
@@ -29,7 +27,6 @@ import retrofit2.Retrofit;
 
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Field;
 
 /**
  *
@@ -141,7 +138,7 @@ public class RetrofitService {
     }
 
 
-    public static Observable<MenuIfno> getMenu(String mobileNO, String token, String orderID, String classType, String page){
+    public static Observable<MenuInfo> getMenu(String mobileNO, String token, String orderID, String classType, String page){
         return sMenuService.getMenu(mobileNO,token,orderID,classType,page)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

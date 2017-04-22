@@ -1,12 +1,11 @@
 package com.feasttime.model;
 
 import com.feasttime.model.bean.CreateOrderInfo;
-import com.feasttime.model.bean.MenuIfno;
+import com.feasttime.model.bean.MenuInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -24,6 +23,6 @@ public interface MenusApi {
       //获取菜单
       @FormUrlEncoded
       @POST("menu")
-      Observable<MenuIfno> getMenu(@Field("mobileNO") String mobileNO, @Field("token") String token, @Field("orderID") String orderID, @Field("classType") String classType, @Field("page") String page);
+      Observable<MenuInfo> getMenu(@Field("mobileNO") String mobileNO, @Field("token") String token, @Field("orderID") String orderID, @Field("classType") String classType, @Field("page") String page);
 
 }

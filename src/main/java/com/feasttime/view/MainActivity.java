@@ -1,10 +1,12 @@
 package com.feasttime.view;
 
 import android.os.Bundle;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.feasttime.adapter.MainMenuPagerAdapter;
 import com.feasttime.menu.R;
-import com.feasttime.model.bean.MenuIfno;
+import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.menu.MenuContract;
 import com.feasttime.presenter.menu.MenuPresenter;
@@ -21,6 +23,9 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
     @Bind(R.id.main_menu_viewpager)
     JazzyViewPager jazzyViewPager;
+
+    @Bind(R.id.title_bar_content_ll)
+    LinearLayout mTtitleBarMenuLl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,8 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     protected void initViews() {
         jazzyViewPager.setTransitionEffect(JazzyViewPager.TransitionEffect.Tablet);
         jazzyViewPager.setPageMargin(30);
+
+
     }
 
     @Override
@@ -57,9 +64,13 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
 
     @Override
-    public void showMenu(MenuIfno result) {
+    public void showMenu(MenuInfo result) {
         MainMenuPagerAdapter mainMenuPagerAdapter = new MainMenuPagerAdapter(this,jazzyViewPager);
         jazzyViewPager.setAdapter(mainMenuPagerAdapter);
+
+        TextView menuItemTv = new TextView(this);
+
+
     }
 
     @Override

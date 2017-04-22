@@ -2,13 +2,17 @@ package com.feasttime.presenter.menu;
 
 
 import com.feasttime.model.RetrofitService;
-import com.feasttime.model.bean.MenuIfno;
+import com.feasttime.model.bean.MenuInfo;
+import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.tools.LogUtil;
 
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 
 /**
  * 获取天气的Presenter
@@ -25,18 +29,26 @@ public class MenuPresenter implements MenuContract.IMenuPresenter {
 
     @Override
     public void getMenu(String mobileNO, String token, String orderID, String classType, String page) {
-        RetrofitService.getMenu(mobileNO,token,orderID,classType,page).subscribe(new Consumer<MenuIfno>(){
+        RetrofitService.getMenu(mobileNO,token,orderID,classType,page).map(new Function<MenuInfo, List<MenuItemInfo>>() {
             @Override
-            public void accept(MenuIfno menuIfno) throws Exception {
-                LogUtil.d("result","aa");
-                mIMenuView.showMenu(menuIfno);
+            public List<MenuItemInfo> apply(MenuInfo menuIfno) throws Exception {
+                return menuIfno.getDishesList();
+            }
+        }).flatMap(new Function<List<MenuItemInfo>, ObservableSource<MenuItemInfo>>() {
+            @Override
+            public ObservableSource<MenuItemInfo> apply(List<MenuItemInfo> strings) throws Exception {
+                return Observable.fromIterable(strings);
+            }
+        }).subscribe(new Consumer<MenuItemInfo>() {
+            @Override
+            public void accept(MenuItemInfo menuItemInfo) throws Exception {
+
             }
         }, new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 //这里接收onError
                 LogUtil.d("result","error:");
-
             }
         }, new Action() {
             @Override
