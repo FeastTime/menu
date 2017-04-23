@@ -26,5 +26,9 @@ public interface IBaseView {
      * 完成刷新, 新增控制刷新
      */
     void finishRefresh();
+    /**
+     * 显示透明的覆盖层，禁止用户操作
+     */
+    void showTransparentCoverView();
 
 }

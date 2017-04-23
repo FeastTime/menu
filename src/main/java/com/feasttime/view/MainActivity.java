@@ -2,9 +2,12 @@ package com.feasttime.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.feasttime.adapter.MainMenuPagerAdapter;
@@ -38,6 +41,9 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Bind(R.id.main_activity_right_btn)
     Button rightBtn;
 
+    @Bind(R.id.menu_item_layout_viewpage_indicate_rg)
+    RadioGroup viewpageIndicateRg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +75,15 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
         MainMenuPagerAdapter mainMenuPagerAdapter = new MainMenuPagerAdapter(this,jazzyViewPager);
         jazzyViewPager.setAdapter(mainMenuPagerAdapter);
-
-
+        LayoutInflater inflater = LayoutInflater.from(this);
+        int count = mainMenuPagerAdapter.getCount();
+        for (int i = 0 ; i < count ; i++) {
+//            View indicator = inflater.inflate(R.layout.view_page_indicate_item,null);
+            RadioButton rb = new RadioButton(this);
+//            rb.setBackgroundDrawable(getResources().getDrawable(R.drawable.red_cycle_shape));
+//            rb.setButtonDrawable(R.drawable.red_cycle_shape);
+            viewpageIndicateRg.addView(rb);
+        }
     }
 
     @Override

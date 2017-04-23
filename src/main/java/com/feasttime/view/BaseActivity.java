@@ -132,4 +132,9 @@ public abstract class BaseActivity extends Activity implements IBaseView {
     public void finishRefresh() {
 
     }
+
+    @Override
+    public void showTransparentCoverView() {
+
+    }
 }
