@@ -41,6 +41,14 @@ public class MainMenuPagerAdapter extends PagerAdapter {
         twoView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
         threeView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
 
+        oneView.setGravity(Gravity.CENTER);
+        twoView.setGravity(Gravity.CENTER);
+        threeView.setGravity(Gravity.CENTER);
+
+        oneView.setBackgroundColor(Color.YELLOW);
+        twoView.setBackgroundColor(Color.DKGRAY);
+        threeView.setBackgroundColor(Color.RED);
+
         LinearLayout ll = new LinearLayout(context);
         ll.addView(oneView);
         ll.addView(twoView);

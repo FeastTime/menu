@@ -24,10 +24,6 @@
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             />
-        <com.feasttime.widget.jazzyviewpager.JazzyViewPager
-            android:id="@+id/main_menu_viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/main_activity_right_btn"
@@ -37,6 +33,16 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             />
+
+
+        <com.feasttime.widget.jazzyviewpager.JazzyViewPager
+            android:id="@+id/main_menu_viewpager"
+            android:layout_toLeftOf="@+id/main_activity_right_btn"
+            android:layout_toRightOf="@+id/main_activity_left_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
     </RelativeLayout>
 
 </LinearLayout>
