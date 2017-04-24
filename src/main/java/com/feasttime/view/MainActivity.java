@@ -2,8 +2,10 @@ package com.feasttime.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -14,17 +16,19 @@ import com.feasttime.adapter.MainMenuPagerAdapter;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.MenuItemInfo;
+import com.feasttime.model.bean.ScreenInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.menu.MenuContract;
 import com.feasttime.presenter.menu.MenuPresenter;
 import com.feasttime.presenter.shoppingcart.ShoppingCartContract;
 import com.feasttime.presenter.shoppingcart.ShoppingCartPresenter;
+import com.feasttime.tools.ScreenTools;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements MenuContract.IMenuView,ShoppingCartContract.IShoppingCartView, View.OnClickListener {
+public class MainActivity extends BaseActivity implements MenuContract.IMenuView,ShoppingCartContract.IShoppingCartView, View.OnClickListener,ViewPager.OnPageChangeListener {
     private static final String TAG = "MainActivity";
     private ShoppingCartPresenter mShoppingCartPresenter = new ShoppingCartPresenter();
     private MenuPresenter mMenuPresenter = new MenuPresenter();
@@ -77,14 +81,21 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         jazzyViewPager.setAdapter(mainMenuPagerAdapter);
         LayoutInflater inflater = LayoutInflater.from(this);
         int count = mainMenuPagerAdapter.getCount();
+
         for (int i = 0 ; i < count ; i++) {
-//            View indicator = inflater.inflate(R.layout.view_page_indicate_item,null);
             RadioButton rb = new RadioButton(this);
-//            rb.setBackgroundDrawable(getResources().getDrawable(R.drawable.red_cycle_shape));
-//            rb.setButtonDrawable(R.drawable.red_cycle_shape);
+            rb.setBackgroundResource(R.drawable.viewpage_indicate_selector);
+            rb.setButtonDrawable(android.R.color.transparent);
+            rb.setWidth(ScreenTools.dip2px(this,10));
+            rb.setHeight(ScreenTools.dip2px(this,10));
             viewpageIndicateRg.addView(rb);
         }
+
+        jazzyViewPager.setOnPageChangeListener(this);
+        ((RadioButton)viewpageIndicateRg.getChildAt(0)).setChecked(true);
     }
+
+
 
     @Override
     protected int getLayoutResId() {
@@ -115,5 +126,20 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         } else if (v == rightBtn) {
             jazzyViewPager.setCurrentItem(jazzyViewPager.getCurrentItem() + 1);
         }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        ((RadioButton)viewpageIndicateRg.getChildAt(position)).setChecked(true);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

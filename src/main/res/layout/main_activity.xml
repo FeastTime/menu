@@ -22,8 +22,10 @@
             android:id="@+id/menu_item_layout_viewpage_indicate_rg"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            >
         </RadioGroup>
     </LinearLayout>
 
