@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,6 +49,27 @@ public class MainMenuPagerAdapter extends PagerAdapter {
         oneView.setBackgroundColor(Color.YELLOW);
         twoView.setBackgroundColor(Color.DKGRAY);
         threeView.setBackgroundColor(Color.RED);
+
+        ImageView dishes1 = (ImageView) oneView.findViewById(R.id.menu_item_layout_dishes_iv);
+        ImageView dishes2 = (ImageView) twoView.findViewById(R.id.menu_item_layout_dishes_iv);
+        ImageView dishes3 = (ImageView) threeView.findViewById(R.id.menu_item_layout_dishes_iv);
+
+        ViewGroup.LayoutParams params1 = dishes1.getLayoutParams();
+        params1.width = 100;
+        params1.height = 100;
+        dishes1.setLayoutParams(params1);
+
+        ViewGroup.LayoutParams params2 = dishes1.getLayoutParams();
+        params2.width = 80;
+        params2.height = 80;
+        dishes2.setLayoutParams(params2);
+
+        ViewGroup.LayoutParams params3 = dishes3.getLayoutParams();
+        params3.width = 60;
+        params3.height = 60;
+        dishes3.setLayoutParams(params3);
+
+
 
         LinearLayout ll = new LinearLayout(context);
         ll.addView(oneView);
