@@ -1,12 +1,15 @@
 package com.feasttime.view;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -22,6 +25,7 @@ import com.feasttime.presenter.menu.MenuContract;
 import com.feasttime.presenter.menu.MenuPresenter;
 import com.feasttime.presenter.shoppingcart.ShoppingCartContract;
 import com.feasttime.presenter.shoppingcart.ShoppingCartPresenter;
+import com.feasttime.tools.LogUtil;
 import com.feasttime.tools.ScreenTools;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
 
@@ -47,6 +51,9 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
     @Bind(R.id.menu_item_layout_viewpage_indicate_rg)
     RadioGroup viewpageIndicateRg;
+
+    @Bind(R.id.toTheAdBtn)
+    Button mToAdBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +96,14 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
             rb.setWidth(ScreenTools.dip2px(this,10));
             rb.setHeight(ScreenTools.dip2px(this,10));
             viewpageIndicateRg.addView(rb);
+
+            rb.setTag(i);
+            rb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                     LogUtil.d("result","the position ->" + buttonView.getTag());
+                }
+            });
         }
 
         jazzyViewPager.setOnPageChangeListener(this);
@@ -118,13 +133,15 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         mMenuPresenter.getMenu("158000000","0","0","0","0");
     }
 
-    @OnClick({R.id.main_activity_left_btn,R.id.main_activity_right_btn})
+    @OnClick({R.id.main_activity_left_btn,R.id.main_activity_right_btn,R.id.toTheAdBtn})
     @Override
     public void onClick(View v) {
         if (v == leftBtn) {
             jazzyViewPager.setCurrentItem(jazzyViewPager.getCurrentItem() - 1);
         } else if (v == rightBtn) {
             jazzyViewPager.setCurrentItem(jazzyViewPager.getCurrentItem() + 1);
+        } else if (v == mToAdBtn) {
+            startActivity(new Intent(this,SilentADActivity.class));
         }
     }
 
