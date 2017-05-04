@@ -30,6 +30,7 @@
     <RelativeLayout
         android:layout_toLeftOf="@+id/title_bar_cart_ll"
         android:layout_width="match_parent"
+        android:background="@drawable/title_bar_bg"
         android:layout_height="44dp"
         android:layout_marginLeft="85dp"
         >
@@ -37,7 +38,6 @@
             android:id="@+id/title_bar_content_rb"
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:background="@drawable/title_bar_bg"
             android:gravity="center_vertical"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
