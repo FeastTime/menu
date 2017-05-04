@@ -50,23 +50,30 @@ public class MainMenuPagerAdapter extends PagerAdapter {
         twoView.setBackgroundColor(Color.TRANSPARENT);
         threeView.setBackgroundColor(Color.TRANSPARENT);
 
+        ImageView adflagIv1 = (ImageView) oneView.findViewById(R.id.menu_item_layout_ad_flag_iv);
+        ImageView adflagIv2 = (ImageView) twoView.findViewById(R.id.menu_item_layout_ad_flag_iv);
+        ImageView adflagIv3 = (ImageView) threeView.findViewById(R.id.menu_item_layout_ad_flag_iv);
+
+        adflagIv1.setImageResource(R.mipmap.ad_flag_chubang);
+        adflagIv2.setImageResource(R.mipmap.ad_flag_chubang);
+        adflagIv3.setImageResource(R.mipmap.ad_flag_chubang);
+
+
         ImageView dishes1 = (ImageView) oneView.findViewById(R.id.menu_item_layout_dishes_iv);
         ImageView dishes2 = (ImageView) twoView.findViewById(R.id.menu_item_layout_dishes_iv);
         ImageView dishes3 = (ImageView) threeView.findViewById(R.id.menu_item_layout_dishes_iv);
 
+
         ViewGroup.LayoutParams params1 = dishes1.getLayoutParams();
-        params1.width = 100;
-        params1.height = 100;
+        params1.width = 500;
         dishes1.setLayoutParams(params1);
 
-        ViewGroup.LayoutParams params2 = dishes1.getLayoutParams();
-        params2.width = 80;
-        params2.height = 80;
+        ViewGroup.LayoutParams params2 = dishes2.getLayoutParams();
+        params2.width = 450;
         dishes2.setLayoutParams(params2);
 
         ViewGroup.LayoutParams params3 = dishes3.getLayoutParams();
-        params3.width = 60;
-        params3.height = 60;
+        params3.width = 250;
         dishes3.setLayoutParams(params3);
 
 
@@ -82,6 +89,12 @@ public class MainMenuPagerAdapter extends PagerAdapter {
 
         container.addView(ll, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         mJazzy.setObjectForPosition(ll, position);
+
+        dishes1.setImageResource(R.mipmap.temp_dishes_1);
+        dishes2.setImageResource(R.mipmap.temp_dishes_2);
+        dishes3.setImageResource(R.mipmap.temp_dishes_3);
+
+
         return ll;
     }
     @Override
