@@ -26,6 +26,7 @@ import com.feasttime.presenter.menu.MenuContract;
 import com.feasttime.presenter.menu.MenuPresenter;
 import com.feasttime.presenter.shoppingcart.ShoppingCartContract;
 import com.feasttime.presenter.shoppingcart.ShoppingCartPresenter;
+import com.feasttime.tools.DeviceTool;
 import com.feasttime.tools.LogUtil;
 import com.feasttime.tools.ScreenTools;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
@@ -41,8 +42,8 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Bind(R.id.main_menu_viewpager)
     JazzyViewPager jazzyViewPager;
 
-    @Bind(R.id.title_bar_content_ll)
-    LinearLayout mTtitleBarMenuLl;
+    @Bind(R.id.title_bar_content_rb)
+    RadioGroup mTtitleBarMenuRb;
 
     @Bind(R.id.main_activity_left_ib)
     ImageButton leftIb;
@@ -60,7 +61,8 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        ScreenInfo info = DeviceTool.getDeviceScreenInfo(this);
+        LogUtil.d(TAG,info.getWidth() + "X" + info.getHeight());
     }
 
     @Override
@@ -121,12 +123,25 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
     @Override
     public void showMenu(final MenuItemInfo menuItemInfo) {
-        TextView menuItemTv = new TextView(MainActivity.this);
-        menuItemTv.setTextColor(Color.parseColor("#987889"));
-        menuItemTv.setBackgroundColor(Color.parseColor("#111236"));
-        menuItemTv.setText(menuItemInfo.getDishName());
-        menuItemTv.setPadding(10,10,10,10);
-        mTtitleBarMenuLl.addView(menuItemTv);
+
+        RadioButton menuRb = new RadioButton(this);
+        menuRb.setButtonDrawable(android.R.color.transparent);
+        menuRb.setText(menuItemInfo.getDishName());
+        menuRb.setTextColor(Color.WHITE);
+        menuRb.setPadding(ScreenTools.dip2px(this,40),0,ScreenTools.dip2px(this,40),0);
+        if (mTtitleBarMenuRb.getChildCount() == 0) {
+            menuRb.setBackgroundResource(R.drawable.title_left_menu_selector);
+        } else {
+            menuRb.setBackgroundResource(R.drawable.title_normal_menu_selector);
+        }
+
+        mTtitleBarMenuRb.addView(menuRb);
+
+        ViewGroup.LayoutParams params = menuRb.getLayoutParams();
+        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        menuRb.setLayoutParams(params);
+
+        ((RadioButton)mTtitleBarMenuRb.getChildAt(0)).setChecked(true);
     }
 
     @Override
