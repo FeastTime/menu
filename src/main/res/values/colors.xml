@@ -6,4 +6,8 @@
     <color name="holo_blue">#FF33E5B5</color>
     <color name="red">#D10017</color>
     <color name="dark_gray">#302b27</color>
+    <color name="main_bg_color">#F4F3CE</color>
+    <color name="title_bar_normal_color">#483B37</color>
+    <color name="title_bar_selected_color">#322A27</color>
+    <color name="transparent">#00000000</color>
 </resources>

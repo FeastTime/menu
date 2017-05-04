@@ -17,7 +17,7 @@
 
     <!-- 填充 -->
     <solid
-        android:color="@android:color/white"/><!-- 填充的颜色 -->
+        android:color="@color/title_bar_normal_color"/><!-- 填充的颜色 -->
 
 
 </shape>

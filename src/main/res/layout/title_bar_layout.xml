@@ -2,25 +2,39 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="44dp"
     android:orientation="vertical"
 
    >
-
-    <LinearLayout
-        android:id="@+id/title_bar_content_ll"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/title_bar_bg"
-        android:gravity="center_vertical"
-        android:paddingLeft="30dp"
-        android:layout_height="60dp">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="85dp"
+        android:layout_marginRight="85dp"
+        >
+        <LinearLayout
+            android:id="@+id/title_bar_content_ll"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
 
-    </LinearLayout>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/title_bar_bg"
+            android:gravity="center_vertical"
+            android:paddingLeft="30dp"
+            android:layout_height="44dp">
+
+        </LinearLayout>
+        <ImageButton
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@mipmap/right_menu_icon"
+            android:background="@drawable/right_menu_bg"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+
 
 
 </LinearLayout>

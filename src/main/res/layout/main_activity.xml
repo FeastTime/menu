@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_bg_color"
     android:orientation="vertical">
 
     <include
@@ -16,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#987898"
+        android:background="@color/transparent"
         android:gravity="center_horizontal">
         <RadioGroup
             android:id="@+id/menu_item_layout_viewpage_indicate_rg"
@@ -32,21 +33,23 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         >
-        <Button
-            android:id="@+id/main_activity_left_btn"
+        <ImageButton
+            android:id="@+id/main_activity_left_ib"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Left"
+            android:background="@mipmap/left_arrow"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             />
 
-        <Button
-            android:id="@+id/main_activity_right_btn"
+        <ImageButton
+            android:id="@+id/main_activity_right_ib"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Right"
+            android:background="@mipmap/right_arrow"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             />
@@ -54,8 +57,10 @@
 
         <com.feasttime.widget.jazzyviewpager.JazzyViewPager
             android:id="@+id/main_menu_viewpager"
-            android:layout_toLeftOf="@+id/main_activity_right_btn"
-            android:layout_toRightOf="@+id/main_activity_left_btn"
+            android:layout_toLeftOf="@+id/main_activity_right_ib"
+            android:layout_toRightOf="@+id/main_activity_left_ib"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

@@ -2,6 +2,7 @@ package com.feasttime.tools;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
@@ -333,67 +334,68 @@ public class DeviceTool {
         return pyLocation;
     }
 
-    public void startLocation(final Context context) {
-
-        locationListener = new LocationListener() {
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                        &&ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                    return;
-                }
-
-                pyLocation = locationManager.getLastKnownLocation(provider);
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-                pyLocation = null;
-            }
-
-            @Override
-            public void onLocationChanged(Location location) {
-                pyLocation = location;
-            }
-        };
-        if (!isStartLocation) {
-            isStartLocation = true;
-            locationManager = (LocationManager) context.getApplicationContext().getSystemService(LOCATION_SERVICE);
-            //从GPS_PROVIDER获取最近的定位信息
-
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                    &&ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                return;
-            }
-
-            pyLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-            //设置每60秒，每移动十米向LocationProvider获取一次GPS的定位信息
-            //当LocationProvider可用，不可用或定位信息改变时，调用updateView,更新显示
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 10, locationListener);
-        }
-    }
-
-    private void stopLocation(Context context){
-
-        if (null != locationManager){
-            locationManager.removeUpdates(locationListener);
-            locationListener = null;
-            locationManager = null;
-        }
-    }
+//    public void startLocation(final Context context) {
+//
+//        locationListener = new LocationListener() {
+//
+//            @Override
+//            public void onStatusChanged(String provider, int status, Bundle extras) {
+//
+//            }
+//
+//            @Override
+//            public void onProviderEnabled(String provider) {
+//
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+//                        &&ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+//                        && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//
+//                    return;
+//                }
+//
+//                pyLocation = locationManager.getLastKnownLocation(provider);
+//            }
+//
+//            @Override
+//            public void onProviderDisabled(String provider) {
+//                pyLocation = null;
+//            }
+//
+//            @Override
+//            public void onLocationChanged(Location location) {
+//                pyLocation = location;
+//            }
+//        };
+//        if (!isStartLocation) {
+//            isStartLocation = true;
+//            locationManager = (LocationManager) context.getApplicationContext().getSystemService(LOCATION_SERVICE);
+//            //从GPS_PROVIDER获取最近的定位信息
+//
+//
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+//                    &&ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+//                    && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//
+//                return;
+//            }
+//
+//            pyLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//
+//            //设置每60秒，每移动十米向LocationProvider获取一次GPS的定位信息
+//            //当LocationProvider可用，不可用或定位信息改变时，调用updateView,更新显示
+//            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 10, locationListener);
+//        }
+//    }
+//
+//
+//    private void stopLocation(Context context){
+//
+//        if (null != locationManager){
+//            locationManager.removeUpdates(locationListener);
+//            locationListener = null;
+//            locationManager = null;
+//        }
+//    }
 
 
 

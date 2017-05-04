@@ -46,9 +46,9 @@ public class MainMenuPagerAdapter extends PagerAdapter {
         twoView.setGravity(Gravity.CENTER);
         threeView.setGravity(Gravity.CENTER);
 
-        oneView.setBackgroundColor(Color.YELLOW);
-        twoView.setBackgroundColor(Color.DKGRAY);
-        threeView.setBackgroundColor(Color.RED);
+        oneView.setBackgroundColor(Color.TRANSPARENT);
+        twoView.setBackgroundColor(Color.TRANSPARENT);
+        threeView.setBackgroundColor(Color.TRANSPARENT);
 
         ImageView dishes1 = (ImageView) oneView.findViewById(R.id.menu_item_layout_dishes_iv);
         ImageView dishes2 = (ImageView) twoView.findViewById(R.id.menu_item_layout_dishes_iv);
@@ -76,7 +76,7 @@ public class MainMenuPagerAdapter extends PagerAdapter {
         ll.addView(twoView);
         ll.addView(threeView);
 
-        ll.setBackgroundColor(Color.BLUE);
+        ll.setBackgroundColor(Color.TRANSPARENT);
         ll.setGravity(Gravity.CENTER);
         ll.setOrientation(LinearLayout.HORIZONTAL);
 

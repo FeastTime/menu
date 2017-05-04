@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -43,11 +44,11 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Bind(R.id.title_bar_content_ll)
     LinearLayout mTtitleBarMenuLl;
 
-    @Bind(R.id.main_activity_left_btn)
-    Button leftBtn;
+    @Bind(R.id.main_activity_left_ib)
+    ImageButton leftIb;
 
-    @Bind(R.id.main_activity_right_btn)
-    Button rightBtn;
+    @Bind(R.id.main_activity_right_ib)
+    ImageButton rightIb;
 
     @Bind(R.id.menu_item_layout_viewpage_indicate_rg)
     RadioGroup viewpageIndicateRg;
@@ -133,12 +134,12 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         mMenuPresenter.getMenu("158000000","0","0","0","0");
     }
 
-    @OnClick({R.id.main_activity_left_btn,R.id.main_activity_right_btn,R.id.toTheAdBtn})
+    @OnClick({R.id.main_activity_left_ib,R.id.main_activity_right_ib,R.id.toTheAdBtn})
     @Override
     public void onClick(View v) {
-        if (v == leftBtn) {
+        if (v == leftIb) {
             jazzyViewPager.setCurrentItem(jazzyViewPager.getCurrentItem() - 1);
-        } else if (v == rightBtn) {
+        } else if (v == rightIb) {
             jazzyViewPager.setCurrentItem(jazzyViewPager.getCurrentItem() + 1);
         } else if (v == mToAdBtn) {
             startActivity(new Intent(this,SilentADActivity.class));
