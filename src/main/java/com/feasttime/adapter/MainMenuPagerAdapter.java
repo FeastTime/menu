@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.feasttime.menu.R;
+import com.feasttime.tools.ScreenTools;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
 import com.feasttime.widget.jazzyviewpager.OutlineContainer;
 
@@ -65,15 +66,15 @@ public class MainMenuPagerAdapter extends PagerAdapter {
 
 
         ViewGroup.LayoutParams params1 = dishes1.getLayoutParams();
-        params1.width = 500;
+        params1.width = ScreenTools.dip2px(context,300);
         dishes1.setLayoutParams(params1);
 
         ViewGroup.LayoutParams params2 = dishes2.getLayoutParams();
-        params2.width = 450;
+        params2.width = ScreenTools.dip2px(context,245);
         dishes2.setLayoutParams(params2);
 
         ViewGroup.LayoutParams params3 = dishes3.getLayoutParams();
-        params3.width = 250;
+        params3.width = ScreenTools.dip2px(context,135);
         dishes3.setLayoutParams(params3);
 
 
