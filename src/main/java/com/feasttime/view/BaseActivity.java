@@ -12,6 +12,7 @@ import butterknife.ButterKnife;
 
 /**
  * Created by chen on 2017/4/16.
+ * 600/370           490/250             270/215
  */
 
 public abstract class BaseActivity extends Activity implements IBaseView {

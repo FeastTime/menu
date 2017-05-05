@@ -96,8 +96,8 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
             RadioButton rb = new RadioButton(this);
             rb.setBackgroundResource(R.drawable.viewpage_indicate_selector);
             rb.setButtonDrawable(android.R.color.transparent);
-            rb.setWidth(ScreenTools.dip2px(this,10));
-            rb.setHeight(ScreenTools.dip2px(this,10));
+            rb.setWidth(ScreenTools.dip2px(this,15));
+            rb.setHeight(ScreenTools.dip2px(this,15));
             viewpageIndicateRg.addView(rb);
 
             rb.setTag(i);
