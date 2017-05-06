@@ -89,15 +89,14 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
         MainMenuPagerAdapter mainMenuPagerAdapter = new MainMenuPagerAdapter(this,jazzyViewPager);
         jazzyViewPager.setAdapter(mainMenuPagerAdapter);
-        LayoutInflater inflater = LayoutInflater.from(this);
         int count = mainMenuPagerAdapter.getCount();
 
         for (int i = 0 ; i < count ; i++) {
             RadioButton rb = new RadioButton(this);
             rb.setBackgroundResource(R.drawable.viewpage_indicate_selector);
             rb.setButtonDrawable(android.R.color.transparent);
-            rb.setWidth(ScreenTools.dip2px(this,15));
-            rb.setHeight(ScreenTools.dip2px(this,15));
+            rb.setWidth(ScreenTools.dip2px(this,10));
+            rb.setHeight(ScreenTools.dip2px(this,10));
             viewpageIndicateRg.addView(rb);
 
             rb.setTag(i);

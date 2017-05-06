@@ -65,6 +65,12 @@
             android:id="@+id/menu_item_layout_dishes_detail_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/detail_bg"
+            android:textSize="@dimen/big_text_size"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="查看详情" />
     </LinearLayout>
 
@@ -93,6 +99,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/title_bar_normal_color"
                     android:text="今日:"
                     />
 
@@ -100,6 +107,7 @@
                     android:id="@+id/menu_item_layout_today_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/title_bar_normal_color"
                     android:text=""
                     />
             </LinearLayout>
@@ -111,6 +119,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/title_bar_normal_color"
                     android:text="原价:"
                     />
 
@@ -118,6 +127,7 @@
                     android:id="@+id/menu_item_layout_original_price_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/title_bar_normal_color"
                     android:text=""
                     />
 
@@ -125,6 +135,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/title_bar_normal_color"
                     android:text="现价:"
                     />
 
@@ -132,6 +143,7 @@
                     android:id="@+id/menu_item_layout_now_price_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/title_bar_normal_color"
                     android:text=""
                     />
             </LinearLayout>
@@ -159,6 +171,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/title_bar_normal_color"
                 android:text="今日热卖"
                 />
 
@@ -169,6 +182,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/title_bar_normal_color"
                     android:text="已售:"
                     />
 
@@ -203,12 +217,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/title_bar_normal_color"
                 android:text="上菜时长"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/title_bar_normal_color"
                 android:text=""
                 />
 
@@ -233,6 +249,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/title_bar_normal_color"
                 android:text="健康指数"
                 />
 
@@ -244,6 +261,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="钠含量:"
+                    android:textColor="@color/title_bar_normal_color"
                     />
 
                 <TextView
@@ -256,6 +274,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/title_bar_normal_color"
                     android:text="热量:"
                     />
 
