@@ -28,6 +28,8 @@
         </activity>
         <activity android:name="com.feasttime.view.MainActivity">
         </activity>
+        <activity android:name="com.feasttime.view.RecommendActivity">
+        </activity>
     </application>
 
 </manifest>

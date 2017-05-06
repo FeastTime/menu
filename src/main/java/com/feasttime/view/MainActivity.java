@@ -57,6 +57,9 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Bind(R.id.toTheAdBtn)
     Button mToAdBtn;
 
+    @Bind(R.id.title_bar_cart_ib)
+    ImageButton cartIb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +72,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     protected void onResume() {
         super.onResume();
         mShoppingCartPresenter.createOrder("");
+        mTtitleBarMenuRb.removeAllViews();
     }
 
     @Override
@@ -110,6 +114,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
         jazzyViewPager.setOnPageChangeListener(this);
         ((RadioButton)viewpageIndicateRg.getChildAt(0)).setChecked(true);
+
     }
 
 
@@ -125,7 +130,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
         RadioButton menuRb = new RadioButton(this);
         menuRb.setButtonDrawable(android.R.color.transparent);
-        menuRb.setText(menuItemInfo.getDishName());
+        menuRb.setText(menuItemInfo.getDishName() + "\n" + "hot");
         menuRb.setTextColor(Color.WHITE);
         menuRb.setPadding(ScreenTools.dip2px(this,40),0,ScreenTools.dip2px(this,40),0);
         if (mTtitleBarMenuRb.getChildCount() == 0) {
@@ -148,7 +153,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         mMenuPresenter.getMenu("158000000","0","0","0","0");
     }
 
-    @OnClick({R.id.main_activity_left_ib,R.id.main_activity_right_ib,R.id.toTheAdBtn})
+    @OnClick({R.id.main_activity_left_ib,R.id.main_activity_right_ib,R.id.toTheAdBtn,R.id.title_bar_cart_ib})
     @Override
     public void onClick(View v) {
         if (v == leftIb) {
@@ -157,6 +162,8 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
             jazzyViewPager.setCurrentItem(jazzyViewPager.getCurrentItem() + 1);
         } else if (v == mToAdBtn) {
             startActivity(new Intent(this,SilentADActivity.class));
+        } else if (v == cartIb) {
+            startActivity(new Intent(this,RecommendActivity.class));
         }
     }
 
