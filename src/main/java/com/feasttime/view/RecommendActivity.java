@@ -2,6 +2,8 @@ package com.feasttime.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -10,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.feasttime.adapter.MainMenuPagerAdapter;
+import com.feasttime.adapter.RecommendMenuAdapter;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.presenter.IBasePresenter;
@@ -18,7 +21,10 @@ import com.feasttime.presenter.menu.MenuPresenter;
 import com.feasttime.presenter.shoppingcart.ShoppingCartPresenter;
 import com.feasttime.tools.LogUtil;
 import com.feasttime.tools.ScreenTools;
+import com.feasttime.widget.RecyclerViewDivider;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 
@@ -37,6 +43,9 @@ public class RecommendActivity extends BaseActivity implements MenuContract.IMen
 
     @Bind(R.id.recommend_activity_hot_level_ll)
     LinearLayout dishesHotLevelLl;
+
+    @Bind(R.id.recommend_activity_menu_list_rv)
+    RecyclerView menuListRv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +77,14 @@ public class RecommendActivity extends BaseActivity implements MenuContract.IMen
     @Override
     protected void initViews() {
         initRatingBar();
+        menuListRv.setLayoutManager(new LinearLayoutManager(this));
+        ArrayList<Integer> datas = new ArrayList<Integer>();
+        datas.add(1);
+        datas.add(2);
+        datas.add(3);
+        RecommendMenuAdapter rma = new RecommendMenuAdapter(datas,this);
+        menuListRv.addItemDecoration(new RecyclerViewDivider(this, LinearLayoutManager.HORIZONTAL));
+        menuListRv.setAdapter(rma);
     }
 
 
