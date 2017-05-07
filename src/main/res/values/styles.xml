@@ -16,8 +16,4 @@
         <item name="android:windowContentOverlay">@null</item>//是否有遮盖
     </style>
 
-        <style name="RecommendRatingBar" parent="@android:style/Widget.RatingBar">
-            <item name="android:progressDrawable">@drawable/recommend_rating_bar</item>
-        </style>
-
 </resources>

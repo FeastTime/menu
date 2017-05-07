@@ -3,7 +3,9 @@ package com.feasttime.view;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -30,6 +32,11 @@ public class RecommendActivity extends BaseActivity implements MenuContract.IMen
     @Bind(R.id.title_bar_content_rb)
     RadioGroup mTtitleBarMenuRb;
 
+    @Bind(R.id.recommend_activity_dishes_level_ll)
+    LinearLayout dishesLevelLl;
+
+    @Bind(R.id.recommend_activity_hot_level_ll)
+    LinearLayout dishesHotLevelLl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +67,7 @@ public class RecommendActivity extends BaseActivity implements MenuContract.IMen
 
     @Override
     protected void initViews() {
-
+        initRatingBar();
     }
 
 
@@ -85,5 +92,63 @@ public class RecommendActivity extends BaseActivity implements MenuContract.IMen
         menuRb.setLayoutParams(params);
 
         ((RadioButton)mTtitleBarMenuRb.getChildAt(0)).setChecked(true);
+    }
+
+    private void initRatingBar() {
+        for (int i = 0 ; i < 5 ; i ++) {
+            CheckBox cb = new CheckBox(this);
+            cb.setButtonDrawable(R.drawable.rating_bar_selector);
+            cb.setChecked(true);
+            cb.setTag(i);
+            cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        int tag = (int)buttonView.getTag();
+                        for (int i = 0 ; i < 5 ; i++) {
+                            if (i <= tag) {
+                                ((CheckBox)dishesLevelLl.getChildAt(i)).setChecked(true);
+                            } else {
+                                ((CheckBox)dishesLevelLl.getChildAt(i)).setChecked(false);
+                            }
+                        }
+                    } else {
+                        int tag = (int)buttonView.getTag();
+                        for (int i = tag ; i < 5 ; i++) {
+                            ((CheckBox)dishesLevelLl.getChildAt(i)).setChecked(false);
+                        }
+                    }
+                }
+            });
+            dishesLevelLl.addView(cb);
+        }
+
+        for (int i = 0 ; i < 5 ; i ++) {
+            CheckBox cb = new CheckBox(this);
+            cb.setButtonDrawable(R.drawable.rating_bar_selector);
+            cb.setChecked(true);
+            cb.setTag(i);
+            cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        int tag = (int)buttonView.getTag();
+                        for (int i = 0 ; i < 5 ; i++) {
+                            if (i <= tag) {
+                                ((CheckBox)dishesHotLevelLl.getChildAt(i)).setChecked(true);
+                            } else {
+                                ((CheckBox)dishesHotLevelLl.getChildAt(i)).setChecked(false);
+                            }
+                        }
+                    } else {
+                        int tag = (int)buttonView.getTag();
+                        for (int i = tag ; i < 5 ; i++) {
+                              ((CheckBox)dishesHotLevelLl.getChildAt(i)).setChecked(false);
+                        }
+                    }
+                }
+            });
+            dishesHotLevelLl.addView(cb);
+        }
     }
 }
