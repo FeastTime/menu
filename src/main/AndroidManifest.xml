@@ -30,6 +30,11 @@
         </activity>
         <activity android:name="com.feasttime.view.RecommendActivity">
         </activity>
+
+        <activity android:name="com.feasttime.view.EndActivity">
+        </activity>
+
+
     </application>
 
 </manifest>

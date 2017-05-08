@@ -1,12 +1,15 @@
 package com.feasttime.view;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -27,13 +30,17 @@ import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
 import java.util.ArrayList;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by chen on 2017/5/7.
  */
 
-public class RecommendActivity extends BaseActivity implements MenuContract.IMenuView{
+public class RecommendActivity extends BaseActivity implements MenuContract.IMenuView,View.OnClickListener{
     private MenuPresenter mMenuPresenter = new MenuPresenter();
+
+    @Bind(R.id.title_bar_cart_ib)
+    ImageButton barCartIb;
 
     @Bind(R.id.title_bar_content_rb)
     RadioGroup mTtitleBarMenuRb;
@@ -166,6 +173,14 @@ public class RecommendActivity extends BaseActivity implements MenuContract.IMen
                 }
             });
             dishesHotLevelLl.addView(cb);
+        }
+    }
+
+    @OnClick({R.id.title_bar_cart_ib})
+    @Override
+    public void onClick(View v) {
+        if (barCartIb == v) {
+            startActivity(new Intent(this,EndActivity.class));
         }
     }
 }
