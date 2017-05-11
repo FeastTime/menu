@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.feasttime.model.bean.CreateOrderInfo;
 import com.feasttime.model.bean.MenuInfo;
+import com.feasttime.model.bean.OrderInfo;
 import com.feasttime.tools.DeviceTool;
 import com.feasttime.tools.LogUtil;
 
@@ -145,4 +146,15 @@ public class RetrofitService {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+
+    public static Observable<OrderInfo> getShoppingCartList(String token){
+        return sMenuService.getShoppingCartList(token)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+
 }

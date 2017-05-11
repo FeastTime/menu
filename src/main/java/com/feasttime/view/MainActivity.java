@@ -1,8 +1,12 @@
 package com.feasttime.view;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +21,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.feasttime.adapter.MainMenuPagerAdapter;
+import com.feasttime.fragment.MyOrderFragment;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.MenuItemInfo;
@@ -60,12 +65,18 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Bind(R.id.title_bar_cart_ib)
     ImageButton cartIb;
 
+    @Bind(R.id.title_bar_layout_menu_ib)
+    ImageButton menuIb;
+
+    private MyOrderFragment myOrderFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         ScreenInfo info = DeviceTool.getDeviceScreenInfo(this);
         LogUtil.d(TAG,info.getWidth() + "X" + info.getHeight());
+
     }
 
     @Override
@@ -108,6 +119,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                      LogUtil.d("result","the position ->" + buttonView.getTag());
+
                 }
             });
         }
@@ -139,6 +151,15 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
             menuRb.setBackgroundResource(R.drawable.title_normal_menu_selector);
         }
 
+        menuRb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    removeOrder();
+                }
+            }
+        });
+
         mTtitleBarMenuRb.addView(menuRb);
 
         ViewGroup.LayoutParams params = menuRb.getLayoutParams();
@@ -153,7 +174,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         mMenuPresenter.getMenu("158000000","0","0","0","0");
     }
 
-    @OnClick({R.id.main_activity_left_ib,R.id.main_activity_right_ib,R.id.toTheAdBtn,R.id.title_bar_cart_ib})
+    @OnClick({R.id.main_activity_left_ib,R.id.main_activity_right_ib,R.id.toTheAdBtn,R.id.title_bar_cart_ib,R.id.title_bar_layout_menu_ib})
     @Override
     public void onClick(View v) {
         if (v == leftIb) {
@@ -164,6 +185,12 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
             startActivity(new Intent(this,SilentADActivity.class));
         } else if (v == cartIb) {
             startActivity(new Intent(this,RecommendActivity.class));
+        } else if (v == menuIb) {
+            myOrderFragment = new MyOrderFragment();
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.replace(R.id.main_activity_my_order_container_fl, myOrderFragment);
+            transaction.commit();
         }
     }
 
@@ -179,6 +206,16 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
     @Override
     public void onPageScrollStateChanged(int state) {
+
+    }
+
+    private void removeOrder() {
+        if (myOrderFragment != null) {
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.remove(myOrderFragment);
+            transaction.commit();
+        }
 
     }
 }
