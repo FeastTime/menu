@@ -27,6 +27,8 @@ android {
     }
 }
 
+repositories  {   flatDir {        dirs 'libs'    }}
+
 dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -51,6 +53,8 @@ dependencies {
     //    compile 'com.google.android:support-v4:r7'
     compile 'com.android.support:recyclerview-v7:25.3.0'
     compile 'com.android.support:support-v4:25.3.0'
+
+    compile(name:'xCLCharts', ext:'aar')
 }
 
 

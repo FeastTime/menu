@@ -2,6 +2,7 @@ package com.feasttime.model;
 
 import com.feasttime.model.bean.CreateOrderInfo;
 import com.feasttime.model.bean.MenuInfo;
+import com.feasttime.model.bean.OrderInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -25,4 +26,8 @@ public interface MenusApi {
       @POST("menu")
       Observable<MenuInfo> getMenu(@Field("mobileNO") String mobileNO, @Field("token") String token, @Field("orderID") String orderID, @Field("classType") String classType, @Field("page") String page);
 
+      //获取购物车详单
+      @FormUrlEncoded
+      @POST("getShoppingCartList")
+      Observable<OrderInfo> getShoppingCartList(@Field("orderID") String orderID);
 }

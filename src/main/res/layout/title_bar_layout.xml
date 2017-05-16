@@ -46,6 +46,7 @@
 
         </RadioGroup>
         <ImageButton
+            android:id="@+id/title_bar_layout_menu_ib"
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:src="@mipmap/right_menu_icon"
