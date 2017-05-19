@@ -260,15 +260,15 @@ public class LineChart01View extends BaseChart implements Runnable{
 
 	private void chartLabels()
 	{
-		labels.add("2006");
-		labels.add("2007");
-		labels.add("2008");
-		labels.add("2009");
-		labels.add("2010");
-		labels.add("2011");
-		labels.add("2012");
-		labels.add("2013");
-		labels.add("2014");
+		labels.add(" ");
+		labels.add(" ");
+		labels.add(" ");
+		labels.add(" ");
+		labels.add(" ");
+		labels.add(" ");
+		labels.add(" ");
+		labels.add(" ");
+		labels.add(" ");
 	}
 
 
