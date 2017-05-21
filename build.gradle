@@ -36,6 +36,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.0'
     //    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile(name:'xCLCharts', ext:'aar')
+
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'io.reactivex.rxjava2:rxjava:2.0.0-RC1'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.0-RC1'
@@ -53,8 +55,9 @@ dependencies {
     //    compile 'com.google.android:support-v4:r7'
     compile 'com.android.support:recyclerview-v7:25.3.0'
     compile 'com.android.support:support-v4:25.3.0'
+    //jcvideoplayer
+    compile 'fm.jiecao:jiecaovideoplayer:4.6.3'
 
-    compile(name:'xCLCharts', ext:'aar')
 }
 
 

@@ -14,7 +14,7 @@
 
     <application
         android:name="com.feasttime.MenuApplication"
-        android:allowBackup="false"
+
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -34,7 +34,9 @@
         <activity android:name="com.feasttime.view.EndActivity">
         </activity>
 
+        <activity android:name="com.feasttime.view.ShowWebActivity"></activity>
 
+        <activity android:name="com.feasttime.view.PlayVideoActivity"></activity>
     </application>
 
 </manifest>
