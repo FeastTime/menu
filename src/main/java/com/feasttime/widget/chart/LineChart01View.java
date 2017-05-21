@@ -65,26 +65,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.xclcharts.chart.CustomLineData;
-import org.xclcharts.chart.LineChart;
-import org.xclcharts.chart.LineData;
-import org.xclcharts.common.DensityUtil;
-import org.xclcharts.common.IFormatterDoubleCallBack;
-import org.xclcharts.common.IFormatterTextCallBack;
-import org.xclcharts.renderer.XEnum;
-import org.xclcharts.renderer.info.AnchorDataPoint;
-
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.MotionEvent;
+import com.feasttime.menu.R;
 
 /**
  * @ClassName LineChart01View
@@ -105,20 +86,29 @@ public class LineChart01View extends BaseChart implements Runnable{
 	//批注
 	List<AnchorDataPoint> mAnchorSet = new ArrayList<AnchorDataPoint>();
 
+	private int gridColor;
+	private int lineColor;
+
 	public LineChart01View(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
-		initView();
+		gridColor = this.getResources().getColor(R.color.small_gray);
+		lineColor = Color.BLUE;
+//		initView();
 	}
 
 	public LineChart01View(Context context, AttributeSet attrs){
 		super(context, attrs);
-		initView();
+		gridColor = this.getResources().getColor(R.color.small_gray);
+		lineColor = Color.BLUE;
+//		initView();
 	}
 
 	public LineChart01View(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		initView();
+		gridColor = this.getResources().getColor(R.color.small_gray);
+		lineColor = Color.BLUE;
+//		initView();
 	}
 
 	private void initView()
@@ -131,12 +121,21 @@ public class LineChart01View extends BaseChart implements Runnable{
 
 	}
 
+	public void setLineColor(int color) {
+		lineColor = color;
+		initView();
+	}
 
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
 		//图所占范围大小
 		chart.setChartRange(w,h);
+	}
+
+	public void setBottomTitle(String btmTitle) {
+		chart.getAxisTitle().setLowerTitle(btmTitle);
+		chart.getAxisTitle().getLowerTitlePaint().setColor(this.getResources().getColor(R.color.small_black));
 	}
 
 	private void chartRender()
@@ -167,8 +166,8 @@ public class LineChart01View extends BaseChart implements Runnable{
 			//隐藏顶轴和右边轴
 			//chart.hideTopAxis();
 			//chart.hideRightAxis();
-			chart.getPlotGrid().getHorizontalLinePaint().setColor(Color.GREEN);
-			chart.getPlotGrid().getVerticalLinePaint().setColor(Color.GREEN);
+			chart.getPlotGrid().getHorizontalLinePaint().setColor(gridColor);
+			chart.getPlotGrid().getVerticalLinePaint().setColor(gridColor);
 			//设置轴风格
 
 			//chart.getDataAxis().setTickMarksVisible(false);
@@ -244,12 +243,12 @@ public class LineChart01View extends BaseChart implements Runnable{
 		dataSeries2.add((double)950);
 		dataSeries2.add((double)1200);
 
-		LineData lineData2 = new LineData("",dataSeries2,Color.RED);
+		LineData lineData2 = new LineData("",dataSeries2,lineColor);
 		lineData2.setDotStyle(XEnum.DotStyle.RECT);
-		lineData2.getPlotLine().getDotPaint().setColor(Color.BLUE);
+		lineData2.getPlotLine().getDotPaint().setColor(lineColor);
 		lineData2.getDotLabelPaint().setColor(Color.GRAY);
 		lineData2.setLabelVisible(false);
-		lineData2.getLabelOptions().getBox().getBackgroundPaint().setColor(Color.GREEN);
+		lineData2.getLabelOptions().getBox().getBackgroundPaint().setColor(lineColor);
 		//lineData2.getPlotLabel().hideBox();
 
 		chartData.add(lineData2);

@@ -58,22 +58,25 @@ public class MultiBarChart01View extends BaseChart {
     private List<BarData> chartData = new LinkedList<BarData>();
     private List<BarData> chartData2 = new LinkedList<BarData>();
 
-    private int axisColor = Color.rgb(125, 223, 252);
+    private int axisColor;
     int mOffset = 0;
 
     public MultiBarChart01View(Context context) {
         super(context);
         // TODO Auto-generated constructor stub
+        axisColor = Color.parseColor("#444149");
         initView();
     }
 
     public MultiBarChart01View(Context context, AttributeSet attrs){
         super(context, attrs);
+        axisColor = Color.parseColor("#444149");
         initView();
     }
 
     public MultiBarChart01View(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        axisColor = Color.parseColor("#444149");
         initView();
     }
 
@@ -218,42 +221,7 @@ public class MultiBarChart01View extends BaseChart {
     }
 
 
-    private void chartDataSet()
-    {
-        //标签对应的柱形数据集
-        List<Double> dataSeriesA= new LinkedList<Double>();
-        dataSeriesA.add(1000d);
-        dataSeriesA.add(2566d);
-        dataSeriesA.add(1254d);
-        dataSeriesA.add(3622d);
-        dataSeriesA.add(5542d);
-        BarData BarDataA = new BarData("",dataSeriesA,Color.BLUE);
 
-        List<Double> dataSeriesB= new LinkedList<Double>();
-        dataSeriesB.add(2236d);
-        dataSeriesB.add(1241d);
-        dataSeriesB.add(2114d);
-        dataSeriesB.add(0214d);
-        dataSeriesB.add(0362d);
-        BarData BarDataB = new BarData("",dataSeriesB,Color.GREEN);
-
-
-        chartData.add(BarDataA);
-        chartData.add(BarDataB);
-
-
-        List<Double> dataSeriesAA= new LinkedList<Double>();
-        dataSeriesAA.add(0d);
-        BarData BarDataAA = new BarData("",dataSeriesAA,Color.WHITE);
-
-        List<Double> dataSeriesBB= new LinkedList<Double>();
-        dataSeriesBB.add(0d);
-        BarData BarDataBB = new BarData("",dataSeriesBB,Color.WHITE);
-
-        chartData.add(BarDataAA);
-        chartData.add(BarDataBB);
-
-    }
 
     private void chartDataSet2()
     {
@@ -264,7 +232,7 @@ public class MultiBarChart01View extends BaseChart {
         dataSeriesA.add(1800d);
         dataSeriesA.add(1800d);
         dataSeriesA.add(1500d);
-        BarData BarDataA = new BarData("",dataSeriesA,Color.rgb(38, 137, 176));
+        BarData BarDataA = new BarData("",dataSeriesA,Color.parseColor("#45B7E0"));
 
         List<Double> dataSeriesB= new LinkedList<Double>();
         dataSeriesB.add(1500d);
@@ -272,7 +240,7 @@ public class MultiBarChart01View extends BaseChart {
         dataSeriesB.add(1400d);
         dataSeriesB.add(1200d);
         dataSeriesB.add(1600d);
-        BarData BarDataB = new BarData("",dataSeriesB,Color.rgb(13, 116, 161));
+        BarData BarDataB = new BarData("",dataSeriesB,Color.parseColor("#BB2731"));
 
         chartData2.add(BarDataA);
         chartData2.add(BarDataB);

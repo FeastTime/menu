@@ -291,24 +291,28 @@
                     android:orientation="horizontal"
                     >
                     <com.feasttime.widget.chart.LineChart01View
+                        android:id="@+id/end_activity_fat_lcv"
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
                         android:layout_weight="1"
                         />
 
                     <com.feasttime.widget.chart.LineChart01View
+                        android:id="@+id/end_activity_carbohydrate_lcv"
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
                         android:layout_weight="1"
                         />
 
                     <com.feasttime.widget.chart.LineChart01View
+                        android:id="@+id/end_activity_protein_lcv"
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
                         android:layout_weight="1"
                         />
 
                     <com.feasttime.widget.chart.LineChart01View
+                        android:id="@+id/end_activity_sodium_lcv"
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
                         android:layout_weight="1"
@@ -334,6 +338,7 @@
                         >
 
                         <com.feasttime.widget.chart.MultiBarChart01View
+                            android:id="@+id/end_activity_consume_mbcv"
                             android:layout_width="300dp"
                             android:layout_height="180dp" />
                         <TextView

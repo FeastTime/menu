@@ -1,6 +1,7 @@
 package com.feasttime.view;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.LinearLayout;
 import com.feasttime.menu.R;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.tools.LogUtil;
+import com.feasttime.widget.chart.LineChart01View;
+import com.feasttime.widget.chart.MultiBarChart01View;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -26,6 +29,22 @@ public class EndActivity extends BaseActivity {
 
     @Bind(R.id.end_activity_this_month_eat_chart_ll)
     LinearLayout thisMonthChartLl;
+
+    @Bind(R.id.end_activity_fat_lcv)
+    LineChart01View fatLcv;
+
+    @Bind(R.id.end_activity_carbohydrate_lcv)
+    LineChart01View carbohydrateLcv;
+
+    @Bind(R.id.end_activity_protein_lcv)
+    LineChart01View proteinLcv;
+
+    @Bind(R.id.end_activity_sodium_lcv)
+    LineChart01View sodiumLcv;
+
+    @Bind(R.id.end_activity_consume_mbcv)
+    MultiBarChart01View consumeMbcv;
+
 
     @Override
     protected IBasePresenter[] getPresenters() {
@@ -56,6 +75,15 @@ public class EndActivity extends BaseActivity {
         }
         setChartPercent(lastMonthChartLl,20);
         setChartPercent(thisMonthChartLl,36);
+
+        fatLcv.setBottomTitle("脂肪摄入量");
+        fatLcv.setLineColor(Color.parseColor("#DD7E10"));
+        carbohydrateLcv.setBottomTitle("碳水化合物");
+        carbohydrateLcv.setLineColor(Color.parseColor("#C65117"));
+        proteinLcv.setBottomTitle("蛋白质摄入量");
+        proteinLcv.setLineColor(Color.parseColor("#235F9E"));
+        sodiumLcv.setBottomTitle("钠摄入量");
+        sodiumLcv.setLineColor(Color.parseColor("#250319"));
     }
 
     @Override
