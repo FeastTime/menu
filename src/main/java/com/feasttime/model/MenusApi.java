@@ -3,6 +3,7 @@ package com.feasttime.model;
 import com.feasttime.model.bean.CreateOrderInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.OrderInfo;
+import com.feasttime.model.bean.StatisticsPersonInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -30,4 +31,11 @@ public interface MenusApi {
       @FormUrlEncoded
       @POST("getShoppingCartList")
       Observable<OrderInfo> getShoppingCartList(@Field("orderID") String orderID);
+
+
+      //获取用户统计数据
+      @FormUrlEncoded
+      @POST("getPersonalStatisticsDetail")
+      Observable<StatisticsPersonInfo> getPersonalStatistics(@Field("token") String token);
+
 }

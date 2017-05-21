@@ -66,6 +66,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.feasttime.menu.R;
+import com.feasttime.model.bean.StatisticsPersonInfo;
 
 /**
  * @ClassName LineChart01View
@@ -82,7 +83,8 @@ public class LineChart01View extends BaseChart implements Runnable{
 	private LinkedList<String> labels = new LinkedList<String>();
 	private LinkedList<LineData> chartData = new LinkedList<LineData>();
 	private List<CustomLineData> mCustomLineDataset = new LinkedList<CustomLineData>();
-
+	private LinkedList<Double> dataSeries2= new LinkedList<Double>();
+	private List <StatisticsPersonInfo.HealthAnalysisChartBean.LineChartBean> chartDataList;
 	//批注
 	List<AnchorDataPoint> mAnchorSet = new ArrayList<AnchorDataPoint>();
 
@@ -123,6 +125,19 @@ public class LineChart01View extends BaseChart implements Runnable{
 
 	public void setLineColor(int color) {
 		lineColor = color;
+	}
+
+	public void setCHartDataList(List <StatisticsPersonInfo.HealthAnalysisChartBean.LineChartBean> dataList) {
+		//添加从网络请求的数据
+		this.chartDataList = dataList;
+		int count = dataList.size();
+		for (int i = 0 ; i < count ; i++) {
+			StatisticsPersonInfo.HealthAnalysisChartBean.LineChartBean lcb = dataList.get(i);
+			dataSeries2.add(Double.parseDouble(lcb.getYAxisNum()));
+			labels.add("");
+		}
+
+		//把数据绘制到图表上
 		initView();
 	}
 
@@ -234,14 +249,14 @@ public class LineChart01View extends BaseChart implements Runnable{
 	{
 
 		//Line 2
-		LinkedList<Double> dataSeries2= new LinkedList<Double>();
+
 //		dataSeries2.add(0d);
 //		dataSeries2.add(0d);
 //		dataSeries2.add(0d);
 //		dataSeries2.add(0d);
-		dataSeries2.add((double)800);
-		dataSeries2.add((double)950);
-		dataSeries2.add((double)1200);
+//		dataSeries2.add((double)800);
+//		dataSeries2.add((double)950);
+//		dataSeries2.add((double)1200);
 
 		LineData lineData2 = new LineData("",dataSeries2,lineColor);
 		lineData2.setDotStyle(XEnum.DotStyle.RECT);
@@ -263,11 +278,11 @@ public class LineChart01View extends BaseChart implements Runnable{
 //		labels.add(" ");
 //		labels.add(" ");
 //		labels.add(" ");
-		labels.add(" ");
-		labels.add(" ");
-		labels.add(" ");
-		labels.add(" ");
-		labels.add(" ");
+//		labels.add(" ");
+//		labels.add(" ");
+//		labels.add(" ");
+//		labels.add(" ");
+//		labels.add(" ");
 	}
 
 

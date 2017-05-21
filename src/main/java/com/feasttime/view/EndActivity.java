@@ -9,7 +9,10 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.feasttime.menu.R;
+import com.feasttime.model.bean.StatisticsPersonInfo;
 import com.feasttime.presenter.IBasePresenter;
+import com.feasttime.presenter.statistics.StatisticsContract;
+import com.feasttime.presenter.statistics.StatisticsPresenter;
 import com.feasttime.tools.LogUtil;
 import com.feasttime.widget.chart.LineChart01View;
 import com.feasttime.widget.chart.MultiBarChart01View;
@@ -21,7 +24,7 @@ import butterknife.OnClick;
  * Created by chen on 2017/5/8.
  */
 
-public class EndActivity extends BaseActivity {
+public class EndActivity extends BaseActivity implements StatisticsContract.IStatisticsView{
     private static final String TAG = "EndActivity";
 
     @Bind(R.id.end_activity_last_month_eat_chart_ll)
@@ -45,15 +48,16 @@ public class EndActivity extends BaseActivity {
     @Bind(R.id.end_activity_consume_mbcv)
     MultiBarChart01View consumeMbcv;
 
+    private StatisticsPresenter statisticsPresenter = new StatisticsPresenter();
 
     @Override
     protected IBasePresenter[] getPresenters() {
-        return new IBasePresenter[0];
+        return new IBasePresenter[]{statisticsPresenter};
     }
 
     @Override
     protected void onInitPresenters() {
-
+        statisticsPresenter.init(this);
     }
 
     @Override
@@ -84,6 +88,9 @@ public class EndActivity extends BaseActivity {
         proteinLcv.setLineColor(Color.parseColor("#235F9E"));
         sodiumLcv.setBottomTitle("钠摄入量");
         sodiumLcv.setLineColor(Color.parseColor("#250319"));
+
+
+        statisticsPresenter.getStatisticsPersonalInfo("3232326654646464");
     }
 
     @Override
@@ -126,4 +133,11 @@ public class EndActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void showData(StatisticsPersonInfo result) {
+        fatLcv.setCHartDataList(result.getHealthAnalysisChart().get(0).getFat());
+        carbohydrateLcv.setCHartDataList(result.getHealthAnalysisChart().get(0).getCarbohydrate());
+        proteinLcv.setCHartDataList(result.getHealthAnalysisChart().get(0).getProtein());
+        sodiumLcv.setCHartDataList(result.getHealthAnalysisChart().get(0).getSodium());
+    }
 }
