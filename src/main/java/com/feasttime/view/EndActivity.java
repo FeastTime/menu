@@ -68,15 +68,15 @@ public class EndActivity extends BaseActivity {
         int redColor = getResources().getColor(R.color.red);
         int count = view.getChildCount();
         int tag = (int)view.getTag();
-        int perNum = 1000 / 30;
-        percent = (percent * 10) / perNum;
-
+        percent = (percent * 10);
+        int calcPercent = 0;
         boolean isBreak = false;
         for (int i = 0 ; i < count ; i++) {
             LinearLayout childView = (LinearLayout) view.getChildAt(count - i - 1);
             int childSize = childView.getChildCount();
             for (int j = 0 ; j < childSize ; j++) {
-                if (i * j * 10 > percent) {
+                calcPercent = calcPercent + 33;
+                if (calcPercent > percent) {
                     isBreak = true;
                     break;
                 }
