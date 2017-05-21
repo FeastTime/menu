@@ -156,7 +156,7 @@ public class LineChart01View extends BaseChart implements Runnable{
 			//数据轴最大值
 			chart.getDataAxis().setAxisMax(3500);
 			//数据轴刻度间隔
-			chart.getDataAxis().setAxisSteps(100);
+			chart.getDataAxis().setAxisSteps(500);
 			//指隔多少个轴刻度(即细刻度)后为主刻度
 			chart.getDataAxis().setDetailModeSteps(5);
 
@@ -236,10 +236,10 @@ public class LineChart01View extends BaseChart implements Runnable{
 
 		//Line 2
 		LinkedList<Double> dataSeries2= new LinkedList<Double>();
-		dataSeries2.add(0d);
-		dataSeries2.add(0d);
-		dataSeries2.add(0d);
-		dataSeries2.add(0d);
+//		dataSeries2.add(0d);
+//		dataSeries2.add(0d);
+//		dataSeries2.add(0d);
+//		dataSeries2.add(0d);
 		dataSeries2.add((double)800);
 		dataSeries2.add((double)950);
 		dataSeries2.add((double)1200);
@@ -260,10 +260,10 @@ public class LineChart01View extends BaseChart implements Runnable{
 
 	private void chartLabels()
 	{
-		labels.add(" ");
-		labels.add(" ");
-		labels.add(" ");
-		labels.add(" ");
+//		labels.add(" ");
+//		labels.add(" ");
+//		labels.add(" ");
+//		labels.add(" ");
 		labels.add(" ");
 		labels.add(" ");
 		labels.add(" ");
