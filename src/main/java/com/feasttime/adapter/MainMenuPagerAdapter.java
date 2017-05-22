@@ -45,6 +45,11 @@ public class MainMenuPagerAdapter extends PagerAdapter {
         twoView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
         threeView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
 
+        TextView dishesName1 = (TextView)oneView.findViewById(R.id.menu_item_layout_dishes_name_tv);
+        TextView dishesName2 = (TextView)twoView.findViewById(R.id.menu_item_layout_dishes_name_tv);
+        TextView dishesName3 = (TextView)threeView.findViewById(R.id.menu_item_layout_dishes_name_tv);
+
+
         oneView.setGravity(Gravity.CENTER);
         twoView.setGravity(Gravity.CENTER);
         threeView.setGravity(Gravity.CENTER);
