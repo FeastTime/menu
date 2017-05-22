@@ -55,8 +55,8 @@ dependencies {
     //    compile 'com.google.android:support-v4:r7'
     compile 'com.android.support:recyclerview-v7:25.3.0'
     compile 'com.android.support:support-v4:25.3.0'
-    //jcvideoplayer
-    compile 'fm.jiecao:jiecaovideoplayer:4.6.3'
+
+
 
 }
 

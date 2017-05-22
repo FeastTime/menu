@@ -1,6 +1,7 @@
 package com.feasttime.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.view.Gravity;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.feasttime.menu.R;
 import com.feasttime.tools.ScreenTools;
+import com.feasttime.view.PlayVideoActivity;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
 import com.feasttime.widget.jazzyviewpager.OutlineContainer;
 
@@ -33,7 +35,7 @@ public class MainMenuPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, final int position) {
+    public Object instantiateItem(final ViewGroup container, final int position) {
         LayoutInflater inflater = LayoutInflater.from(context);
         LinearLayout oneView = (LinearLayout) inflater.inflate(R.layout.menu_item_layout,null);
         LinearLayout twoView = (LinearLayout) inflater.inflate(R.layout.menu_item_layout,null);
@@ -59,6 +61,12 @@ public class MainMenuPagerAdapter extends PagerAdapter {
         adflagIv2.setImageResource(R.mipmap.ad_flag_chubang);
         adflagIv3.setImageResource(R.mipmap.ad_flag_chubang);
 
+        adflagIv1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, PlayVideoActivity.class));
+            }
+        });
 
         ImageView dishes1 = (ImageView) oneView.findViewById(R.id.menu_item_layout_dishes_iv);
         ImageView dishes2 = (ImageView) twoView.findViewById(R.id.menu_item_layout_dishes_iv);
