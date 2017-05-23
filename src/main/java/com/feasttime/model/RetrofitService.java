@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.feasttime.model.bean.CreateOrderInfo;
+import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.OrderInfo;
 import com.feasttime.model.bean.StatisticsPersonInfo;
@@ -159,6 +160,15 @@ public class RetrofitService {
 
     public static Observable<StatisticsPersonInfo> getPersonalStatistics(String token){
         return sMenuService.getPersonalStatistics(token)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+    public static Observable<DishesCategoryInfo> getDishesCategoryList(){
+        return sMenuService.getDishesCategoryList()
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())

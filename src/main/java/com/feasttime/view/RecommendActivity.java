@@ -17,6 +17,7 @@ import android.widget.RadioGroup;
 import com.feasttime.adapter.MainMenuPagerAdapter;
 import com.feasttime.adapter.RecommendMenuAdapter;
 import com.feasttime.menu.R;
+import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.menu.MenuContract;
@@ -182,5 +183,10 @@ public class RecommendActivity extends BaseActivity implements MenuContract.IMen
         if (barCartIb == v) {
             startActivity(new Intent(this,EndActivity.class));
         }
+    }
+
+    @Override
+    public void showDishesCategory(DishesCategoryInfo.DishesCategoryListBean dishesCategoryListBean) {
+
     }
 }

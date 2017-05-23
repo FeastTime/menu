@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import com.feasttime.adapter.MainMenuPagerAdapter;
 import com.feasttime.fragment.MyOrderFragment;
 import com.feasttime.menu.R;
+import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.model.bean.ScreenInfo;
@@ -83,6 +85,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     protected void onResume() {
         super.onResume();
         mShoppingCartPresenter.createOrder("");
+        mMenuPresenter.getDishesCategory();
         mTtitleBarMenuRb.removeAllViews();
     }
 
@@ -140,33 +143,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Override
     public void showMenu(final MenuItemInfo menuItemInfo) {
 
-        RadioButton menuRb = new RadioButton(this);
-        menuRb.setButtonDrawable(android.R.color.transparent);
-        menuRb.setText(menuItemInfo.getDishName() + "\n" + "hot");
-        menuRb.setTextColor(Color.WHITE);
-        menuRb.setPadding(ScreenTools.dip2px(this,40),0,ScreenTools.dip2px(this,40),0);
-        if (mTtitleBarMenuRb.getChildCount() == 0) {
-            menuRb.setBackgroundResource(R.drawable.title_left_menu_selector);
-        } else {
-            menuRb.setBackgroundResource(R.drawable.title_normal_menu_selector);
-        }
 
-        menuRb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    removeOrder();
-                }
-            }
-        });
-
-        mTtitleBarMenuRb.addView(menuRb);
-
-        ViewGroup.LayoutParams params = menuRb.getLayoutParams();
-        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
-        menuRb.setLayoutParams(params);
-
-        ((RadioButton)mTtitleBarMenuRb.getChildAt(0)).setChecked(true);
     }
 
     @Override
@@ -217,5 +194,38 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
             transaction.commit();
         }
 
+    }
+
+    @Override
+    public void showDishesCategory(DishesCategoryInfo.DishesCategoryListBean dishesCategoryListBean) {
+        RadioButton menuRb = new RadioButton(this);
+        menuRb.setButtonDrawable(android.R.color.transparent);
+        menuRb.setGravity(Gravity.CENTER);
+        menuRb.setText(dishesCategoryListBean.getCategoryName() + "\n" + "hot");
+        menuRb.setTextColor(Color.WHITE);
+        menuRb.setTag(dishesCategoryListBean.getCategoryID());
+        menuRb.setPadding(ScreenTools.dip2px(this,40),0,ScreenTools.dip2px(this,40),0);
+        if (mTtitleBarMenuRb.getChildCount() == 0) {
+            menuRb.setBackgroundResource(R.drawable.title_left_menu_selector);
+        } else {
+            menuRb.setBackgroundResource(R.drawable.title_normal_menu_selector);
+        }
+
+        menuRb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    removeOrder();
+                }
+            }
+        });
+
+        mTtitleBarMenuRb.addView(menuRb);
+
+        ViewGroup.LayoutParams params = menuRb.getLayoutParams();
+        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        menuRb.setLayoutParams(params);
+
+        ((RadioButton)mTtitleBarMenuRb.getChildAt(0)).setChecked(true);
     }
 }

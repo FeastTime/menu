@@ -2,6 +2,7 @@ package com.feasttime.presenter.menu;
 
 
 import com.feasttime.model.RetrofitService;
+import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.tools.LogUtil;
@@ -59,6 +60,37 @@ public class MenuPresenter implements MenuContract.IMenuPresenter {
         });
     }
 
+    @Override
+    public void getDishesCategory() {
+        RetrofitService.getDishesCategoryList().map(new Function<DishesCategoryInfo, List<DishesCategoryInfo.DishesCategoryListBean>>() {
+            @Override
+            public List<DishesCategoryInfo.DishesCategoryListBean> apply(DishesCategoryInfo dishesCategoryInfo) throws Exception {
+                return dishesCategoryInfo.getDishesCategoryList();
+            }
+        }).flatMap(new Function<List<DishesCategoryInfo.DishesCategoryListBean>, ObservableSource<DishesCategoryInfo.DishesCategoryListBean>>() {
+            @Override
+            public ObservableSource<DishesCategoryInfo.DishesCategoryListBean> apply(List<DishesCategoryInfo.DishesCategoryListBean> dishesCategoryListBeen) throws Exception {
+                return Observable.fromIterable(dishesCategoryListBeen);
+            }
+        }).subscribe(new Consumer<DishesCategoryInfo.DishesCategoryListBean>() {
+            @Override
+            public void accept(DishesCategoryInfo.DishesCategoryListBean dishesCategoryListBean) throws Exception {
+                mIMenuView.showDishesCategory(dishesCategoryListBean);
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                //这里接收onError
+                LogUtil.d("result","error:");
+            }
+        }, new Action() {
+            @Override
+            public void run() throws Exception {
+                //这里接收onComplete。
+                LogUtil.d("result","complete");
+            }
+        });
+    }
 
     @Override
     public void onStop() {
