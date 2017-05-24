@@ -40,6 +40,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import com.feasttime.model.bean.PersonalStatisticsInfo;
+
 
 /**
  * @ClassName MultiBarChart01View
@@ -53,6 +55,8 @@ public class MultiBarChart01View extends BaseChart {
     private BarChart chart = new BarChart();
     private BarChart chart2 = new BarChart();
 
+    private List<PersonalStatisticsInfo.ConsumeChartBean> chartDataList;
+
     //标签轴
     private List<String> chartLabels = new LinkedList<String>();
     private List<BarData> chartData = new LinkedList<BarData>();
@@ -65,19 +69,19 @@ public class MultiBarChart01View extends BaseChart {
         super(context);
         // TODO Auto-generated constructor stub
         axisColor = Color.parseColor("#444149");
-        initView();
+        //initView();
     }
 
     public MultiBarChart01View(Context context, AttributeSet attrs){
         super(context, attrs);
         axisColor = Color.parseColor("#444149");
-        initView();
+        //initView();
     }
 
     public MultiBarChart01View(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         axisColor = Color.parseColor("#444149");
-        initView();
+        //initView();
     }
 
     private void initView()
@@ -85,16 +89,21 @@ public class MultiBarChart01View extends BaseChart {
 
         mOffset =  DensityUtil.dip2px(getContext(), 45);
 
-        chartLabels();
+//        chartLabels();
 //        chartDataSet();
         chartDataSet2();
         chartRender();
         chartRender2();
 
-        //綁定手势滑动事件
-        this.bindTouch(this,chart);
-        this.bindTouch(this,chart2);
+//        //綁定手势滑动事件
+//        this.bindTouch(this,chart);
+//        this.bindTouch(this,chart2);
 
+    }
+
+    public void setChartData(List<PersonalStatisticsInfo.ConsumeChartBean> chartDataList) {
+        this.chartDataList = chartDataList;
+        initView();
     }
 
     @Override
@@ -227,19 +236,17 @@ public class MultiBarChart01View extends BaseChart {
     {
         //标签对应的柱形数据集
         List<Double> dataSeriesA= new LinkedList<Double>();
-        dataSeriesA.add(1600d);
-        dataSeriesA.add(1700d);
-        dataSeriesA.add(1800d);
-        dataSeriesA.add(1800d);
-        dataSeriesA.add(1500d);
-        BarData BarDataA = new BarData("",dataSeriesA,Color.parseColor("#45B7E0"));
-
         List<Double> dataSeriesB= new LinkedList<Double>();
-        dataSeriesB.add(1500d);
-        dataSeriesB.add(1300d);
-        dataSeriesB.add(1400d);
-        dataSeriesB.add(1200d);
-        dataSeriesB.add(1600d);
+
+        int count = chartDataList.size();
+        for (int i = 0 ; i < count ; i++) {
+            PersonalStatisticsInfo.ConsumeChartBean ccb = chartDataList.get(i);
+            dataSeriesA.add(Double.parseDouble(ccb.getYaxisNum().get(0)));
+            dataSeriesB.add(Double.parseDouble(ccb.getYaxisNum().get(1)));
+            chartLabels.add(" ");
+        }
+
+        BarData BarDataA = new BarData("",dataSeriesA,Color.parseColor("#45B7E0"));
         BarData BarDataB = new BarData("",dataSeriesB,Color.parseColor("#BB2731"));
 
         chartData2.add(BarDataA);

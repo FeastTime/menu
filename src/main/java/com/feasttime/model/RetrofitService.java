@@ -7,7 +7,7 @@ import com.feasttime.model.bean.CreateOrderInfo;
 import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.OrderInfo;
-import com.feasttime.model.bean.StatisticsPersonInfo;
+import com.feasttime.model.bean.PersonalStatisticsInfo;
 import com.feasttime.tools.DeviceTool;
 import com.feasttime.tools.LogUtil;
 
@@ -36,6 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * 整个网络通信服务的启动控制，必须先调用初始化函数才能正常使用网络通信接口
  */
 public class RetrofitService {
+
     private static final String TAG = "RetrofitService";
     //设缓存有效期为1天
     static final long CACHE_STALE_SEC = 60 * 60 * 24 * 1;
@@ -46,6 +47,8 @@ public class RetrofitService {
     static final String CACHE_CONTROL_NETWORK = "Cache-Control: public, max-age=3600";
     // 避免出现 HTTP 403 Forbidden，参考：http://stackoverflow.com/questions/13670692/403-forbidden-with-java-but-not-web-browser
     static final String AVOID_HTTP403_FORBIDDEN = "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11";
+
+    // 阿里云服务器 http://47.94.16.58:9798/feast-web/PersonalStatistics/getPersonalStatisticsDetail/?token=%22333333%22
 
     private static final String BASE_URL = "http://shengyan.com/";
 
@@ -158,7 +161,7 @@ public class RetrofitService {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public static Observable<StatisticsPersonInfo> getPersonalStatistics(String token){
+    public static Observable<PersonalStatisticsInfo> getPersonalStatistics(String token){
         return sMenuService.getPersonalStatistics(token)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

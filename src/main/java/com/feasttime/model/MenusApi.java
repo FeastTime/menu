@@ -4,7 +4,7 @@ import com.feasttime.model.bean.CreateOrderInfo;
 import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.OrderInfo;
-import com.feasttime.model.bean.StatisticsPersonInfo;
+import com.feasttime.model.bean.PersonalStatisticsInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -38,7 +38,7 @@ public interface MenusApi {
       //获取用户统计数据
       @FormUrlEncoded
       @POST("getPersonalStatisticsDetail")
-      Observable<StatisticsPersonInfo> getPersonalStatistics(@Field("token") String token);
+      Observable<PersonalStatisticsInfo> getPersonalStatistics(@Field("token") String token);
 
 
       //获取菜品类型列表

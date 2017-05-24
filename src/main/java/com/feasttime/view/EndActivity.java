@@ -1,24 +1,20 @@
 package com.feasttime.view;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.feasttime.menu.R;
-import com.feasttime.model.bean.StatisticsPersonInfo;
+import com.feasttime.model.bean.PersonalStatisticsInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.statistics.StatisticsContract;
 import com.feasttime.presenter.statistics.StatisticsPresenter;
-import com.feasttime.tools.LogUtil;
 import com.feasttime.widget.chart.LineChart01View;
 import com.feasttime.widget.chart.MultiBarChart01View;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * Created by chen on 2017/5/8.
@@ -134,10 +130,12 @@ public class EndActivity extends BaseActivity implements StatisticsContract.ISta
 
 
     @Override
-    public void showData(StatisticsPersonInfo result) {
-        fatLcv.setCHartDataList(result.getHealthAnalysisChart().get(0).getFat());
-        carbohydrateLcv.setCHartDataList(result.getHealthAnalysisChart().get(0).getCarbohydrate());
-        proteinLcv.setCHartDataList(result.getHealthAnalysisChart().get(0).getProtein());
-        sodiumLcv.setCHartDataList(result.getHealthAnalysisChart().get(0).getSodium());
+    public void showData(PersonalStatisticsInfo result) {
+        fatLcv.setCHartDataList(result.getHealthAnalysisChart().getFat());
+        carbohydrateLcv.setCHartDataList(result.getHealthAnalysisChart().getCarbohydrate());
+        proteinLcv.setCHartDataList(result.getHealthAnalysisChart().getProtein());
+        sodiumLcv.setCHartDataList(result.getHealthAnalysisChart().getSodium());
+        consumeMbcv.setChartData(result.getConsumeChart());
     }
+
 }

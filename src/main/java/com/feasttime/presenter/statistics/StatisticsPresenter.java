@@ -5,9 +5,7 @@
 package com.feasttime.presenter.statistics;
 
 import com.feasttime.model.RetrofitService;
-import com.feasttime.model.bean.OrderInfo;
-import com.feasttime.model.bean.StatisticsPersonInfo;
-import com.feasttime.presenter.menu.MenuContract;
+import com.feasttime.model.bean.PersonalStatisticsInfo;
 import com.feasttime.tools.LogUtil;
 
 import io.reactivex.functions.Action;
@@ -48,9 +46,9 @@ public class StatisticsPresenter implements StatisticsContract.IStatisticsPresen
 
     @Override
     public void getStatisticsPersonalInfo(String token) {
-        RetrofitService.getPersonalStatistics(token).subscribe(new Consumer<StatisticsPersonInfo>() {
+        RetrofitService.getPersonalStatistics(token).subscribe(new Consumer<PersonalStatisticsInfo>() {
             @Override
-            public void accept(StatisticsPersonInfo statisticsPersonInfo) throws Exception {
+            public void accept(PersonalStatisticsInfo statisticsPersonInfo) throws Exception {
                 //mIMenuView.showMenu(menuItemInfo);
 //                iOrderView.showMyOrder(orderInfo.getMyOrderList());
 //                iOrderView.showRecommendOrder(orderInfo.getRecommendOrderList());

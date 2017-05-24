@@ -66,7 +66,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.feasttime.menu.R;
-import com.feasttime.model.bean.StatisticsPersonInfo;
+import com.feasttime.model.bean.PersonalStatisticsInfo;
 
 /**
  * @ClassName LineChart01View
@@ -84,7 +84,7 @@ public class LineChart01View extends BaseChart implements Runnable{
 	private LinkedList<LineData> chartData = new LinkedList<LineData>();
 	private List<CustomLineData> mCustomLineDataset = new LinkedList<CustomLineData>();
 	private LinkedList<Double> dataSeries2= new LinkedList<Double>();
-	private List <StatisticsPersonInfo.HealthAnalysisChartBean.LineChartBean> chartDataList;
+	private List <PersonalStatisticsInfo.HealthAnalysisChartBean.HealthBean> chartDataList;
 	//批注
 	List<AnchorDataPoint> mAnchorSet = new ArrayList<AnchorDataPoint>();
 
@@ -127,13 +127,13 @@ public class LineChart01View extends BaseChart implements Runnable{
 		lineColor = color;
 	}
 
-	public void setCHartDataList(List <StatisticsPersonInfo.HealthAnalysisChartBean.LineChartBean> dataList) {
+	public void setCHartDataList(List <PersonalStatisticsInfo.HealthAnalysisChartBean.HealthBean> dataList) {
 		//添加从网络请求的数据
 		this.chartDataList = dataList;
 		int count = dataList.size();
 		for (int i = 0 ; i < count ; i++) {
-			StatisticsPersonInfo.HealthAnalysisChartBean.LineChartBean lcb = dataList.get(i);
-			dataSeries2.add(Double.parseDouble(lcb.getYAxisNum()));
+			PersonalStatisticsInfo.HealthAnalysisChartBean.HealthBean lcb = dataList.get(i);
+			dataSeries2.add(Double.parseDouble(lcb.getYaxisNum()));
 			labels.add("");
 		}
 

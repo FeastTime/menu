@@ -86,6 +86,8 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         super.onResume();
         mShoppingCartPresenter.createOrder("");
         mMenuPresenter.getDishesCategory();
+
+
         mTtitleBarMenuRb.removeAllViews();
     }
 

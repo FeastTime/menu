@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.feasttime.menu.R;
 import com.feasttime.tools.ScreenTools;
 import com.feasttime.view.PlayVideoActivity;
+import com.feasttime.view.ShowWebActivity;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
 import com.feasttime.widget.jazzyviewpager.OutlineContainer;
 
@@ -37,45 +38,94 @@ public class MainMenuPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(final ViewGroup container, final int position) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        LinearLayout oneView = (LinearLayout) inflater.inflate(R.layout.menu_item_layout,null);
-        LinearLayout twoView = (LinearLayout) inflater.inflate(R.layout.menu_item_layout,null);
-        LinearLayout threeView = (LinearLayout) inflater.inflate(R.layout.menu_item_layout,null);
+        LinearLayout view1 = (LinearLayout) inflater.inflate(R.layout.menu_item_layout,null);
+        LinearLayout view2 = (LinearLayout) inflater.inflate(R.layout.menu_item_layout,null);
+        LinearLayout view3 = (LinearLayout) inflater.inflate(R.layout.menu_item_layout,null);
 
-        oneView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
-        twoView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
-        threeView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
+        view1.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
+        view2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
+        view3.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
 
-        TextView dishesName1 = (TextView)oneView.findViewById(R.id.menu_item_layout_dishes_name_tv);
-        TextView dishesName2 = (TextView)twoView.findViewById(R.id.menu_item_layout_dishes_name_tv);
-        TextView dishesName3 = (TextView)threeView.findViewById(R.id.menu_item_layout_dishes_name_tv);
+        TextView dishesName1 = (TextView)view1.findViewById(R.id.menu_item_layout_dishes_name_tv);
+        TextView dishesName2 = (TextView)view2.findViewById(R.id.menu_item_layout_dishes_name_tv);
+        TextView dishesName3 = (TextView)view3.findViewById(R.id.menu_item_layout_dishes_name_tv);
 
+        TextView seeDetail1 = (TextView)view1.findViewById(R.id.menu_item_layout_dishes_detail_tv);
+        TextView seeDetail2 = (TextView)view2.findViewById(R.id.menu_item_layout_dishes_detail_tv);
+        TextView seeDetail3 = (TextView)view2.findViewById(R.id.menu_item_layout_dishes_detail_tv);
 
-        oneView.setGravity(Gravity.CENTER);
-        twoView.setGravity(Gravity.CENTER);
-        threeView.setGravity(Gravity.CENTER);
+        dishesName1.setText("麻辣香锅");
+        dishesName2.setText("麻辣香锅");
+        dishesName3.setText("麻辣香锅");
 
-        oneView.setBackgroundColor(Color.TRANSPARENT);
-        twoView.setBackgroundColor(Color.TRANSPARENT);
-        threeView.setBackgroundColor(Color.TRANSPARENT);
+        view1.setGravity(Gravity.CENTER);
+        view2.setGravity(Gravity.CENTER);
+        view3.setGravity(Gravity.CENTER);
 
-        ImageView adflagIv1 = (ImageView) oneView.findViewById(R.id.menu_item_layout_ad_flag_iv);
-        ImageView adflagIv2 = (ImageView) twoView.findViewById(R.id.menu_item_layout_ad_flag_iv);
-        ImageView adflagIv3 = (ImageView) threeView.findViewById(R.id.menu_item_layout_ad_flag_iv);
+        view1.setBackgroundColor(Color.TRANSPARENT);
+        view2.setBackgroundColor(Color.TRANSPARENT);
+        view3.setBackgroundColor(Color.TRANSPARENT);
+
+        ImageView adflagIv1 = (ImageView) view1.findViewById(R.id.menu_item_layout_ad_flag_iv);
+        ImageView adflagIv2 = (ImageView) view2.findViewById(R.id.menu_item_layout_ad_flag_iv);
+        ImageView adflagIv3 = (ImageView) view3.findViewById(R.id.menu_item_layout_ad_flag_iv);
+
+        TextView playVideoTv1 = (TextView)view1.findViewById(R.id.menu_item_layout_play_video_tv);
+        TextView playVideoTv2 = (TextView)view2.findViewById(R.id.menu_item_layout_play_video_tv);
+        TextView playVideoTv3 = (TextView)view3.findViewById(R.id.menu_item_layout_play_video_tv);
+
 
         adflagIv1.setImageResource(R.mipmap.ad_flag_chubang);
         adflagIv2.setImageResource(R.mipmap.ad_flag_chubang);
         adflagIv3.setImageResource(R.mipmap.ad_flag_chubang);
 
-        adflagIv1.setOnClickListener(new View.OnClickListener() {
+        playVideoTv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 context.startActivity(new Intent(context, PlayVideoActivity.class));
             }
         });
 
-        ImageView dishes1 = (ImageView) oneView.findViewById(R.id.menu_item_layout_dishes_iv);
-        ImageView dishes2 = (ImageView) twoView.findViewById(R.id.menu_item_layout_dishes_iv);
-        ImageView dishes3 = (ImageView) threeView.findViewById(R.id.menu_item_layout_dishes_iv);
+        playVideoTv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, PlayVideoActivity.class));
+            }
+        });
+
+        playVideoTv3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, PlayVideoActivity.class));
+            }
+        });
+
+
+
+        seeDetail1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ShowWebActivity.class));
+            }
+        });
+
+        seeDetail2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ShowWebActivity.class));
+            }
+        });
+
+        seeDetail3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ShowWebActivity.class));
+            }
+        });
+
+        ImageView dishes1 = (ImageView) view1.findViewById(R.id.menu_item_layout_dishes_iv);
+        ImageView dishes2 = (ImageView) view2.findViewById(R.id.menu_item_layout_dishes_iv);
+        ImageView dishes3 = (ImageView) view3.findViewById(R.id.menu_item_layout_dishes_iv);
 
 
         ViewGroup.LayoutParams params1 = dishes1.getLayoutParams();
@@ -93,9 +143,9 @@ public class MainMenuPagerAdapter extends PagerAdapter {
 
 
         LinearLayout ll = new LinearLayout(context);
-        ll.addView(oneView);
-        ll.addView(twoView);
-        ll.addView(threeView);
+        ll.addView(view1);
+        ll.addView(view2);
+        ll.addView(view3);
 
         ll.setBackgroundColor(Color.TRANSPARENT);
         ll.setGravity(Gravity.CENTER);

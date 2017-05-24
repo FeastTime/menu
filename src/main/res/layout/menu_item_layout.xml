@@ -30,20 +30,27 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_margin="3dp"
             android:src="@mipmap/ic_launcher" />
 
-        <ImageView
+        <View
             android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_height="30dp"></View>
 
-        <ImageView
+        <TextView
+            android:id="@+id/menu_item_layout_play_video_tv"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_margin="3dp"
+            android:layout_marginLeft="30dp"
+            android:text=">"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/play_video_bg_shape" />
 
         <ImageView
             android:id="@+id/menu_item_layout_ad_flag_iv"
+            android:layout_margin="3dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@mipmap/ad_1" />
@@ -69,6 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/detail_bg"
+            android:layout_marginLeft="5dp"
             android:textSize="@dimen/normal_text_size"
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
