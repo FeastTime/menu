@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.PersonalStatisticsInfo;
@@ -44,6 +45,28 @@ public class EndActivity extends BaseActivity implements StatisticsContract.ISta
     @Bind(R.id.end_activity_consume_mbcv)
     MultiBarChart01View consumeMbcv;
 
+    @Bind(R.id.end_activity_last_month_eat_percent_tv)
+    TextView lastMonthEatPercentTv;
+
+    @Bind(R.id.end_activity_this_month_eat_percent_tv)
+    TextView thisMonthEatPercentTv;
+
+    @Bind(R.id.end_activity_chinese_meal_percent_tv)
+    TextView chineseMealPercentTv;
+
+    @Bind(R.id.end_activity_japanese_meal_percent_tv)
+    TextView japaneseMealPercentTv;
+
+    @Bind(R.id.end_activity_west_meal_percent_tv)
+    TextView westMealPercentTv;
+
+    @Bind(R.id.end_activity_eat_count_tv)
+    TextView eatCountTv;
+
+    @Bind(R.id.end_activity_right_eat_count_tv)
+    TextView rightEatCountTv;
+
+
     private StatisticsPresenter statisticsPresenter = new StatisticsPresenter();
 
     @Override
@@ -73,8 +96,6 @@ public class EndActivity extends BaseActivity implements StatisticsContract.ISta
             thisMonthChartLl.addView(thisMonth);
             thisMonthChartLl.setTag(2);
         }
-        setChartPercent(lastMonthChartLl,20);
-        setChartPercent(thisMonthChartLl,36);
 
         fatLcv.setBottomTitle("脂肪摄入量");
         fatLcv.setLineColor(Color.parseColor("#DD7E10"));
@@ -136,6 +157,18 @@ public class EndActivity extends BaseActivity implements StatisticsContract.ISta
         proteinLcv.setCHartDataList(result.getHealthAnalysisChart().getProtein());
         sodiumLcv.setCHartDataList(result.getHealthAnalysisChart().getSodium());
         consumeMbcv.setChartData(result.getConsumeChart());
+        setChartPercent(lastMonthChartLl,Integer.parseInt(result.getLastMonthEatPercent().replace("%","")));
+        setChartPercent(thisMonthChartLl,Integer.parseInt(result.getThisMonthEatPercent().replace("%","")));
+        thisMonthEatPercentTv.setText(result.getThisMonthEatPercent());
+        lastMonthEatPercentTv.setText(result.getLastMonthEatPercent());
+
+        chineseMealPercentTv.setText(result.getEatType().get(0).getPercent());
+        japaneseMealPercentTv.setText(result.getEatType().get(1).getPercent());
+        westMealPercentTv.setText(result.getEatType().get(2).getPercent());
+
+        eatCountTv.setText(result.getEatCount());
+        String eatCountStr = this.getString(R.string.end_activity_eat_count);
+        rightEatCountTv.setText(eatCountStr.replace("num",result.getEatCount()));
     }
 
 }

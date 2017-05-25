@@ -51,6 +51,7 @@
                         android:src="@mipmap/go_store_counts_bg"
                         />
                     <TextView
+                        android:id="@+id/end_activity_eat_count_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20"
@@ -62,11 +63,12 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/end_activity_right_eat_count_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_color_dark_gray"
                     android:gravity="center"
-                    android:text="到\n店\n就\n餐\n20\n次"
+                    android:text=""
                     android:layout_marginLeft="25dp"
                     />
 
@@ -101,6 +103,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/end_activity_chinese_meal_percent_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="81%"
@@ -139,6 +142,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/end_activity_japanese_meal_percent_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="81%"
@@ -151,7 +155,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="中餐占比"
+                    android:text="日料占比"
                     android:textSize="@dimen/normal_text_size"
                     android:textColor="@color/text_color_dark_gray"
                     android:layout_marginLeft="30dp"
@@ -177,6 +181,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/end_activity_west_meal_percent_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="81%"
@@ -189,7 +194,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="中餐占比"
+                    android:text="西餐占比"
                     android:textSize="@dimen/normal_text_size"
                     android:textColor="@color/text_color_dark_gray"
                     android:layout_marginLeft="30dp"
@@ -376,6 +381,7 @@
                                 >
 
                                 <TextView
+                                    android:id="@+id/end_activity_last_month_eat_percent_tv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0%"
@@ -412,10 +418,11 @@
                                 >
 
                                 <TextView
+                                    android:id="@+id/end_activity_this_month_eat_percent_tv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0%"
-                                    android:textColor="@color/holo_blue"
+                                    android:textColor="@color/red"
                                     android:textSize="@dimen/big_text_size"
                                     />
                                 <LinearLayout
