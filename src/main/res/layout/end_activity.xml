@@ -334,29 +334,30 @@
                     />
 
 
-                    <LinearLayout
-                        android:id="@+id/end_activity_multibarchart_ll"
+                    <RelativeLayout
+                        android:id="@+id/end_activity_multibarchart_rel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="150dp"
+                        android:layout_marginTop="180dp"
                         android:orientation="vertical"
                         >
 
                         <com.feasttime.widget.chart.MultiBarChart01View
                             android:id="@+id/end_activity_consume_mbcv"
                             android:layout_width="300dp"
-                            android:layout_height="180dp" />
+                            android:layout_height="190dp" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/big_text_size"
                             android:textColor="@color/text_color_dark_gray"
                             android:layout_marginLeft="20dp"
+                            android:layout_marginTop="160dp"
                             android:text="消费分析"
                             />
 
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -364,7 +365,7 @@
                         android:orientation="vertical"
                         android:layout_marginTop="210dp"
                         android:layout_marginLeft="60dp"
-                        android:layout_toRightOf="@+id/end_activity_multibarchart_ll"
+                        android:layout_toRightOf="@+id/end_activity_multibarchart_rel"
                         >
 
 

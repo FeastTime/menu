@@ -104,6 +104,7 @@ public class MultiBarChart01View extends BaseChart {
     public void setChartData(List<PersonalStatisticsInfo.ConsumeChartBean> chartDataList) {
         this.chartDataList = chartDataList;
         initView();
+        invalidate();
     }
 
     @Override
