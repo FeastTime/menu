@@ -45,16 +45,37 @@
             android:layout_height="match_parent">
 
         </RadioGroup>
-        <ImageButton
-            android:id="@+id/title_bar_layout_menu_ib"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:src="@mipmap/right_menu_icon"
-            android:background="@drawable/right_menu_bg"
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_alignParentRight="true"
-            android:paddingRight="0dp"
-            android:layout_centerVertical="true"
-            />
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="登录"
+                android:textColor="@color/white"
+                android:textSize="@dimen/very_big_text_size"
+                android:gravity="center"
+                android:layout_marginRight="10dp"
+                />
+
+            <ImageButton
+                android:id="@+id/title_bar_layout_menu_ib"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@mipmap/right_menu_icon"
+                android:background="@drawable/right_menu_bg"
+                android:paddingRight="0dp"
+                />
+
+        </LinearLayout>
+
     </RelativeLayout>
 
 

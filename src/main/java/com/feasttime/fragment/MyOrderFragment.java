@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.feasttime.adapter.MyOrderAdapter;
-import com.feasttime.adapter.RecommendMenuAdapter;
 import com.feasttime.adapter.RecommendOrderAdapter;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.MyOrderListItemInfo;
@@ -18,10 +17,8 @@ import com.feasttime.model.bean.RecommendOrderListItemInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.order.OrderContract;
 import com.feasttime.presenter.order.OrderPresenter;
-import com.feasttime.tools.ScreenTools;
 import com.feasttime.widget.RecyclerViewDivider;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -55,7 +52,7 @@ public class MyOrderFragment extends BaseFragment implements OrderContract.IOrde
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.my_order;
+        return R.layout.my_order_fragment;
     }
 
     @Override
