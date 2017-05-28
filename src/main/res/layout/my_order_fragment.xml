@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/transparent_gray"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
         android:layout_marginTop="120dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="45dp"
         android:orientation="vertical"
         >
         <TextView
@@ -58,16 +58,16 @@
                     android:layout_alignParentBottom="true"
                     android:gravity="right"
                     android:orientation="vertical">
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="right"
-                        android:orientation="horizontal">
+                        >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="共计"
                             android:textSize="@dimen/big_text_size"
+                            android:layout_alignParentLeft="true"
                             />
 
                         <TextView
@@ -75,6 +75,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0元"
+                            android:layout_centerInParent="true"
                             android:textColor="@color/white"
                             android:textSize="@dimen/big_text_size"
                             />
@@ -84,13 +85,20 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="下单"
+                            android:layout_alignParentRight="true"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp"
+                            android:background="@drawable/place_order_bg_shape"
                             android:textSize="@dimen/big_text_size"
                             />
-                    </LinearLayout>
+                    </RelativeLayout>
                     <TextView
                         android:id="@+id/my_order_today_activity_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="今日活动"
                         android:textColor="@color/white"
                         android:textSize="@dimen/normal_text_size"
