@@ -5,12 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_bg_color">
 
-    <include
-        android:id="@+id/main_activity_title_bar"
-        layout="@layout/title_bar_layout"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-    </include>
+
 
    <FrameLayout
        android:id="@+id/main_fragment_container_fl"
@@ -20,5 +15,10 @@
    </FrameLayout>
 
 
-
+    <include
+        android:id="@+id/main_activity_title_bar"
+        layout="@layout/title_bar_layout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+    </include>
 </RelativeLayout>

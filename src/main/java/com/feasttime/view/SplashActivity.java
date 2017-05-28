@@ -2,6 +2,7 @@ package com.feasttime.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.feasttime.menu.R;
 import com.feasttime.presenter.IBasePresenter;
@@ -11,10 +12,19 @@ import com.feasttime.presenter.IBasePresenter;
  */
 
 public class SplashActivity extends BaseActivity {
+    private Handler mHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(this,MainActivity.class));
+        mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                finish();
+            }
+        },3000);
     }
 
     @Override
