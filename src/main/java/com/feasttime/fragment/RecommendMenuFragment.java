@@ -9,8 +9,6 @@
 package com.feasttime.fragment;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,37 +18,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.feasttime.adapter.RecommendMenuAdapter;
-import com.feasttime.fragment.BaseFragment;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.menu.MenuContract;
 import com.feasttime.presenter.menu.MenuPresenter;
-import com.feasttime.tools.ScreenTools;
-import com.feasttime.view.EndActivity;
 import com.feasttime.widget.RecyclerViewDivider;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 
 public class RecommendMenuFragment extends BaseFragment implements MenuContract.IMenuView,View.OnClickListener{
 
     private MenuPresenter mMenuPresenter = new MenuPresenter();
 
-    @Bind(R.id.title_bar_cart_ib)
-    ImageButton barCartIb;
-
-    @Bind(R.id.title_bar_content_rb)
-    RadioGroup mTtitleBarMenuRb;
 
     @Bind(R.id.recommend_activity_dishes_level_ll)
     LinearLayout dishesLevelLl;
@@ -75,7 +61,7 @@ public class RecommendMenuFragment extends BaseFragment implements MenuContract.
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.recommend_activity;
+        return R.layout.recommend_fragment;
     }
 
     @Override
@@ -101,31 +87,11 @@ public class RecommendMenuFragment extends BaseFragment implements MenuContract.
     @Override
     public void onResume() {
         super.onResume();
-        mMenuPresenter.getMenu("158000000","0","0","0","0");
-        mTtitleBarMenuRb.removeAllViews();
+
     }
 
     @Override
     public void showMenu(MenuItemInfo menuItemInfo) {
-        RadioButton menuRb = new RadioButton(mContext);
-        menuRb.setButtonDrawable(android.R.color.transparent);
-        menuRb.setText(menuItemInfo.getDishName() + "\n" + "hot");
-        menuRb.setTextColor(Color.WHITE);
-        menuRb.setPadding(ScreenTools.dip2px(mContext,40),0,ScreenTools.dip2px(mContext,40),0);
-
-        if (mTtitleBarMenuRb.getChildCount() == 0) {
-            menuRb.setBackgroundResource(R.drawable.title_left_menu_selector);
-        } else {
-            menuRb.setBackgroundResource(R.drawable.title_normal_menu_selector);
-        }
-
-        mTtitleBarMenuRb.addView(menuRb);
-
-        ViewGroup.LayoutParams params = menuRb.getLayoutParams();
-        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
-        menuRb.setLayoutParams(params);
-
-        ((RadioButton)mTtitleBarMenuRb.getChildAt(0)).setChecked(true);
     }
 
     @Override
@@ -133,12 +99,9 @@ public class RecommendMenuFragment extends BaseFragment implements MenuContract.
 
     }
 
-    @OnClick({R.id.title_bar_cart_ib})
     @Override
     public void onClick(View v) {
-        if (barCartIb == v) {
-            startActivity(new Intent(v.getContext(),EndActivity.class));
-        }
+
     }
 
     private void initRatingBar() {

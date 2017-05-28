@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.feasttime.adapter.MainMenuPagerAdapter;
 import com.feasttime.adapter.RecommendMenuAdapter;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.DishesCategoryInfo;
@@ -22,11 +21,8 @@ import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.menu.MenuContract;
 import com.feasttime.presenter.menu.MenuPresenter;
-import com.feasttime.presenter.shoppingcart.ShoppingCartPresenter;
-import com.feasttime.tools.LogUtil;
 import com.feasttime.tools.ScreenTools;
 import com.feasttime.widget.RecyclerViewDivider;
-import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
 
 import java.util.ArrayList;
 
@@ -79,7 +75,7 @@ public class RecommendActivity extends BaseActivity implements MenuContract.IMen
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.recommend_activity;
+        return R.layout.recommend_fragment;
     }
 
     @Override

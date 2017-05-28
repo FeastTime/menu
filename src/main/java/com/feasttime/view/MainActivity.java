@@ -96,9 +96,13 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     protected void initViews() {
         mainMenuFragment = new MainMenuFragment();
         recommendMenuFragment = new RecommendMenuFragment();
+        jumpFragment(mainMenuFragment);
+    }
+
+    private void jumpFragment(Fragment fragment) {
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.main_fragment_container_fl, mainMenuFragment);
+        transaction.replace(R.id.main_fragment_container_fl, fragment);
         transaction.commit();
     }
 
@@ -122,19 +126,15 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Override
     public void onClick(View v) {
         if (v == cartIb) {
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction transaction = fm.beginTransaction();
-            transaction.replace(R.id.main_fragment_container_fl, recommendMenuFragment);
-            transaction.commit();
+            jumpFragment(recommendMenuFragment);
         } else if (v == menuIb) {
             if (myOrderFragment == null) {
                 myOrderFragment = new MyOrderFragment();
             }
 
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction transaction = fm.beginTransaction();
-            transaction.replace(R.id.main_fragment_container_fl, myOrderFragment);
-            transaction.commit();
+            jumpFragment(myOrderFragment);
+        } else if (cartIb == v) {
+            startActivity(new Intent(v.getContext(),EndActivity.class));
         }
     }
 
