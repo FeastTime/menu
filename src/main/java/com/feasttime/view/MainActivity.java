@@ -61,6 +61,9 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Bind(R.id.title_bar_content_rb)
     RadioGroup mTtitleBarMenuRb;
 
+    @Bind(R.id.title_bar_layout_login_tv)
+    TextView loginTv;
+
 
     private MyOrderFragment myOrderFragment;
     private MainMenuFragment mainMenuFragment;
@@ -122,7 +125,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         mMenuPresenter.getMenu("158000000","0","0","0","0");
     }
 
-    @OnClick({R.id.title_bar_cart_ib,R.id.title_bar_layout_menu_ib})
+    @OnClick({R.id.title_bar_cart_ib,R.id.title_bar_layout_menu_ib,R.id.title_bar_layout_login_tv})
     @Override
     public void onClick(View v) {
         if (v == cartIb) {
@@ -135,6 +138,8 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
             jumpFragment(myOrderFragment);
         } else if (cartIb == v) {
             startActivity(new Intent(v.getContext(),EndActivity.class));
+        } else if (loginTv == v) {
+            startActivity(new Intent(v.getContext(),LoginActivity.class));
         }
     }
 

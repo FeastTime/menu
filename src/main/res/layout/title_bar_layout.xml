@@ -56,6 +56,7 @@
             >
 
             <TextView
+                android:id="@+id/title_bar_layout_login_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="登录"
