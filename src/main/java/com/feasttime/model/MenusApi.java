@@ -38,7 +38,7 @@ public interface MenusApi {
 
       //获取用户统计数据
       @FormUrlEncoded
-      @POST("getPersonalStatisticsDetail")
+      @POST("getPersonalStatisticsDetail/")
       Observable<PersonalStatisticsInfo> getPersonalStatistics(@Field("token") String token);
 
 
