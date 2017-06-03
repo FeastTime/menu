@@ -2,6 +2,7 @@ package com.feasttime.model;
 
 import com.feasttime.model.bean.CreateOrderInfo;
 import com.feasttime.model.bean.DishesCategoryInfo;
+import com.feasttime.model.bean.LoginInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.OrderInfo;
 import com.feasttime.model.bean.PersonalStatisticsInfo;
@@ -44,4 +45,10 @@ public interface MenusApi {
       //获取菜品类型列表
       @GET("getDishesCategoryList")
       Observable<DishesCategoryInfo> getDishesCategoryList();
+
+      //登录
+      @FormUrlEncoded
+      @POST("login")
+      Observable<LoginInfo> login(@Field("mobileNO") String mobileNO);
+
 }
