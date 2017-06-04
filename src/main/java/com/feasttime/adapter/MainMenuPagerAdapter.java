@@ -26,13 +26,22 @@ import com.feasttime.widget.jazzyviewpager.OutlineContainer;
 
 
 public class MainMenuPagerAdapter extends PagerAdapter {
+    public interface OnItemClick{
+        void onDishesPicClicked();
+    }
+
     private Context context;
     private JazzyViewPager mJazzy;
     private LayoutInflater mLayoutInflater;
+    private OnItemClick mOnItemClick;
 
     public MainMenuPagerAdapter(Context context,JazzyViewPager jazzyViewPager) {
         this.context = context;
         this.mJazzy = jazzyViewPager;
+    }
+
+    public void setOnItemClickListener(OnItemClick onItemClick) {
+        this.mOnItemClick = onItemClick;
     }
 
     @Override
@@ -127,6 +136,26 @@ public class MainMenuPagerAdapter extends PagerAdapter {
         ImageView dishes2 = (ImageView) view2.findViewById(R.id.menu_item_layout_dishes_iv);
         ImageView dishes3 = (ImageView) view3.findViewById(R.id.menu_item_layout_dishes_iv);
 
+        dishes1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClick.onDishesPicClicked();
+            }
+        });
+
+        dishes2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClick.onDishesPicClicked();
+            }
+        });
+
+        dishes3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClick.onDishesPicClicked();
+            }
+        });
 
         ViewGroup.LayoutParams params1 = dishes1.getLayoutParams();
         params1.width = ScreenTools.dip2px(context,300);

@@ -34,13 +34,14 @@ import com.feasttime.presenter.shoppingcart.ShoppingCartContract;
 import com.feasttime.presenter.shoppingcart.ShoppingCartPresenter;
 import com.feasttime.tools.LogUtil;
 import com.feasttime.tools.ScreenTools;
+import com.feasttime.view.MainActivity;
 import com.feasttime.view.SilentADActivity;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class MainMenuFragment extends BaseFragment implements MenuContract.IMenuView,ShoppingCartContract.IShoppingCartView, View.OnClickListener,ViewPager.OnPageChangeListener{
+public class MainMenuFragment extends BaseFragment implements MenuContract.IMenuView,ShoppingCartContract.IShoppingCartView, View.OnClickListener,ViewPager.OnPageChangeListener,MainMenuPagerAdapter.OnItemClick{
     private ShoppingCartPresenter mShoppingCartPresenter = new ShoppingCartPresenter();
     private MenuPresenter mMenuPresenter = new MenuPresenter();
 
@@ -82,6 +83,8 @@ public class MainMenuFragment extends BaseFragment implements MenuContract.IMenu
         jazzyViewPager.setPageMargin(30);
 
         MainMenuPagerAdapter mainMenuPagerAdapter = new MainMenuPagerAdapter(mContext,jazzyViewPager);
+        mainMenuPagerAdapter.setOnItemClickListener(this);
+
         jazzyViewPager.setAdapter(mainMenuPagerAdapter);
         int count = mainMenuPagerAdapter.getCount();
 
@@ -155,5 +158,10 @@ public class MainMenuFragment extends BaseFragment implements MenuContract.IMenu
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @Override
+    public void onDishesPicClicked() {
+        ((MainActivity)this.getActivity()).jumpToRecommendFragment();
     }
 }

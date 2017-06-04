@@ -10,6 +10,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,8 @@ import com.feasttime.tools.DeviceTool;
 import com.feasttime.tools.LogUtil;
 import com.feasttime.tools.ScreenTools;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -107,6 +110,10 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.main_fragment_container_fl, fragment);
         transaction.commit();
+    }
+
+    public void jumpToRecommendFragment() {
+        jumpFragment(recommendMenuFragment);
     }
 
     @Override
@@ -184,5 +191,16 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         params.height = ViewGroup.LayoutParams.MATCH_PARENT;
         menuRb.setLayoutParams(params);
         ((RadioButton)mTtitleBarMenuRb.getChildAt(0)).setChecked(true);
+    }
+
+
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode== KeyEvent.KEYCODE_BACK && !mainMenuFragment.isVisible()) {
+            jumpFragment(mainMenuFragment);
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
     }
 }
