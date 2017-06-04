@@ -112,10 +112,10 @@ public class RetrofitService {
         public Response intercept(Chain chain) throws IOException {
 
             final Request request = chain.request().newBuilder()
-                    .addHeader("imei",imei)
-                    .addHeader("androidID",androidID)
-                    .addHeader("mac",mac)
-                    .addHeader("ipv4",ipv4)
+//                    .addHeader("imei",imei)
+//                    .addHeader("androidID",androidID)
+//                    .addHeader("mac",mac)
+//                    .addHeader("ipv4",ipv4)
                     .addHeader("Content-Type","application/json")
                     .build();
 
@@ -140,6 +140,20 @@ public class RetrofitService {
             return URLDecoder.decode(requestBuffer.readUtf8(), "UTF-8");
         }
         return "null";
+    }
+
+    //转换成
+    private static void addDeviceInfo(HashMap <String,Object> infoMap) {
+        infoMap.put("imei",imei);
+        infoMap.put("androidID",androidID);
+        infoMap.put("mac",mac);
+        infoMap.put("ipv4",ipv4);
+    }
+
+    private static RequestBody getRequestBody(HashMap<String,Object> infoMap) {
+        JSONObject jobj = new JSONObject(infoMap);
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),jobj.toString());
+        return body;
     }
 
 
@@ -191,18 +205,15 @@ public class RetrofitService {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public static Observable<LoginInfo> login(String mobileNO){
-        Gson gson = new Gson();
-        HashMap <String,Object> temp = new HashMap<String,Object>();
-        temp.put("mobileNO",mobileNO);
-        JSONObject jobj = new JSONObject(temp);
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),jobj.toString());
-        return sMenuService.login(body)
+    public static Observable<LoginInfo> login(HashMap<String,Object> infoMap){
+        addDeviceInfo(infoMap);
+        return sMenuService.login(getRequestBody(infoMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
 
 
 

@@ -10,6 +10,8 @@ import com.feasttime.model.bean.LoginInfo;
 import com.feasttime.tools.LogUtil;
 import com.feasttime.tools.PreferenceUtil;
 
+import java.util.HashMap;
+
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
@@ -23,7 +25,9 @@ public class UserPresenter implements UserContract.IUserPresenter {
 
     @Override
     public void login(String mobileNO) {
-        RetrofitService.login(mobileNO).subscribe(new Consumer<LoginInfo>(){
+        HashMap<String,Object> infoMap = new HashMap<String,Object>();
+        infoMap.put("mobileNO",mobileNO);
+        RetrofitService.login(infoMap).subscribe(new Consumer<LoginInfo>(){
             @Override
             public void accept(LoginInfo loginInfo) throws Exception {
                 LogUtil.d("result","aa");
