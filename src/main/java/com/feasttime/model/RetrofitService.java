@@ -191,7 +191,7 @@ public class RetrofitService {
         HashMap <String,Object> temp = new HashMap<String,Object>();
         temp.put("mobileNO",mobileNO);
         JSONObject jobj = new JSONObject(temp);
-        RequestBody body=RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),"%7B%22mobileNO%22%3A%2213388996666%22%7D=");
+        RequestBody body=RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),jobj.toString());
         return sMenuService.login(body)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
