@@ -129,7 +129,8 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Override
     public void onClick(View v) {
         if (v == cartIb) {
-            jumpFragment(recommendMenuFragment);
+            //jumpFragment(recommendMenuFragment);
+            startActivity(new Intent(v.getContext(),EndActivity.class));
         } else if (v == menuIb) {
             if (myOrderFragment == null) {
                 myOrderFragment = new MyOrderFragment();

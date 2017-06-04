@@ -10,9 +10,13 @@ import com.tencent.bugly.crashreport.CrashReport;
 
 
 public class MenuApplication extends Application {
+
+    private static  MenuApplication sInstance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        sInstance = this;
         CrashReport.initCrashReport(getApplicationContext(), "3b4f343c2c", false);
         RetrofitService.init(this);
         if (BuildConfig.DEBUG) {
@@ -20,5 +24,9 @@ public class MenuApplication extends Application {
         } else {
             LogUtil.DEBUG = false;
         }
+    }
+
+    public static Application getInstance() {
+        return sInstance;
     }
 }
