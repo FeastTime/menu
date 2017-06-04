@@ -3,6 +3,8 @@ package com.feasttime.model;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.feasttime.model.bean.CreateOrderInfo;
 import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.LoginInfo;
@@ -11,10 +13,12 @@ import com.feasttime.model.bean.OrderInfo;
 import com.feasttime.model.bean.PersonalStatisticsInfo;
 import com.feasttime.tools.DeviceTool;
 import com.feasttime.tools.LogUtil;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -112,6 +116,7 @@ public class RetrofitService {
                     .addHeader("androidID",androidID)
                     .addHeader("mac",mac)
                     .addHeader("ipv4",ipv4)
+                    .addHeader("Content-Type","application/json")
                     .build();
 
             Buffer requestBuffer = new Buffer();
@@ -182,7 +187,15 @@ public class RetrofitService {
     }
 
     public static Observable<LoginInfo> login(String mobileNO){
-        return sMenuService.login(mobileNO)
+        Gson gson = new Gson();
+        HashMap <String,Object> temp = new HashMap<String,Object>();
+        temp.put("mobileNO",mobileNO);
+        JSONObject jobj = new JSONObject(temp);
+//        String json = "{\n" +
+//                "\t\"mobileNO\":\"15810697038\"\n" +
+//                "}";
+        RequestBody body=RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),jobj.toString());
+        return sMenuService.login(body)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())

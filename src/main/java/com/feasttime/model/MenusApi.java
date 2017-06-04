@@ -8,6 +8,8 @@ import com.feasttime.model.bean.OrderInfo;
 import com.feasttime.model.bean.PersonalStatisticsInfo;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -47,8 +49,7 @@ public interface MenusApi {
       Observable<DishesCategoryInfo> getDishesCategoryList();
 
       //登录
-      @FormUrlEncoded
       @POST("user/login/")
-      Observable<LoginInfo> login(@Field("mobileNO") String mobileNO);
+      Observable<LoginInfo> login(@Body RequestBody route);
 
 }
