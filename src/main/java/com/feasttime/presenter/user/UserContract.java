@@ -10,7 +10,7 @@ import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.IBaseView;
 import com.feasttime.presenter.menu.MenuContract;
 
-public class UserContract {
+public interface UserContract {
     interface IUserView extends IBaseView {
         void loginSuccess();
         void registerSuccess();

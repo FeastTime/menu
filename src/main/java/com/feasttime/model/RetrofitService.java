@@ -52,7 +52,7 @@ public class RetrofitService {
     // 阿里云服务器 http://47.94.16.58:9798/feast-web/PersonalStatistics/getPersonalStatisticsDetail/?token=%22333333%22
 
 //    private static final String BASE_URL = "http://shengyan.com/";
-    private static final String BASE_URL = "http://47.94.16.58:9798/feast-web/PersonalStatistics/";
+    private static final String BASE_URL = "http://47.94.16.58:9798/feast-web/";
 
 
     private static MenusApi sMenuService;

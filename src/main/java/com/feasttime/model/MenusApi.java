@@ -38,7 +38,7 @@ public interface MenusApi {
 
       //获取用户统计数据
       @FormUrlEncoded
-      @POST("getPersonalStatisticsDetail/")
+      @POST("PersonalStatistics/getPersonalStatisticsDetail/")
       Observable<PersonalStatisticsInfo> getPersonalStatistics(@Field("token") String token);
 
 
@@ -48,7 +48,7 @@ public interface MenusApi {
 
       //登录
       @FormUrlEncoded
-      @POST("login")
+      @POST("user/login/")
       Observable<LoginInfo> login(@Field("mobileNO") String mobileNO);
 
 }
