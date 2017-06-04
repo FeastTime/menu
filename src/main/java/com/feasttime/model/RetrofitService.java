@@ -144,7 +144,12 @@ public class RetrofitService {
 
 
     public static Observable<CreateOrderInfo> createOrder(String token){
-        return sMenuService.createOrder(token)
+        Gson gson = new Gson();
+        HashMap <String,Object> temp = new HashMap<String,Object>();
+        temp.put("token",token);
+        JSONObject jobj = new JSONObject(temp);
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),jobj.toString());
+        return sMenuService.createOrder(body)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
@@ -191,12 +196,14 @@ public class RetrofitService {
         HashMap <String,Object> temp = new HashMap<String,Object>();
         temp.put("mobileNO",mobileNO);
         JSONObject jobj = new JSONObject(temp);
-        RequestBody body=RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),jobj.toString());
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),jobj.toString());
         return sMenuService.login(body)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+
 
 }

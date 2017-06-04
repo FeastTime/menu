@@ -23,9 +23,8 @@ public interface MenusApi {
 
 
       //创建购物车
-      @FormUrlEncoded
-      @POST("createOrder")
-      Observable<CreateOrderInfo> createOrder(@Field("token") String token);
+      @POST("order/createOrder")
+      Observable<CreateOrderInfo> createOrder(@Body RequestBody route);
 
       //获取菜单
       @FormUrlEncoded
