@@ -3,9 +3,12 @@ package com.feasttime.view;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.IBaseView;
+import com.feasttime.tools.ToastUtil;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -126,7 +129,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
 
     @Override
     public void showNetError() {
-
+        ToastUtil.showToast(this,"请求失败", Toast.LENGTH_SHORT);
     }
 
     @Override
