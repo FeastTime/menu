@@ -11,7 +11,9 @@ import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.LoginInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.OrderInfo;
+import com.feasttime.model.bean.PayOrderInfo;
 import com.feasttime.model.bean.PersonalStatisticsInfo;
+import com.feasttime.model.bean.PlaceOrderInfo;
 import com.feasttime.model.bean.ShoppingCartInfo;
 import com.feasttime.tools.DeviceTool;
 import com.feasttime.tools.LogUtil;
@@ -230,6 +232,24 @@ public class RetrofitService {
     public static Observable<ShoppingCartInfo> removeShoppingCart(HashMap<String,Object> infoMap){
         addDeviceInfo(infoMap);
         return sMenuService.removeShoppingCart(getRequestBody(infoMap))
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public static Observable<PlaceOrderInfo> placeOrder(HashMap<String,Object> infoMap){
+        addDeviceInfo(infoMap);
+        return sMenuService.placeOrder(getRequestBody(infoMap))
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public static Observable<PayOrderInfo> payOrder(HashMap<String,Object> infoMap){
+        addDeviceInfo(infoMap);
+        return sMenuService.payOrder(getRequestBody(infoMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())

@@ -23,5 +23,8 @@ public interface OrderContract {
 
     interface IOrderPresenter extends IBasePresenter<OrderContract.IOrderView> {
         void createOrder(String orderID);
+        void payOrder(String orderID);
+        void placeOrder(String orderID);
+
     }
 }

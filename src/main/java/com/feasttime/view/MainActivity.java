@@ -99,7 +99,10 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         String orderID = PreferenceUtil.getStringKey("orderID");
 
 //        mShoppingCartPresenter.addShoppingCart("2",orderID);
-        mShoppingCartPresenter.removeShoppingCart("2",orderID);
+        //mShoppingCartPresenter.removeShoppingCart("2",orderID);
+ //       mShoppingCartPresenter.getShoppingCartList(orderID);
+//        mOrderPresenter.payOrder(orderID);
+        mOrderPresenter.placeOrder(orderID);
     }
 
     @Override
