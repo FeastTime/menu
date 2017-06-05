@@ -27,9 +27,12 @@ import com.feasttime.fragment.BaseFragment;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.MenuItemInfo;
+import com.feasttime.model.bean.MyOrderListItemInfo;
+import com.feasttime.model.bean.RecommendOrderListItemInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.menu.MenuContract;
 import com.feasttime.presenter.menu.MenuPresenter;
+import com.feasttime.presenter.order.OrderContract;
 import com.feasttime.presenter.shoppingcart.ShoppingCartContract;
 import com.feasttime.presenter.shoppingcart.ShoppingCartPresenter;
 import com.feasttime.tools.LogUtil;
@@ -38,10 +41,12 @@ import com.feasttime.view.MainActivity;
 import com.feasttime.view.SilentADActivity;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
 
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class MainMenuFragment extends BaseFragment implements MenuContract.IMenuView,ShoppingCartContract.IShoppingCartView, View.OnClickListener,ViewPager.OnPageChangeListener,MainMenuPagerAdapter.OnItemClick{
+public class MainMenuFragment extends BaseFragment implements MenuContract.IMenuView,ShoppingCartContract.IShoppingCartView, View.OnClickListener,ViewPager.OnPageChangeListener,MainMenuPagerAdapter.OnItemClick,OrderContract.IOrderView{
     private ShoppingCartPresenter mShoppingCartPresenter = new ShoppingCartPresenter();
     private MenuPresenter mMenuPresenter = new MenuPresenter();
 
@@ -117,10 +122,6 @@ public class MainMenuFragment extends BaseFragment implements MenuContract.IMenu
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    @Override
-    public void createOrderComplete() {
-
-    }
 
     @Override
     public void showDishesCategory(DishesCategoryInfo.DishesCategoryListBean dishesCategoryListBean) {
@@ -163,5 +164,35 @@ public class MainMenuFragment extends BaseFragment implements MenuContract.IMenu
     @Override
     public void onDishesPicClicked() {
         ((MainActivity)this.getActivity()).jumpToRecommendFragment();
+    }
+
+    @Override
+    public void addShoppingCartComplete() {
+
+    }
+
+    @Override
+    public void removeShoppingCartComplete() {
+
+    }
+
+    @Override
+    public void getShoppingcartListComplete() {
+
+    }
+
+    @Override
+    public void showMyOrder(List<MyOrderListItemInfo> myOrderList) {
+
+    }
+
+    @Override
+    public void showRecommendOrder(List<RecommendOrderListItemInfo> recommendOrderList) {
+
+    }
+
+    @Override
+    public void createOrderComplete() {
+
     }
 }

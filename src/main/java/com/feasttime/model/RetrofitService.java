@@ -2,6 +2,7 @@ package com.feasttime.model;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -11,8 +12,10 @@ import com.feasttime.model.bean.LoginInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.OrderInfo;
 import com.feasttime.model.bean.PersonalStatisticsInfo;
+import com.feasttime.model.bean.ShoppingCartInfo;
 import com.feasttime.tools.DeviceTool;
 import com.feasttime.tools.LogUtil;
+import com.feasttime.tools.PreferenceUtil;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -144,6 +147,9 @@ public class RetrofitService {
 
     //转换成
     private static void addDeviceInfo(HashMap <String,Object> infoMap) {
+        String mobileNO = PreferenceUtil.getStringKey("mobileNO");
+
+        infoMap.put("mobileNO",mobileNO);
         infoMap.put("imei",imei);
         infoMap.put("androidID",androidID);
         infoMap.put("mac",mac);
@@ -157,13 +163,9 @@ public class RetrofitService {
     }
 
 
-    public static Observable<CreateOrderInfo> createOrder(String token){
-        Gson gson = new Gson();
-        HashMap <String,Object> temp = new HashMap<String,Object>();
-        temp.put("token",token);
-        JSONObject jobj = new JSONObject(temp);
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),jobj.toString());
-        return sMenuService.createOrder(body)
+    public static Observable<CreateOrderInfo> createOrder(HashMap<String,Object> infoMap){
+        addDeviceInfo(infoMap);
+        return sMenuService.createOrder(getRequestBody(infoMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
@@ -180,8 +182,9 @@ public class RetrofitService {
     }
 
 
-    public static Observable<OrderInfo> getShoppingCartList(String token){
-        return sMenuService.getShoppingCartList(token)
+    public static Observable<OrderInfo> getShoppingCartList(HashMap<String,Object> infoMap){
+        addDeviceInfo(infoMap);
+        return sMenuService.getShoppingCartList(getRequestBody(infoMap))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
@@ -215,6 +218,22 @@ public class RetrofitService {
     }
 
 
+    public static Observable<ShoppingCartInfo> addShoppingCart(HashMap<String,Object> infoMap){
+        addDeviceInfo(infoMap);
+        return sMenuService.addShoppingCart(getRequestBody(infoMap))
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 
+    public static Observable<ShoppingCartInfo> removeShoppingCart(HashMap<String,Object> infoMap){
+        addDeviceInfo(infoMap);
+        return sMenuService.removeShoppingCart(getRequestBody(infoMap))
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 
 }

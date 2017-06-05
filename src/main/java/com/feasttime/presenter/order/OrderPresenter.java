@@ -1,11 +1,14 @@
 package com.feasttime.presenter.order;
 
 import com.feasttime.model.RetrofitService;
+import com.feasttime.model.bean.CreateOrderInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.model.bean.OrderInfo;
 import com.feasttime.tools.LogUtil;
+import com.feasttime.tools.PreferenceUtil;
 
+import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -52,19 +55,21 @@ public class OrderPresenter implements OrderContract.IOrderPresenter {
     }
 
     @Override
-    public void getShoppingCartList(String token) {
-        RetrofitService.getShoppingCartList(token).subscribe(new Consumer<OrderInfo>() {
+    public void createOrder(String token) {
+        HashMap<String,Object> infoMap = new HashMap<String,Object>();
+        infoMap.put("token",token);
+        RetrofitService.createOrder(infoMap).subscribe(new Consumer<CreateOrderInfo>(){
             @Override
-            public void accept(OrderInfo orderInfo) throws Exception {
-                //mIMenuView.showMenu(menuItemInfo);
-                iOrderView.showMyOrder(orderInfo.getMyOrderList());
-                iOrderView.showRecommendOrder(orderInfo.getRecommendOrderList());
+            public void accept(CreateOrderInfo createOrderInfo) throws Exception {
+                LogUtil.d("result","aa");
+                PreferenceUtil.setStringKey("orderID",createOrderInfo.getOrderID());
+//                iOrderView.showMyOrder();
             }
         }, new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 //这里接收onError
-                LogUtil.d("result","error:");
+                LogUtil.d("result","error");
             }
         }, new Action() {
             @Override

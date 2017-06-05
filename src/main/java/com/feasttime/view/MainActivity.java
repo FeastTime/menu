@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -31,14 +32,19 @@ import com.feasttime.menu.R;
 import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.MenuItemInfo;
+import com.feasttime.model.bean.MyOrderListItemInfo;
+import com.feasttime.model.bean.RecommendOrderListItemInfo;
 import com.feasttime.model.bean.ScreenInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.menu.MenuContract;
 import com.feasttime.presenter.menu.MenuPresenter;
+import com.feasttime.presenter.order.OrderContract;
+import com.feasttime.presenter.order.OrderPresenter;
 import com.feasttime.presenter.shoppingcart.ShoppingCartContract;
 import com.feasttime.presenter.shoppingcart.ShoppingCartPresenter;
 import com.feasttime.tools.DeviceTool;
 import com.feasttime.tools.LogUtil;
+import com.feasttime.tools.PreferenceUtil;
 import com.feasttime.tools.ScreenTools;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
 
@@ -47,10 +53,11 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements MenuContract.IMenuView,ShoppingCartContract.IShoppingCartView, View.OnClickListener {
+public class MainActivity extends BaseActivity implements MenuContract.IMenuView,ShoppingCartContract.IShoppingCartView, View.OnClickListener,OrderContract.IOrderView {
     private static final String TAG = "MainActivity";
     private ShoppingCartPresenter mShoppingCartPresenter = new ShoppingCartPresenter();
     private MenuPresenter mMenuPresenter = new MenuPresenter();
+    private OrderPresenter mOrderPresenter = new OrderPresenter();
 
     @Bind(R.id.main_fragment_container_fl)
     FrameLayout fragmentContainerFl;
@@ -83,8 +90,16 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Override
     protected void onResume() {
         super.onResume();
-        mShoppingCartPresenter.createOrder("");
+        String token = PreferenceUtil.getStringKey("token");
 
+//        if (!TextUtils.isEmpty(token)) {
+//            mOrderPresenter.createOrder(token);
+//        }
+
+        String orderID = PreferenceUtil.getStringKey("orderID");
+
+//        mShoppingCartPresenter.addShoppingCart("2",orderID);
+        mShoppingCartPresenter.removeShoppingCart("2",orderID);
     }
 
     @Override
@@ -202,5 +217,28 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
             return true;
         }
         return super.onKeyUp(keyCode, event);
+    }
+
+    @Override
+    public void addShoppingCartComplete() {
+
+    }
+
+    @Override
+    public void removeShoppingCartComplete() {
+
+    }
+
+    @Override
+    public void getShoppingcartListComplete() {
+
+    }
+    @Override
+    public void showMyOrder(List<MyOrderListItemInfo> myOrderList) {
+
+    }
+    @Override
+    public void showRecommendOrder(List<RecommendOrderListItemInfo> recommendOrderList) {
+
     }
 }

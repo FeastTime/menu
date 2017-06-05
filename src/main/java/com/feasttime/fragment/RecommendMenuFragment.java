@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,16 +28,19 @@ import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.menu.MenuContract;
 import com.feasttime.presenter.menu.MenuPresenter;
+import com.feasttime.presenter.shoppingcart.ShoppingCartContract;
+import com.feasttime.presenter.shoppingcart.ShoppingCartPresenter;
+import com.feasttime.tools.PreferenceUtil;
 import com.feasttime.widget.RecyclerViewDivider;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
 
-public class RecommendMenuFragment extends BaseFragment implements MenuContract.IMenuView,View.OnClickListener{
+public class RecommendMenuFragment extends BaseFragment implements MenuContract.IMenuView,View.OnClickListener,ShoppingCartContract.IShoppingCartView,RecommendMenuAdapter.RecommendViewHolderClicks {
 
     private MenuPresenter mMenuPresenter = new MenuPresenter();
-
+    private ShoppingCartPresenter mShoppingCartPresenter = new ShoppingCartPresenter();
 
     @Bind(R.id.recommend_activity_dishes_level_ll)
     LinearLayout dishesLevelLl;
@@ -51,12 +55,13 @@ public class RecommendMenuFragment extends BaseFragment implements MenuContract.
 
     @Override
     protected IBasePresenter[] getPresenters() {
-        return new IBasePresenter[]{mMenuPresenter};
+        return new IBasePresenter[]{mMenuPresenter,mShoppingCartPresenter};
     }
 
     @Override
     protected void onInitPresenters() {
         mMenuPresenter.init(this);
+        mShoppingCartPresenter.init(this);
     }
 
     @Override
@@ -73,6 +78,7 @@ public class RecommendMenuFragment extends BaseFragment implements MenuContract.
         datas.add(2);
         datas.add(3);
         RecommendMenuAdapter rma = new RecommendMenuAdapter(datas,this.getActivity());
+        rma.setItemListener(this);
         menuListRv.addItemDecoration(new RecyclerViewDivider(mContext, LinearLayoutManager.HORIZONTAL));
         menuListRv.setAdapter(rma);
     }
@@ -162,4 +168,34 @@ public class RecommendMenuFragment extends BaseFragment implements MenuContract.
         }
     }
 
+    @Override
+    public void addShoppingCartComplete() {
+
+    }
+
+    @Override
+    public void removeShoppingCartComplete() {
+
+    }
+
+    @Override
+    public void getShoppingcartListComplete() {
+
+    }
+
+    @Override
+    public void onAddClicked(String uid) {
+        String orderID = PreferenceUtil.getStringKey("orderID");
+        if (!TextUtils.isEmpty(orderID)) {
+            mShoppingCartPresenter.addShoppingCart("3",orderID);
+        }
+    }
+
+    @Override
+    public void onReduceClicked(String uid) {
+        String orderID = PreferenceUtil.getStringKey("orderID");
+        if (!TextUtils.isEmpty(orderID)) {
+            mShoppingCartPresenter.removeShoppingCart("3",orderID);
+        }
+    }
 }

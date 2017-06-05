@@ -24,7 +24,7 @@ public class UserPresenter implements UserContract.IUserPresenter {
     }
 
     @Override
-    public void login(String mobileNO) {
+    public void login(final String mobileNO) {
         HashMap<String,Object> infoMap = new HashMap<String,Object>();
         infoMap.put("mobileNO",mobileNO);
         RetrofitService.login(infoMap).subscribe(new Consumer<LoginInfo>(){
@@ -34,6 +34,7 @@ public class UserPresenter implements UserContract.IUserPresenter {
                 if (loginInfo.getResultCode() == 0) {
                     iUserView.loginSuccess();
                     PreferenceUtil.setStringKey("token",loginInfo.getToken());
+                    PreferenceUtil.setStringKey("mobileNO",mobileNO);
                 } else {
                     iUserView.showNetError();
 

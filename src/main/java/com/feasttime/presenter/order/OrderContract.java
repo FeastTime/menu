@@ -18,9 +18,10 @@ public interface OrderContract {
     interface IOrderView extends IBaseView {
         void showMyOrder(List<MyOrderListItemInfo> myOrderList);
         void showRecommendOrder(List <RecommendOrderListItemInfo> recommendOrderList);
+        void createOrderComplete();
     }
 
     interface IOrderPresenter extends IBasePresenter<OrderContract.IOrderView> {
-        void getShoppingCartList(String token);
+        void createOrder(String orderID);
     }
 }

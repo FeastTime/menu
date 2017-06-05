@@ -63,7 +63,7 @@ public class MyOrderFragment extends BaseFragment implements OrderContract.IOrde
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        orderPresenter.getShoppingCartList("5555555");
+        //orderPresenter.getShoppingCartList("5555555");
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -81,6 +81,11 @@ public class MyOrderFragment extends BaseFragment implements OrderContract.IOrde
         recommendOrderRv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 //        recommendOrderRv.addItemDecoration(new RecyclerViewDivider(this.getActivity(), LinearLayoutManager.HORIZONTAL, ScreenTools.dip2px(this.getActivity(),10)), Color.TRANSPARENT);
         recommendOrderRv.setAdapter(recommendOrderAdapter);
+
+    }
+
+    @Override
+    public void createOrderComplete() {
 
     }
 }

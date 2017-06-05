@@ -6,6 +6,7 @@ import com.feasttime.model.bean.LoginInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.OrderInfo;
 import com.feasttime.model.bean.PersonalStatisticsInfo;
+import com.feasttime.model.bean.ShoppingCartInfo;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -23,7 +24,7 @@ public interface MenusApi {
 
 
       //创建购物车
-      @POST("order/createOrder")
+      @POST("order/createOrder/")
       Observable<CreateOrderInfo> createOrder(@Body RequestBody route);
 
       //获取菜单
@@ -32,9 +33,8 @@ public interface MenusApi {
       Observable<MenuInfo> getMenu(@Field("mobileNO") String mobileNO, @Field("token") String token, @Field("orderID") String orderID, @Field("classType") String classType, @Field("page") String page);
 
       //获取购物车详单
-      @FormUrlEncoded
       @POST("getShoppingCartList")
-      Observable<OrderInfo> getShoppingCartList(@Field("orderID") String orderID);
+      Observable<OrderInfo> getShoppingCartList(@Body RequestBody route);
 
 
       //获取用户统计数据
@@ -50,5 +50,16 @@ public interface MenusApi {
       //登录
       @POST("user/login/")
       Observable<LoginInfo> login(@Body RequestBody route);
+
+
+      //添加购物车
+      @POST("order/addShoppingCart/")
+      Observable<ShoppingCartInfo> addShoppingCart(@Body RequestBody route);
+
+
+      //去除购物车
+      @POST("order/removeShoppingCart/")
+      Observable<ShoppingCartInfo> removeShoppingCart(@Body RequestBody route);
+
 
 }

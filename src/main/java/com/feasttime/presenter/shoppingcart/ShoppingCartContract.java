@@ -9,10 +9,14 @@ import com.feasttime.presenter.IBaseView;
 
 public interface ShoppingCartContract {
     interface IShoppingCartView extends IBaseView {
-        void createOrderComplete();
+        void addShoppingCartComplete();
+        void removeShoppingCartComplete();
+        void getShoppingcartListComplete();
     }
 
     interface IShoppingCartPresenter extends IBasePresenter<IShoppingCartView> {
-        void createOrder(String token);
+        void addShoppingCart(String ID,String orderID);
+        void removeShoppingCart(String ID,String orderID);
+        void getShoppingCartList(String orderID);
     }
 }
