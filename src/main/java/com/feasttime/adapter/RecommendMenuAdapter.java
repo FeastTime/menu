@@ -64,8 +64,8 @@ public class RecommendMenuAdapter extends  RecyclerView.Adapter<RecommendMenuAda
         public MyViewHolder(View view)
         {
             super(view);
-            addIv = (ImageView)view.findViewById(R.id.recommend_order_list_item_add_iv);
-            reduceIv = (ImageView)view.findViewById(R.id.recommend_order_list_item_reduce_iv);
+            addIv = (ImageView)view.findViewById(R.id.recommend_activity_list_menu_item_add_iv);
+            reduceIv = (ImageView)view.findViewById(R.id.recommend_activity_list_menu_item_reduce_iv);
 
             addIv.setOnClickListener(this);
             reduceIv.setOnClickListener(this);

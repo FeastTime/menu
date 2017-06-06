@@ -25,6 +25,8 @@ import com.feasttime.adapter.RecommendMenuAdapter;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.MenuItemInfo;
+import com.feasttime.model.bean.MyOrderListItemInfo;
+import com.feasttime.model.bean.RecommendOrderListItemInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.menu.MenuContract;
 import com.feasttime.presenter.menu.MenuPresenter;
@@ -34,6 +36,7 @@ import com.feasttime.tools.PreferenceUtil;
 import com.feasttime.widget.RecyclerViewDivider;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -197,5 +200,15 @@ public class RecommendMenuFragment extends BaseFragment implements MenuContract.
         if (!TextUtils.isEmpty(orderID)) {
             mShoppingCartPresenter.removeShoppingCart("3",orderID);
         }
+    }
+
+    @Override
+    public void showRecommendList(List<RecommendOrderListItemInfo> recommendOrderList) {
+
+    }
+
+    @Override
+    public void showOrderList(List<MyOrderListItemInfo> myOrderList) {
+
     }
 }

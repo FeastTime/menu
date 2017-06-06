@@ -181,18 +181,29 @@ public class MainMenuFragment extends BaseFragment implements MenuContract.IMenu
 
     }
 
-    @Override
-    public void showMyOrder(List<MyOrderListItemInfo> myOrderList) {
-
-    }
-
-    @Override
-    public void showRecommendOrder(List<RecommendOrderListItemInfo> recommendOrderList) {
-
-    }
 
     @Override
     public void createOrderComplete() {
+
+    }
+
+    @Override
+    public void showRecommendList(List<RecommendOrderListItemInfo> recommendOrderList) {
+
+    }
+
+    @Override
+    public void showOrderList(List<MyOrderListItemInfo> myOrderList) {
+
+    }
+
+    @Override
+    public void placeOrderComplete() {
+
+    }
+
+    @Override
+    public void payOrderComplete() {
 
     }
 }

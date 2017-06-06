@@ -16,9 +16,9 @@ import java.util.List;
 
 public interface OrderContract {
     interface IOrderView extends IBaseView {
-        void showMyOrder(List<MyOrderListItemInfo> myOrderList);
-        void showRecommendOrder(List <RecommendOrderListItemInfo> recommendOrderList);
         void createOrderComplete();
+        void payOrderComplete();
+        void placeOrderComplete();
     }
 
     interface IOrderPresenter extends IBasePresenter<OrderContract.IOrderView> {

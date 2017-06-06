@@ -91,29 +91,31 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     protected void onResume() {
         super.onResume();
         String token = PreferenceUtil.getStringKey("token");
-
-//        if (!TextUtils.isEmpty(token)) {
-//            mOrderPresenter.createOrder(token);
-//        }
-
         String orderID = PreferenceUtil.getStringKey("orderID");
+
+        //订单为空且令牌不为空才去登录
+        if (!TextUtils.isEmpty(token) && TextUtils.isEmpty(orderID)) {
+            mOrderPresenter.createOrder(token);
+        }
+
 
 //        mShoppingCartPresenter.addShoppingCart("2",orderID);
         //mShoppingCartPresenter.removeShoppingCart("2",orderID);
- //       mShoppingCartPresenter.getShoppingCartList(orderID);
+        mShoppingCartPresenter.getShoppingCartList(orderID);
 //        mOrderPresenter.payOrder(orderID);
-        mOrderPresenter.placeOrder(orderID);
+//        mOrderPresenter.placeOrder(orderID);
     }
 
     @Override
     protected IBasePresenter[] getPresenters() {
-        return new IBasePresenter[]{mShoppingCartPresenter,mMenuPresenter};
+        return new IBasePresenter[]{mShoppingCartPresenter,mMenuPresenter,mOrderPresenter};
     }
 
     @Override
     protected void onInitPresenters() {
         mShoppingCartPresenter.init(this);
         mMenuPresenter.init(this);
+        mOrderPresenter.init(this);
     }
 
     @Override
@@ -236,12 +238,24 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     public void getShoppingcartListComplete() {
 
     }
+
     @Override
-    public void showMyOrder(List<MyOrderListItemInfo> myOrderList) {
+    public void payOrderComplete() {
 
     }
+
     @Override
-    public void showRecommendOrder(List<RecommendOrderListItemInfo> recommendOrderList) {
+    public void placeOrderComplete() {
+
+    }
+
+    @Override
+    public void showRecommendList(List<RecommendOrderListItemInfo> recommendOrderList) {
+
+    }
+
+    @Override
+    public void showOrderList(List<MyOrderListItemInfo> myOrderList) {
 
     }
 }
