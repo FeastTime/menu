@@ -100,7 +100,6 @@ public class MainMenuFragment extends BaseFragment implements MenuContract.IMenu
             rb.setWidth(ScreenTools.dip2px(mContext,10));
             rb.setHeight(ScreenTools.dip2px(mContext,10));
             viewpageIndicateRg.addView(rb);
-
             rb.setTag(i);
             rb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override

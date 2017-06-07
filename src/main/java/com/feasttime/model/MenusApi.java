@@ -30,9 +30,8 @@ public interface MenusApi {
       Observable<CreateOrderInfo> createOrder(@Body RequestBody route);
 
       //获取菜单
-      @FormUrlEncoded
-      @POST("menu")
-      Observable<MenuInfo> getMenu(@Field("mobileNO") String mobileNO, @Field("token") String token, @Field("orderID") String orderID, @Field("classType") String classType, @Field("page") String page);
+      @POST("menu/menu/")
+      Observable<MenuInfo> getMenu(@Body RequestBody route);
 
       //获取购物车详单
       @POST("order/getShoppingCartList/")

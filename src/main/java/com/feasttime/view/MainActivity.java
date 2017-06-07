@@ -99,9 +99,11 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         }
 
 
+        mMenuPresenter.getMenu(token,orderID,"1001","");
+
 //        mShoppingCartPresenter.addShoppingCart("2",orderID);
         //mShoppingCartPresenter.removeShoppingCart("2",orderID);
-        mShoppingCartPresenter.getShoppingCartList(orderID);
+//        mShoppingCartPresenter.getShoppingCartList(orderID);
 //        mOrderPresenter.payOrder(orderID);
 //        mOrderPresenter.placeOrder(orderID);
     }
@@ -149,7 +151,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
     @Override
     public void createOrderComplete() {
-        mMenuPresenter.getMenu("158000000","0","0","0","0");
+
     }
 
     @OnClick({R.id.title_bar_cart_ib,R.id.title_bar_layout_menu_ib,R.id.title_bar_layout_login_tv})

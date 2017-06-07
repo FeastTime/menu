@@ -32,7 +32,7 @@ import butterknife.OnClick;
  * Created by chen on 2017/5/11.
  */
 
-public class MyOrderFragment extends BaseFragment implements ShoppingCartContract.IShoppingCartView,View.OnClickListener,OrderContract.IOrderView{
+public class MyOrderFragment extends BaseFragment implements ShoppingCartContract.IShoppingCartView,View.OnClickListener,OrderContract.IOrderView,RecommendOrderAdapter.RecommendOrderListInterface {
 
 
     @Bind(R.id.my_order_detail_rv)
@@ -75,22 +75,6 @@ public class MyOrderFragment extends BaseFragment implements ShoppingCartContrac
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-//    @Override
-//    public void showMyOrder(List<MyOrderListItemInfo> myOrderList) {
-//        MyOrderAdapter myOrderAdapter = new MyOrderAdapter(myOrderList,this.getActivity());
-//        myOrderRv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-//        myOrderRv.addItemDecoration(new RecyclerViewDivider(this.getActivity(), LinearLayoutManager.HORIZONTAL, 30, Color.TRANSPARENT));
-//        myOrderRv.setAdapter(myOrderAdapter);
-//    }
-//
-//    @Override
-//    public void showRecommendOrder(List<RecommendOrderListItemInfo> recommendOrderList) {
-//        RecommendOrderAdapter recommendOrderAdapter = new RecommendOrderAdapter(recommendOrderList,this.getActivity());
-//        recommendOrderRv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-////        recommendOrderRv.addItemDecoration(new RecyclerViewDivider(this.getActivity(), LinearLayoutManager.HORIZONTAL, ScreenTools.dip2px(this.getActivity(),10)), Color.TRANSPARENT);
-//        recommendOrderRv.setAdapter(recommendOrderAdapter);
-//
-//    }
 
     @Override
     public void addShoppingCartComplete() {
@@ -143,6 +127,16 @@ public class MyOrderFragment extends BaseFragment implements ShoppingCartContrac
 
     @Override
     public void createOrderComplete() {
+
+    }
+
+    @Override
+    public void onAddClicked() {
+
+    }
+
+    @Override
+    public void onReduceClicked() {
 
     }
 }

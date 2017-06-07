@@ -7,6 +7,7 @@ import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.tools.LogUtil;
 
+import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -29,8 +30,14 @@ public class MenuPresenter implements MenuContract.IMenuPresenter {
     }
 
     @Override
-    public void getMenu(String mobileNO, String token, String orderID, String classType, String page) {
-        RetrofitService.getMenu(mobileNO,token,orderID,classType,page).map(new Function<MenuInfo, List<MenuItemInfo>>() {
+    public void getMenu(String token, String orderID, String classType, String page) {
+        HashMap<String,Object> infoMap = new HashMap<String,Object>();
+        infoMap.put("token",token);
+        infoMap.put("orderID",orderID);
+        infoMap.put("classType",classType);
+        infoMap.put("page",page);
+
+        RetrofitService.getMenu(infoMap).map(new Function<MenuInfo, List<MenuItemInfo>>() {
             @Override
             public List<MenuItemInfo> apply(MenuInfo menuIfno) throws Exception {
                 return menuIfno.getDishesList();

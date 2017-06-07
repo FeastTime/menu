@@ -15,7 +15,7 @@ public interface MenuContract {
     }
 
     interface IMenuPresenter extends IBasePresenter<IMenuView> {
-        void getMenu(String mobileNO, String token, String orderID, String classType, String page);
+        void getMenu(String token, String orderID, String classType, String page);
         void getDishesCategory();
     }
 }

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.feasttime.menu.R;
@@ -18,18 +19,27 @@ import java.util.List;
  * Created by chen on 2017/5/11.
  */
 
-public class RecommendOrderAdapter extends RecyclerView.Adapter<RecommendOrderAdapter.MyViewHolder>{
+public class RecommendOrderAdapter extends RecyclerView.Adapter<RecommendOrderAdapter.MyViewHolder> {
     private List<RecommendOrderListItemInfo> datas;
     private Context context;
+    private RecommendOrderListInterface recommendOrderListInterface;
 
-    public RecommendOrderAdapter(List<RecommendOrderListItemInfo> datas, Activity activity){
+    public interface RecommendOrderListInterface {
+        public void onAddClicked();
+        public void onReduceClicked();
+    }
+
+    public void setListener(RecommendOrderListInterface listener) {
+        recommendOrderListInterface = listener;
+    }
+
+    public RecommendOrderAdapter(List<RecommendOrderListItemInfo> datas, Activity activity) {
         context = activity;
         this.datas = datas;
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         MyViewHolder holder = new MyViewHolder(LayoutInflater.from(
                 context).inflate(R.layout.recommend_order_list_item, parent,
                 false));
@@ -37,25 +47,26 @@ public class RecommendOrderAdapter extends RecyclerView.Adapter<RecommendOrderAd
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position)
-    {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
         RecommendOrderListItemInfo recommendOrderListItemInfo = datas.get(position);
         holder.nameTv.setText(recommendOrderListItemInfo.getDishName());
     }
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return datas.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder
-    {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        public ImageView addIv;
         public TextView nameTv;
-        public MyViewHolder(View view)
-        {
+        public ImageView reduceIv;
+
+        public MyViewHolder(View view) {
             super(view);
-            nameTv = (TextView)view.findViewById(R.id.recommend_order_list_item_name_tv);
+            nameTv = (TextView) view.findViewById(R.id.recommend_order_list_item_name_tv);
+            addIv = (ImageView) view.findViewById(R.id.recommend_order_list_item_add_iv);
+            reduceIv = (ImageView) view.findViewById(R.id.recommend_order_list_item_add_iv);
         }
     }
 }
