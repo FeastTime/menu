@@ -115,7 +115,7 @@ public class OrderPresenter implements OrderContract.IOrderPresenter {
             @Override
             public void accept(PlaceOrderInfo placeOrderInfo) throws Exception {
                 LogUtil.d("result","aa");
-
+                iOrderView.placeOrderComplete();
             }
         }, new Consumer<Throwable>() {
             @Override

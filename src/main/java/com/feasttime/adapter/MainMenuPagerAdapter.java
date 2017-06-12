@@ -32,7 +32,7 @@ public class MainMenuPagerAdapter extends PagerAdapter {
     private final int perPageItem = 3;
 
     public interface OnItemClick{
-        void onDishesPicClicked();
+        void onDishesPicClicked(String ID);
     }
 
     private Context context;
@@ -108,11 +108,6 @@ public class MainMenuPagerAdapter extends PagerAdapter {
         container.addView(ll, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         mJazzy.setObjectForPosition(ll, position);
 
-//        dishes1.setImageResource(R.mipmap.temp_dishes_1);
-//        dishes2.setImageResource(R.mipmap.temp_dishes_2);
-//        dishes3.setImageResource(R.mipmap.temp_dishes_3);
-
-
         return ll;
     }
 
@@ -135,7 +130,7 @@ public class MainMenuPagerAdapter extends PagerAdapter {
         }
     }
 
-    private void setPerItemView(LinearLayout view,MenuItemInfo menuItemInfo,int imgWidth) {
+    private void setPerItemView(LinearLayout view,final MenuItemInfo menuItemInfo,int imgWidth) {
         view.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
 
         TextView dishesName1 = (TextView)view.findViewById(R.id.menu_item_layout_dishes_name_tv);
@@ -176,7 +171,7 @@ public class MainMenuPagerAdapter extends PagerAdapter {
         dishes1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnItemClick.onDishesPicClicked();
+                mOnItemClick.onDishesPicClicked(menuItemInfo.getDishID());
             }
         });
 

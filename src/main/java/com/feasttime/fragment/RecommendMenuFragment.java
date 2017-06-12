@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.feasttime.adapter.RecommendMenuAdapter;
@@ -41,9 +42,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 public class RecommendMenuFragment extends BaseFragment implements MenuContract.IMenuView,View.OnClickListener,ShoppingCartContract.IShoppingCartView,RecommendMenuAdapter.RecommendViewHolderClicks {
-
+    private String ID;
     private MenuPresenter mMenuPresenter = new MenuPresenter();
     private ShoppingCartPresenter mShoppingCartPresenter = new ShoppingCartPresenter();
 
@@ -55,7 +57,13 @@ public class RecommendMenuFragment extends BaseFragment implements MenuContract.
 
     @Bind(R.id.recommend_activity_menu_list_rv)
     RecyclerView menuListRv;
-    
+
+    @Bind(R.id.recommend_fragment_add_ib)
+    ImageButton addIb;
+
+    @Bind(R.id.recommend_fragment_reduce_ib)
+    ImageButton reduceIb;
+
     private Context mContext;
 
     @Override
@@ -67,6 +75,10 @@ public class RecommendMenuFragment extends BaseFragment implements MenuContract.
     protected void onInitPresenters() {
         mMenuPresenter.init(this);
         mShoppingCartPresenter.init(this);
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     @Override
@@ -111,9 +123,16 @@ public class RecommendMenuFragment extends BaseFragment implements MenuContract.
 
     }
 
+    @OnClick({R.id.recommend_fragment_add_ib,R.id.recommend_fragment_reduce_ib})
     @Override
     public void onClick(View v) {
-
+        if (v == addIb) {
+            String orderID = PreferenceUtil.getStringKey("orderID");
+            mShoppingCartPresenter.addShoppingCart(ID,orderID);
+        } else if (v == reduceIb) {
+            String orderID = PreferenceUtil.getStringKey("orderID");
+            mShoppingCartPresenter.removeShoppingCart(ID,orderID);
+        }
     }
 
     private void initRatingBar() {

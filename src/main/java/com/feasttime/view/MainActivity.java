@@ -101,12 +101,6 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
 
         mainMenuFragment.showContentMenu(token,orderID,"1001");
-
-//        mShoppingCartPresenter.addShoppingCart("2",orderID);
-        //mShoppingCartPresenter.removeShoppingCart("2",orderID);
-//        mShoppingCartPresenter.getShoppingCartList(orderID);
-//        mOrderPresenter.payOrder(orderID);
-//        mOrderPresenter.placeOrder(orderID);
     }
 
     @Override
@@ -179,7 +173,8 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         LogUtil.d(TAG,"menuInfo complete");
     }
 
-    public void jumpToRecommend(){
+    public void jumpToRecommend(String ID){
+        recommendMenuFragment.setID(ID);
         getFragmentManager().beginTransaction().show(recommendMenuFragment).hide(mainMenuFragment).hide(myOrderFragment).commit();
     }
 
@@ -192,7 +187,6 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Override
     public void onClick(View v) {
         if (v == cartIb) {
-//            startActivity(new Intent(v.getContext(),EndActivity.class));
             getFragmentManager().beginTransaction().show(myOrderFragment).hide(mainMenuFragment).hide(recommendMenuFragment).commit();
         } else if (v == menuIb) {
             getFragmentManager().beginTransaction().show(mainMenuFragment).hide(myOrderFragment).hide(recommendMenuFragment).commit();
