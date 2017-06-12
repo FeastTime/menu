@@ -33,6 +33,7 @@ import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.model.bean.MyOrderListItemInfo;
+import com.feasttime.model.bean.OrderInfo;
 import com.feasttime.model.bean.RecommendOrderListItemInfo;
 import com.feasttime.model.bean.ScreenInfo;
 import com.feasttime.presenter.IBasePresenter;
@@ -227,12 +228,12 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     }
 
     @Override
-    public void addShoppingCartComplete() {
+    public void addShoppingCartComplete(OrderInfo orderInfo) {
 
     }
 
     @Override
-    public void removeShoppingCartComplete() {
+    public void removeShoppingCartComplete(OrderInfo orderInfo) {
 
     }
 

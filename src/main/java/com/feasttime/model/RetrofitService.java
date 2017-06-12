@@ -221,7 +221,7 @@ public class RetrofitService {
     }
 
 
-    public static Observable<ShoppingCartInfo> addShoppingCart(HashMap<String,Object> infoMap){
+    public static Observable<OrderInfo> addShoppingCart(HashMap<String,Object> infoMap){
         addDeviceInfo(infoMap);
         return sMenuService.addShoppingCart(getRequestBody(infoMap))
                 .subscribeOn(Schedulers.io())
@@ -230,7 +230,7 @@ public class RetrofitService {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public static Observable<ShoppingCartInfo> removeShoppingCart(HashMap<String,Object> infoMap){
+    public static Observable<OrderInfo> removeShoppingCart(HashMap<String,Object> infoMap){
         addDeviceInfo(infoMap);
         return sMenuService.removeShoppingCart(getRequestBody(infoMap))
                 .subscribeOn(Schedulers.io())

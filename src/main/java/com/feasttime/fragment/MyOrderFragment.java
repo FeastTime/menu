@@ -14,6 +14,7 @@ import com.feasttime.adapter.MyOrderAdapter;
 import com.feasttime.adapter.RecommendOrderAdapter;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.MyOrderListItemInfo;
+import com.feasttime.model.bean.OrderInfo;
 import com.feasttime.model.bean.RecommendOrderListItemInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.order.OrderContract;
@@ -32,7 +33,7 @@ import butterknife.OnClick;
  * Created by chen on 2017/5/11.
  */
 
-public class MyOrderFragment extends BaseFragment implements ShoppingCartContract.IShoppingCartView,View.OnClickListener,OrderContract.IOrderView,RecommendOrderAdapter.RecommendOrderListInterface {
+public class MyOrderFragment extends BaseFragment implements ShoppingCartContract.IShoppingCartView,View.OnClickListener,OrderContract.IOrderView,RecommendOrderAdapter.RecommendOrderListener {
 
 
     @Bind(R.id.my_order_detail_rv)
@@ -45,16 +46,19 @@ public class MyOrderFragment extends BaseFragment implements ShoppingCartContrac
     TextView placeOrderTv;
 
     ShoppingCartPresenter mShoppingCartPresenter = new ShoppingCartPresenter();
+    OrderPresenter mOrderPresenter = new OrderPresenter();
 
-
+    MyOrderAdapter myOrderAdapter;
+    RecommendOrderAdapter recommendOrderAdapter;
     @Override
     protected IBasePresenter[] getPresenters() {
-        return new IBasePresenter[]{mShoppingCartPresenter};
+        return new IBasePresenter[]{mShoppingCartPresenter,mOrderPresenter};
     }
 
     @Override
     protected void onInitPresenters() {
         mShoppingCartPresenter.init(this);
+        mOrderPresenter.init(this);
     }
 
     @Override
@@ -77,13 +81,15 @@ public class MyOrderFragment extends BaseFragment implements ShoppingCartContrac
 
 
     @Override
-    public void addShoppingCartComplete() {
-
+    public void addShoppingCartComplete(OrderInfo orderInfo) {
+        myOrderAdapter.refreshList(orderInfo.getMyOrderList());
+        recommendOrderAdapter.refreshList(orderInfo.getRecommendOrderList());
     }
 
     @Override
-    public void removeShoppingCartComplete() {
-
+    public void removeShoppingCartComplete(OrderInfo orderInfo) {
+        myOrderAdapter.refreshList(orderInfo.getMyOrderList());
+        recommendOrderAdapter.refreshList(orderInfo.getRecommendOrderList());
     }
 
     @Override
@@ -93,7 +99,8 @@ public class MyOrderFragment extends BaseFragment implements ShoppingCartContrac
 
     @Override
     public void showRecommendList(List<RecommendOrderListItemInfo> recommendOrderList) {
-                RecommendOrderAdapter recommendOrderAdapter = new RecommendOrderAdapter(recommendOrderList,this.getActivity());
+        recommendOrderAdapter = new RecommendOrderAdapter(recommendOrderList,this.getActivity());
+        recommendOrderAdapter.setListener(this);
         recommendOrderRv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 //        recommendOrderRv.addItemDecoration(new RecyclerViewDivider(this.getActivity(), LinearLayoutManager.HORIZONTAL, ScreenTools.dip2px(this.getActivity(),10)), Color.TRANSPARENT);
         recommendOrderRv.setAdapter(recommendOrderAdapter);
@@ -101,7 +108,7 @@ public class MyOrderFragment extends BaseFragment implements ShoppingCartContrac
 
     @Override
     public void showOrderList(List<MyOrderListItemInfo> myOrderList) {
-        MyOrderAdapter myOrderAdapter = new MyOrderAdapter(myOrderList,this.getActivity());
+        myOrderAdapter = new MyOrderAdapter(myOrderList,this.getActivity());
         myOrderRv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         myOrderRv.addItemDecoration(new RecyclerViewDivider(this.getActivity(), LinearLayoutManager.HORIZONTAL, 30, Color.TRANSPARENT));
         myOrderRv.setAdapter(myOrderAdapter);
@@ -111,7 +118,8 @@ public class MyOrderFragment extends BaseFragment implements ShoppingCartContrac
     @Override
     public void onClick(View v) {
         if (v == placeOrderTv) {
-
+            String orderID = PreferenceUtil.getStringKey("orderID");
+            mOrderPresenter.placeOrder(orderID);
         }
     }
 
@@ -131,12 +139,14 @@ public class MyOrderFragment extends BaseFragment implements ShoppingCartContrac
     }
 
     @Override
-    public void onAddClicked() {
-
+    public void onAddClicked(String ID) {
+        String orderID = PreferenceUtil.getStringKey("orderID");
+        mShoppingCartPresenter.addShoppingCart(ID,orderID);
     }
 
     @Override
-    public void onReduceClicked() {
-
+    public void onReduceClicked(String ID) {
+        String orderID = PreferenceUtil.getStringKey("orderID");
+        mShoppingCartPresenter.removeShoppingCart(ID,orderID);
     }
 }

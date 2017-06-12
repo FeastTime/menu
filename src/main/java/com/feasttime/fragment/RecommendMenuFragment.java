@@ -27,6 +27,7 @@ import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.model.bean.MyOrderListItemInfo;
+import com.feasttime.model.bean.OrderInfo;
 import com.feasttime.model.bean.RecommendOrderListItemInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.menu.MenuContract;
@@ -174,12 +175,12 @@ public class RecommendMenuFragment extends BaseFragment implements MenuContract.
     }
 
     @Override
-    public void addShoppingCartComplete() {
+    public void addShoppingCartComplete(OrderInfo orderInfo) {
 
     }
 
     @Override
-    public void removeShoppingCartComplete() {
+    public void removeShoppingCartComplete(OrderInfo orderInfo) {
 
     }
 

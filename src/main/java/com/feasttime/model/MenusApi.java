@@ -55,12 +55,12 @@ public interface MenusApi {
 
       //添加购物车
       @POST("order/addShoppingCart/")
-      Observable<ShoppingCartInfo> addShoppingCart(@Body RequestBody route);
+      Observable<OrderInfo> addShoppingCart(@Body RequestBody route);
 
 
       //去除购物车
       @POST("order/removeShoppingCart/")
-      Observable<ShoppingCartInfo> removeShoppingCart(@Body RequestBody route);
+      Observable<OrderInfo> removeShoppingCart(@Body RequestBody route);
 
       //下单
       @POST("order/placeOrder/")

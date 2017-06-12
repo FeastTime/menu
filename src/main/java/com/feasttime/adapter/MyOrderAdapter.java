@@ -26,6 +26,11 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyViewHo
         this.datas = datas;
     }
 
+    public void refreshList(List<MyOrderListItemInfo> datas) {
+        this.datas = datas;
+        this.notifyDataSetChanged();
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {

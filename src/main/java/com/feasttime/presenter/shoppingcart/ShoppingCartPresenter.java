@@ -27,11 +27,11 @@ public class ShoppingCartPresenter implements ShoppingCartContract.IShoppingCart
         HashMap<String,Object> infoMap = new HashMap<String,Object>();
         infoMap.put("orderID",orderID);
         infoMap.put("ID",ID);
-        RetrofitService.addShoppingCart(infoMap).subscribe(new Consumer<ShoppingCartInfo>(){
+        RetrofitService.addShoppingCart(infoMap).subscribe(new Consumer<OrderInfo>(){
             @Override
-            public void accept(ShoppingCartInfo shoppingCartInfo) throws Exception {
+            public void accept(OrderInfo orderInfo) throws Exception {
                 LogUtil.d("result","aa");
-                mIShoppingCartView.addShoppingCartComplete();
+                mIShoppingCartView.addShoppingCartComplete(orderInfo);
             }
         }, new Consumer<Throwable>() {
             @Override
@@ -53,11 +53,11 @@ public class ShoppingCartPresenter implements ShoppingCartContract.IShoppingCart
         HashMap<String,Object> infoMap = new HashMap<String,Object>();
         infoMap.put("orderID",orderID);
         infoMap.put("ID",ID);
-        RetrofitService.removeShoppingCart(infoMap).subscribe(new Consumer<ShoppingCartInfo>(){
+        RetrofitService.removeShoppingCart(infoMap).subscribe(new Consumer<OrderInfo>(){
             @Override
-            public void accept(ShoppingCartInfo shoppingCartInfo) throws Exception {
+            public void accept(OrderInfo orderInfo) throws Exception {
                 LogUtil.d("result","aa");
-                mIShoppingCartView.addShoppingCartComplete();
+                mIShoppingCartView.removeShoppingCartComplete(orderInfo);
             }
         }, new Consumer<Throwable>() {
             @Override

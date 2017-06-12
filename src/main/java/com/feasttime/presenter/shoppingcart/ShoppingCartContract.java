@@ -1,6 +1,7 @@
 package com.feasttime.presenter.shoppingcart;
 
 import com.feasttime.model.bean.MyOrderListItemInfo;
+import com.feasttime.model.bean.OrderInfo;
 import com.feasttime.model.bean.RecommendOrderListItemInfo;
 import com.feasttime.presenter.IBasePresenter;
 import com.feasttime.presenter.IBaseView;
@@ -13,8 +14,8 @@ import java.util.List;
 
 public interface ShoppingCartContract {
     interface IShoppingCartView extends IBaseView {
-        void addShoppingCartComplete();
-        void removeShoppingCartComplete();
+        void addShoppingCartComplete(OrderInfo orderInfo);
+        void removeShoppingCartComplete(OrderInfo orderInfo);
         void getShoppingcartListComplete();
         void showRecommendList(List<RecommendOrderListItemInfo> recommendOrderList);
         void showOrderList(List<MyOrderListItemInfo> myOrderList);
