@@ -185,7 +185,7 @@ public class RecommendMenuFragment extends BaseFragment implements MenuContract.
     }
 
     @Override
-    public void getShoppingcartListComplete() {
+    public void getShoppingcartListComplete(OrderInfo orderInfo) {
 
     }
 

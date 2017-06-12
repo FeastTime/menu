@@ -82,8 +82,9 @@ public class ShoppingCartPresenter implements ShoppingCartContract.IShoppingCart
             @Override
             public void accept(OrderInfo orderInfo) throws Exception {
                 //mIMenuView.showMenu(menuItemInfo);
-                mIShoppingCartView.showOrderList(orderInfo.getMyOrderList());
-                mIShoppingCartView.showRecommendList(orderInfo.getRecommendOrderList());
+//                mIShoppingCartView.showOrderList(orderInfo.getMyOrderList());
+//                mIShoppingCartView.showRecommendList(orderInfo.getRecommendOrderList());
+                mIShoppingCartView.getShoppingcartListComplete(orderInfo);
             }
         }, new Consumer<Throwable>() {
             @Override

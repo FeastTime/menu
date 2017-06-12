@@ -238,7 +238,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     }
 
     @Override
-    public void getShoppingcartListComplete() {
+    public void getShoppingcartListComplete(OrderInfo orderInfo) {
 
     }
 

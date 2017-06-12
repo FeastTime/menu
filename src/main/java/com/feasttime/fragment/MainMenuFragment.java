@@ -176,7 +176,7 @@ public class MainMenuFragment extends BaseFragment implements MenuContract.IMenu
     }
 
     @Override
-    public void getShoppingcartListComplete() {
+    public void getShoppingcartListComplete(OrderInfo orderInfo) {
 
     }
 

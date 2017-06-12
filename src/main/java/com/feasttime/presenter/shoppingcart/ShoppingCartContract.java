@@ -16,7 +16,7 @@ public interface ShoppingCartContract {
     interface IShoppingCartView extends IBaseView {
         void addShoppingCartComplete(OrderInfo orderInfo);
         void removeShoppingCartComplete(OrderInfo orderInfo);
-        void getShoppingcartListComplete();
+        void getShoppingcartListComplete(OrderInfo orderInfo);
         void showRecommendList(List<RecommendOrderListItemInfo> recommendOrderList);
         void showOrderList(List<MyOrderListItemInfo> myOrderList);
     }

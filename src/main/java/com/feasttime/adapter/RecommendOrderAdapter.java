@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.feasttime.listener.OrderModifyListener;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.RecommendOrderListItemInfo;
 
@@ -17,19 +18,13 @@ import java.util.List;
 /**
  * Created by chen on 2017/5/11.
  */
-
 public class RecommendOrderAdapter extends RecyclerView.Adapter<RecommendOrderAdapter.MyViewHolder> {
     private List<RecommendOrderListItemInfo> datas;
     private Context context;
-    private RecommendOrderListener recommendOrderListener;
+    private OrderModifyListener orderModifyListener;
 
-    public interface RecommendOrderListener {
-        public void onAddClicked(String ID);
-        public void onReduceClicked(String ID);
-    }
-
-    public void setListener(RecommendOrderListener listener) {
-        recommendOrderListener = listener;
+    public void setListener(OrderModifyListener listener) {
+        orderModifyListener = listener;
     }
 
     public RecommendOrderAdapter(List<RecommendOrderListItemInfo> datas, Activity activity) {
@@ -47,7 +42,7 @@ public class RecommendOrderAdapter extends RecyclerView.Adapter<RecommendOrderAd
         MyViewHolder holder = new MyViewHolder(LayoutInflater.from(
                 context).inflate(R.layout.recommend_order_list_item, parent,
                 false));
-        holder.recommendOrderListener = this.recommendOrderListener;
+        holder.orderModifyListener = this.orderModifyListener;
         return holder;
     }
 
@@ -57,6 +52,8 @@ public class RecommendOrderAdapter extends RecyclerView.Adapter<RecommendOrderAd
         holder.nameTv.setText(recommendOrderListItemInfo.getDishName());
         holder.addIv.setTag(recommendOrderListItemInfo.getDishID());
         holder.reduceIv.setTag(recommendOrderListItemInfo.getDishID());
+        holder.amountTv.setText(recommendOrderListItemInfo.getAmount());
+        holder.priceTv.setText(recommendOrderListItemInfo.getTodayPrice());
     }
 
     @Override
@@ -68,13 +65,17 @@ public class RecommendOrderAdapter extends RecyclerView.Adapter<RecommendOrderAd
         public ImageView addIv;
         public TextView nameTv;
         public ImageView reduceIv;
-        public RecommendOrderListener recommendOrderListener;
+        public TextView amountTv;
+        public TextView priceTv;
+        public OrderModifyListener orderModifyListener;
 
         public MyViewHolder(View view) {
             super(view);
             nameTv = (TextView) view.findViewById(R.id.recommend_order_list_item_name_tv);
             addIv = (ImageView) view.findViewById(R.id.recommend_order_list_item_add_iv);
             reduceIv = (ImageView) view.findViewById(R.id.recommend_order_list_item_reduce_iv);
+            priceTv = (TextView)view.findViewById(R.id.recommend_order_list_item_specal_price_tv);
+            amountTv = (TextView)view.findViewById(R.id.recommend_order_list_item_dishes_count_tv);
             addIv.setOnClickListener(this);
             reduceIv.setOnClickListener(this);
         }
@@ -82,9 +83,9 @@ public class RecommendOrderAdapter extends RecyclerView.Adapter<RecommendOrderAd
         @Override
         public void onClick(View v) {
             if (v == addIv) {
-                recommendOrderListener.onAddClicked(v.getTag().toString());
+                orderModifyListener.onAddClicked(v.getTag().toString());
             } else if (v == reduceIv) {
-                recommendOrderListener.onReduceClicked(v.getTag().toString());
+                orderModifyListener.onReduceClicked(v.getTag().toString());
             }
         }
     }
