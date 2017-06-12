@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import com.feasttime.adapter.RecommendMenuAdapter;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.DishesCategoryInfo;
+import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.model.bean.MyOrderListItemInfo;
 import com.feasttime.model.bean.RecommendOrderListItemInfo;
@@ -100,7 +101,8 @@ public class RecommendMenuFragment extends BaseFragment implements MenuContract.
     }
 
     @Override
-    public void showMenu(MenuItemInfo menuItemInfo) {
+    public void showMenu(MenuInfo result) {
+
     }
 
     @Override

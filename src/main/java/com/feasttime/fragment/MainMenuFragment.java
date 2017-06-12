@@ -26,6 +26,7 @@ import com.feasttime.adapter.MainMenuPagerAdapter;
 import com.feasttime.fragment.BaseFragment;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.DishesCategoryInfo;
+import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.model.bean.MyOrderListItemInfo;
 import com.feasttime.model.bean.RecommendOrderListItemInfo;
@@ -69,12 +70,12 @@ public class MainMenuFragment extends BaseFragment implements MenuContract.IMenu
 
     @Override
     protected IBasePresenter[] getPresenters() {
-        return new IBasePresenter[0];
+        return new IBasePresenter[]{mMenuPresenter};
     }
 
     @Override
     protected void onInitPresenters() {
-
+        mMenuPresenter.init(this);
     }
 
     @Override
@@ -86,8 +87,25 @@ public class MainMenuFragment extends BaseFragment implements MenuContract.IMenu
     protected void initViews() {
         jazzyViewPager.setTransitionEffect(JazzyViewPager.TransitionEffect.Tablet);
         jazzyViewPager.setPageMargin(30);
+    }
 
-        MainMenuPagerAdapter mainMenuPagerAdapter = new MainMenuPagerAdapter(mContext,jazzyViewPager);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mContext = inflater.getContext();
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+
+    @Override
+    public void showDishesCategory(DishesCategoryInfo.DishesCategoryListBean dishesCategoryListBean) {
+
+    }
+
+    @Override
+    public void showMenu(MenuInfo result) {
+        viewpageIndicateRg.removeAllViews();
+        MainMenuPagerAdapter mainMenuPagerAdapter = new MainMenuPagerAdapter(mContext,jazzyViewPager,result.getDishesList());
         mainMenuPagerAdapter.setOnItemClickListener(this);
 
         jazzyViewPager.setAdapter(mainMenuPagerAdapter);
@@ -111,25 +129,6 @@ public class MainMenuFragment extends BaseFragment implements MenuContract.IMenu
 
         jazzyViewPager.setOnPageChangeListener(this);
         ((RadioButton)viewpageIndicateRg.getChildAt(0)).setChecked(true);
-
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mContext = inflater.getContext();
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
-
-
-    @Override
-    public void showDishesCategory(DishesCategoryInfo.DishesCategoryListBean dishesCategoryListBean) {
-
-    }
-
-    @Override
-    public void showMenu(MenuItemInfo result) {
-
     }
 
 
@@ -205,4 +204,10 @@ public class MainMenuFragment extends BaseFragment implements MenuContract.IMenu
     public void payOrderComplete() {
 
     }
+
+    public void showContentMenu(String token,String orderID,String menuFlag) {
+        mMenuPresenter.getMenu(token,orderID,menuFlag,"");
+    }
+
+
 }

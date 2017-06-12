@@ -10,7 +10,7 @@ import com.feasttime.presenter.IBaseView;
 
 public interface MenuContract {
     interface IMenuView extends IBaseView {
-        void showMenu(MenuItemInfo result);
+        void showMenu(MenuInfo result);
         void showDishesCategory(DishesCategoryInfo.DishesCategoryListBean dishesCategoryListBean);
     }
 

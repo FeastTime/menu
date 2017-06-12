@@ -99,7 +99,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         }
 
 
-        mMenuPresenter.getMenu(token,orderID,"1001","");
+        mainMenuFragment.showContentMenu(token,orderID,"1001");
 
 //        mShoppingCartPresenter.addShoppingCart("2",orderID);
         //mShoppingCartPresenter.removeShoppingCart("2",orderID);
@@ -145,8 +145,8 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
 
 
     @Override
-    public void showMenu(final MenuItemInfo menuItemInfo) {
-
+    public void showMenu(final MenuInfo menuItemInfo) {
+        LogUtil.d(TAG,"menuInfo complete");
     }
 
     @Override
@@ -191,7 +191,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         menuRb.setGravity(Gravity.CENTER);
         menuRb.setText(dishesCategoryListBean.getCategoryName() + "\n" + "hot");
         menuRb.setTextColor(Color.WHITE);
-        menuRb.setTag(dishesCategoryListBean.getCategoryID());
+        menuRb.setTag("1001");
         menuRb.setPadding(ScreenTools.dip2px(this,40),0,ScreenTools.dip2px(this,40),0);
         if (mTtitleBarMenuRb.getChildCount() == 0) {
             menuRb.setBackgroundResource(R.drawable.title_left_menu_selector);

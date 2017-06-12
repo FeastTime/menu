@@ -5,6 +5,7 @@ import com.feasttime.model.RetrofitService;
 import com.feasttime.model.bean.DishesCategoryInfo;
 import com.feasttime.model.bean.MenuInfo;
 import com.feasttime.model.bean.MenuItemInfo;
+import com.feasttime.model.bean.PayOrderInfo;
 import com.feasttime.tools.LogUtil;
 
 import java.util.HashMap;
@@ -37,26 +38,17 @@ public class MenuPresenter implements MenuContract.IMenuPresenter {
         infoMap.put("classType",classType);
         infoMap.put("page",page);
 
-        RetrofitService.getMenu(infoMap).map(new Function<MenuInfo, List<MenuItemInfo>>() {
+        RetrofitService.getMenu(infoMap).subscribe(new Consumer<MenuInfo>(){
             @Override
-            public List<MenuItemInfo> apply(MenuInfo menuIfno) throws Exception {
-                return menuIfno.getDishesList();
-            }
-        }).flatMap(new Function<List<MenuItemInfo>, ObservableSource<MenuItemInfo>>() {
-            @Override
-            public ObservableSource<MenuItemInfo> apply(List<MenuItemInfo> strings) throws Exception {
-                return Observable.fromIterable(strings);
-            }
-        }).subscribe(new Consumer<MenuItemInfo>() {
-            @Override
-            public void accept(MenuItemInfo menuItemInfo) throws Exception {
-                mIMenuView.showMenu(menuItemInfo);
+            public void accept(MenuInfo menuInfo) throws Exception {
+                LogUtil.d("result","aa");
+                mIMenuView.showMenu(menuInfo);
             }
         }, new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 //这里接收onError
-                LogUtil.d("result","error:");
+                LogUtil.d("result","error");
             }
         }, new Action() {
             @Override
