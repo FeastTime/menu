@@ -79,7 +79,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     private MyOrderFragment myOrderFragment;
     private MainMenuFragment mainMenuFragment;
     private RecommendMenuFragment recommendMenuFragment;
-
+    private FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,19 +125,22 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     protected void initViews() {
         mainMenuFragment = new MainMenuFragment();
         recommendMenuFragment = new RecommendMenuFragment();
-        jumpFragment(mainMenuFragment);
-    }
+        myOrderFragment = new MyOrderFragment();
 
-    private void jumpFragment(Fragment fragment) {
         FragmentManager fm = getFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.main_fragment_container_fl, fragment);
-        transaction.commit();
+        fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.add(R.id.main_fragment_container_fl,mainMenuFragment,"main_menu");
+        fragmentTransaction.add(R.id.main_fragment_container_fl,recommendMenuFragment,"recommend_menu");
+        fragmentTransaction.add(R.id.main_fragment_container_fl,myOrderFragment,"my_order");
+        fragmentTransaction.show(mainMenuFragment);
+        fragmentTransaction.hide(recommendMenuFragment);
+        fragmentTransaction.hide(myOrderFragment);
+        fragmentTransaction.commit();
+
+        //jumpFragment(mainMenuFragment);
     }
 
-    public void jumpToRecommendFragment() {
-        jumpFragment(recommendMenuFragment);
-    }
+
 
     @Override
     protected int getLayoutResId() {
@@ -148,6 +151,10 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Override
     public void showMenu(final MenuInfo menuItemInfo) {
         LogUtil.d(TAG,"menuInfo complete");
+    }
+
+    public void jumpToRecommend(){
+        getFragmentManager().beginTransaction().show(recommendMenuFragment).hide(mainMenuFragment).hide(myOrderFragment).commit();
     }
 
     @Override
@@ -162,11 +169,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
             //jumpFragment(recommendMenuFragment);
             startActivity(new Intent(v.getContext(),EndActivity.class));
         } else if (v == menuIb) {
-            if (myOrderFragment == null) {
-                myOrderFragment = new MyOrderFragment();
-            }
-
-            jumpFragment(myOrderFragment);
+            getFragmentManager().beginTransaction().show(myOrderFragment).hide(mainMenuFragment).hide(recommendMenuFragment).commit();
         } else if (cartIb == v) {
             startActivity(new Intent(v.getContext(),EndActivity.class));
         } else if (loginTv == v) {
@@ -175,15 +178,6 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     }
 
 
-    private void removeOrder() {
-        if (myOrderFragment != null) {
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction transaction = fm.beginTransaction();
-            transaction.remove(myOrderFragment);
-            transaction.commit();
-        }
-
-    }
 
     @Override
     public void showDishesCategory(DishesCategoryInfo.DishesCategoryListBean dishesCategoryListBean) {
@@ -204,7 +198,6 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    removeOrder();
                 }
             }
         });
@@ -221,7 +214,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode== KeyEvent.KEYCODE_BACK && !mainMenuFragment.isVisible()) {
-            jumpFragment(mainMenuFragment);
+            getFragmentManager().beginTransaction().show(mainMenuFragment).hide(myOrderFragment).hide(recommendMenuFragment).commit();
             return true;
         }
         return super.onKeyUp(keyCode, event);
