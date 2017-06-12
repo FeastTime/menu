@@ -1,5 +1,6 @@
 package com.feasttime.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,6 +24,7 @@ import com.feasttime.presenter.order.OrderPresenter;
 import com.feasttime.presenter.shoppingcart.ShoppingCartContract;
 import com.feasttime.presenter.shoppingcart.ShoppingCartPresenter;
 import com.feasttime.tools.PreferenceUtil;
+import com.feasttime.view.EndActivity;
 import com.feasttime.widget.RecyclerViewDivider;
 
 import java.util.List;
@@ -141,7 +143,7 @@ public class MyOrderFragment extends BaseFragment implements ShoppingCartContrac
 
     @Override
     public void placeOrderComplete() {
-
+        startActivity(new Intent(this.getActivity(), EndActivity.class));
     }
 
     @Override
