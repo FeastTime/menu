@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.feasttime.menu.R;
+
 import com.ipinyou.ads.IpinyouBanner;
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrConfig;
@@ -19,7 +20,7 @@ public class SilentADActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);//remove title bar  即隐藏标题栏
-//        this.getSupportActionBar().hide();// 隐藏ActionBar
+        this.getSupportActionBar().hide();// 隐藏ActionBar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//remove notification bar  即全屏
 
         setContentView(R.layout.activity_silent_ad);

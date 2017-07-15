@@ -6,7 +6,6 @@ import android.util.Log;
 import com.feasttime.menu.BuildConfig;
 import com.feasttime.model.RetrofitService;
 import com.feasttime.tools.LogUtil;
-import com.tencent.bugly.crashreport.CrashReport;
 
 
 public class MenuApplication extends Application {
@@ -17,7 +16,7 @@ public class MenuApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
-        CrashReport.initCrashReport(getApplicationContext(), "3b4f343c2c", false);
+        //CrashReport.initCrashReport(getApplicationContext(), "3b4f343c2c", false);
         RetrofitService.init(this);
         if (BuildConfig.DEBUG) {
             LogUtil.DEBUG = true;

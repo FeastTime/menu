@@ -67,7 +67,7 @@ public class PlayVideoActivity extends BaseActivity {
             public boolean onInfo(MediaPlayer mp, int what, int extra) {
                 if(what == MediaPlayer.MEDIA_INFO_BUFFERING_START){
                     loadingPb.setVisibility(View.VISIBLE);
-                }else if(what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
+                } else if(what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
                     //此接口每次回调完START就回调END,若不加上判断就会出现缓冲图标一闪一闪的卡顿现象
                     if(mp.isPlaying()){
                         loadingPb.setVisibility(View.GONE);

@@ -9,6 +9,8 @@ import com.feasttime.model.bean.PayOrderInfo;
 import com.feasttime.model.bean.PersonalStatisticsInfo;
 import com.feasttime.model.bean.PlaceOrderInfo;
 import com.feasttime.model.bean.ShoppingCartInfo;
+import com.feasttime.model.bean.WaitTimeAdInfo;
+import com.feasttime.model.bean.WaitTimeMenuInfo;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -70,5 +72,15 @@ public interface MenusApi {
       @POST("order/payOrder/")
       Observable<PayOrderInfo> payOrder(@Body RequestBody route);
 
+
+      //获取等待页面广告列表
+
+      @POST("ad/adArray/")
+      Observable<WaitTimeAdInfo> getWaitTimeADList(@Body RequestBody requestBody);
+
+      //获取等待页面广告列表
+
+      @POST("--------1")
+      Observable<WaitTimeMenuInfo> getWaitTimeMenuList(@Body RequestBody requestBody);
 
 }

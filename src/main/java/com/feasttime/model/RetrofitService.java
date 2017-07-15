@@ -15,6 +15,8 @@ import com.feasttime.model.bean.PayOrderInfo;
 import com.feasttime.model.bean.PersonalStatisticsInfo;
 import com.feasttime.model.bean.PlaceOrderInfo;
 import com.feasttime.model.bean.ShoppingCartInfo;
+import com.feasttime.model.bean.WaitTimeAdInfo;
+import com.feasttime.model.bean.WaitTimeMenuInfo;
 import com.feasttime.tools.DeviceTool;
 import com.feasttime.tools.LogUtil;
 import com.feasttime.tools.PreferenceUtil;
@@ -251,6 +253,24 @@ public class RetrofitService {
     public static Observable<PayOrderInfo> payOrder(HashMap<String,Object> infoMap){
         addDeviceInfo(infoMap);
         return sMenuService.payOrder(getRequestBody(infoMap))
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+    public static Observable<WaitTimeAdInfo> getWaitTimeAdList(RequestBody requestBody){
+        return sMenuService.getWaitTimeADList(requestBody)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+    public static Observable<WaitTimeMenuInfo> getWaitTimeMenuList(RequestBody requestBody){
+        return sMenuService.getWaitTimeMenuList(requestBody)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
