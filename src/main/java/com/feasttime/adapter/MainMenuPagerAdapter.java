@@ -181,7 +181,9 @@ public class MainMenuPagerAdapter extends PagerAdapter {
         seeDetail1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, ShowWebActivity.class));
+                Intent intent = new Intent(context,ShowWebActivity.class);
+                intent.putExtra("url",UtilTools.decodeStr(menuItemInfo.getDetail()));
+                context.startActivity(intent);
             }
         });
 
