@@ -103,7 +103,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         }
 
 
-        mainMenuFragment.showContentMenu(token,orderID,"1001");
+//        mainMenuFragment.showContentMenu(token,orderID,"1001");
     }
 
     @Override
@@ -219,6 +219,12 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    String classType = buttonView.getTag().toString();
+                    LogUtil.d("result","classType:" + classType);
+                    String token = PreferenceUtil.getStringKey("token");
+                    String orderID = PreferenceUtil.getStringKey("orderID");
+                    mainMenuFragment.showContentMenu(token,orderID,classType);
+                } else {
                 }
             }
         });
