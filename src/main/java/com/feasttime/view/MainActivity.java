@@ -102,7 +102,7 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
             mOrderPresenter.createOrder(token);
         }
 
-
+        LogUtil.d("result","myOrderId:" + orderID);
 //        mainMenuFragment.showContentMenu(token,orderID,"1001");
     }
 

@@ -106,6 +106,9 @@ public class MainMenuFragment extends BaseFragment implements MenuContract.IMenu
     @Override
     public void showMenu(MenuInfo result) {
         viewpageIndicateRg.removeAllViews();
+
+
+
         MainMenuPagerAdapter mainMenuPagerAdapter = new MainMenuPagerAdapter(mContext,jazzyViewPager,result.getDishesList());
         mainMenuPagerAdapter.setOnItemClickListener(this);
 

@@ -23,6 +23,7 @@ import com.feasttime.widget.jazzyviewpager.OutlineContainer;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,7 +48,12 @@ public class MainMenuPagerAdapter extends PagerAdapter {
     public MainMenuPagerAdapter(Context context, JazzyViewPager jazzyViewPager, List<MenuItemInfo> menuItemInfoList) {
         this.context = context;
         this.mJazzy = jazzyViewPager;
-        this.menuItemInfoList = menuItemInfoList;
+        if (menuItemInfoList != null) {
+            this.menuItemInfoList = menuItemInfoList;
+        } else {
+            this.menuItemInfoList = new ArrayList<MenuItemInfo>();
+        }
+
     }
 
     public void setOnItemClickListener(OnItemClick onItemClick) {
