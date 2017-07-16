@@ -171,7 +171,9 @@ public class MainMenuPagerAdapter extends PagerAdapter {
         playVideoTv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, PlayVideoActivity.class));
+                Intent intent = new Intent(context,PlayVideoActivity.class);
+                intent.putExtra("url",menuItemInfo.getTvUrl());
+                context.startActivity(intent);
             }
         });
 
