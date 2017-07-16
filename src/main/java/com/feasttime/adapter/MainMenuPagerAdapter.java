@@ -15,11 +15,14 @@ import android.widget.TextView;
 import com.feasttime.menu.R;
 import com.feasttime.model.bean.MenuItemInfo;
 import com.feasttime.tools.ScreenTools;
+import com.feasttime.tools.UtilTools;
 import com.feasttime.view.PlayVideoActivity;
 import com.feasttime.view.ShowWebActivity;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
 import com.feasttime.widget.jazzyviewpager.OutlineContainer;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.List;
 
 /**
@@ -137,7 +140,24 @@ public class MainMenuPagerAdapter extends PagerAdapter {
 
         TextView seeDetail1 = (TextView)view.findViewById(R.id.menu_item_layout_dishes_detail_tv);
 
-        dishesName1.setText(menuItemInfo.getDishName());
+        TextView cost = (TextView) view.findViewById(R.id.menu_item_layout_original_price_tv);
+        TextView price = (TextView)view.findViewById(R.id.menu_item_layout_now_price_tv);
+        TextView soldTimes = (TextView)view.findViewById(R.id.menu_item_layout_sold_num_tv);
+        TextView provideDishesTv = (TextView)view.findViewById(R.id.menu_item_provide_dishes_tv);
+        TextView sodiumTv = (TextView)view.findViewById(R.id.menu_item_layout_sodium_tv);
+
+        price.setText(menuItemInfo.getPrice());
+        cost.setText(menuItemInfo.getCost());
+        soldTimes.setText(menuItemInfo.getEatTimes());
+        provideDishesTv.setText(menuItemInfo.getWaitTime());
+        sodiumTv.setText(UtilTools.decodeStr(menuItemInfo.getExponent()));
+
+        try {
+            dishesName1.setText(UtilTools.decodeStr(menuItemInfo.getDishName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         view.setGravity(Gravity.CENTER);
 
