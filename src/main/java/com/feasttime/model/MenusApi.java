@@ -48,7 +48,7 @@ public interface MenusApi {
 
 
       //获取菜品类型列表
-      @POST("getDishesCategoryList/")
+      @POST("menu/getDishesCategoryList/")
       Observable<DishesCategoryInfo> getDishesCategoryList(@Body RequestBody route);
 
       //登录

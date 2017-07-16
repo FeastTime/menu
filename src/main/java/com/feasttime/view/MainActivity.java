@@ -48,6 +48,7 @@ import com.feasttime.tools.DeviceTool;
 import com.feasttime.tools.LogUtil;
 import com.feasttime.tools.PreferenceUtil;
 import com.feasttime.tools.ScreenTools;
+import com.feasttime.tools.UtilTools;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
 import com.squareup.picasso.Picasso;
 
@@ -134,32 +135,32 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         fragmentTransaction.commit();
 
 
-        RadioButton menuRb = new RadioButton(this);
-        menuRb.setButtonDrawable(android.R.color.transparent);
-        menuRb.setGravity(Gravity.CENTER);
-        menuRb.setText("海鲜" + "\n" + "hot");
-        menuRb.setTextColor(Color.WHITE);
-        menuRb.setTag("1001");
-        menuRb.setPadding(ScreenTools.dip2px(this,40),0,ScreenTools.dip2px(this,40),0);
-        if (mTtitleBarMenuRb.getChildCount() == 0) {
-            menuRb.setBackgroundResource(R.drawable.title_left_menu_selector);
-        } else {
-            menuRb.setBackgroundResource(R.drawable.title_normal_menu_selector);
-        }
-
-        menuRb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                }
-            }
-        });
-
-        mTtitleBarMenuRb.addView(menuRb);
-        ViewGroup.LayoutParams params = menuRb.getLayoutParams();
-        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
-        menuRb.setLayoutParams(params);
-        ((RadioButton)mTtitleBarMenuRb.getChildAt(0)).setChecked(true);
+//        RadioButton menuRb = new RadioButton(this);
+//        menuRb.setButtonDrawable(android.R.color.transparent);
+//        menuRb.setGravity(Gravity.CENTER);
+//        menuRb.setText("海鲜" + "\n" + "hot");
+//        menuRb.setTextColor(Color.WHITE);
+//        menuRb.setTag("1001");
+//        menuRb.setPadding(ScreenTools.dip2px(this,40),0,ScreenTools.dip2px(this,40),0);
+//        if (mTtitleBarMenuRb.getChildCount() == 0) {
+//            menuRb.setBackgroundResource(R.drawable.title_left_menu_selector);
+//        } else {
+//            menuRb.setBackgroundResource(R.drawable.title_normal_menu_selector);
+//        }
+//
+//        menuRb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                }
+//            }
+//        });
+//
+//        mTtitleBarMenuRb.addView(menuRb);
+//        ViewGroup.LayoutParams params = menuRb.getLayoutParams();
+//        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+//        menuRb.setLayoutParams(params);
+//        ((RadioButton)mTtitleBarMenuRb.getChildAt(0)).setChecked(true);
     }
 
 
@@ -204,9 +205,9 @@ public class MainActivity extends BaseActivity implements MenuContract.IMenuView
         RadioButton menuRb = new RadioButton(this);
         menuRb.setButtonDrawable(android.R.color.transparent);
         menuRb.setGravity(Gravity.CENTER);
-        menuRb.setText(dishesCategoryListBean.getCategoryName() + "\n" + "hot");
+        menuRb.setText(UtilTools.decodeStr(dishesCategoryListBean.getCategoryName()) + "\n" + "hot");
         menuRb.setTextColor(Color.WHITE);
-        menuRb.setTag("1001");
+        menuRb.setTag(dishesCategoryListBean.getClassType());
         menuRb.setPadding(ScreenTools.dip2px(this,40),0,ScreenTools.dip2px(this,40),0);
         if (mTtitleBarMenuRb.getChildCount() == 0) {
             menuRb.setBackgroundResource(R.drawable.title_left_menu_selector);
