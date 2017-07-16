@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -48,6 +49,7 @@ import com.feasttime.tools.LogUtil;
 import com.feasttime.tools.PreferenceUtil;
 import com.feasttime.tools.ScreenTools;
 import com.feasttime.widget.jazzyviewpager.JazzyViewPager;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 

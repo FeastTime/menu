@@ -32,35 +32,36 @@ public class MenuPresenter implements MenuContract.IMenuPresenter {
 
     @Override
     public void getMenu(String token, String orderID, String classType, String page) {
-        HashMap<String,Object> infoMap = new HashMap<String,Object>();
-        infoMap.put("token",token);
-        infoMap.put("orderID",orderID);
-        infoMap.put("classType",classType);
-        infoMap.put("page",page);
+        HashMap<String, Object> infoMap = new HashMap<String, Object>();
+        infoMap.put("token", token);
+        infoMap.put("orderID", orderID);
+        infoMap.put("classType", classType);
+        infoMap.put("page", page);
 
-        RetrofitService.getMenu(infoMap).subscribe(new Consumer<MenuInfo>(){
+        RetrofitService.getMenu(infoMap).subscribe(new Consumer<MenuInfo>() {
             @Override
             public void accept(MenuInfo menuInfo) throws Exception {
-                LogUtil.d("result","aa");
+                LogUtil.d("result", "aa");
                 mIMenuView.showMenu(menuInfo);
             }
         }, new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 //这里接收onError
-                LogUtil.d("result","error");
+                LogUtil.d("result", "error");
             }
         }, new Action() {
             @Override
             public void run() throws Exception {
                 //这里接收onComplete。
-                LogUtil.d("result","complete");
+                LogUtil.d("result", "complete");
             }
         });
     }
 
     @Override
     public void getDishesCategory() {
+
         RetrofitService.getDishesCategoryList().map(new Function<DishesCategoryInfo, List<DishesCategoryInfo.DishesCategoryListBean>>() {
             @Override
             public List<DishesCategoryInfo.DishesCategoryListBean> apply(DishesCategoryInfo dishesCategoryInfo) throws Exception {
@@ -80,13 +81,13 @@ public class MenuPresenter implements MenuContract.IMenuPresenter {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 //这里接收onError
-                LogUtil.d("result","error:");
+                LogUtil.d("result", "error:");
             }
         }, new Action() {
             @Override
             public void run() throws Exception {
                 //这里接收onComplete。
-                LogUtil.d("result","complete");
+                LogUtil.d("result", "complete");
             }
         });
     }
